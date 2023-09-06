@@ -7,7 +7,7 @@
   --second-background-color: #fafafa;
   --third-background-color: #f7f7f7;
   --third-background-color-transparent: rgba(241,241,241,0.6);
-  --primary-color: #a31f34;
+  --primary-color: #a7a7a7;
   --first-text-color: #323739;
   --second-text-color: #343a3c;
   --third-text-color: #5c6669;
@@ -15,7 +15,7 @@
   --default-text-color: #373d3f;
   --invert-text-color: #bebec6;
   --border-color: rgba(0,0,0,0.08);
-  --selection-color: #be243c;
+  --selection-color: #b0b0b0;
   --shadow-color-1: rgba(0,0,0,0.08);
   --shadow-color-2: rgba(0,0,0,0.05);
   --shadow-hover-color: rgba(0,0,0,0.28);
@@ -56,7 +56,7 @@
     --second-background-color: #fafafa;
     --third-background-color: #f7f7f7;
     --third-background-color-transparent: rgba(241,241,241,0.6);
-    --primary-color: #a31f34;
+    --primary-color: #a7a7a7;
     --first-text-color: #323739;
     --second-text-color: #343a3c;
     --third-text-color: #5c6669;
@@ -64,7 +64,7 @@
     --default-text-color: #373d3f;
     --invert-text-color: #bebec6;
     --border-color: rgba(0,0,0,0.08);
-    --selection-color: #be243c;
+    --selection-color: #b0b0b0;
     --shadow-color-1: rgba(0,0,0,0.08);
     --shadow-color-2: rgba(0,0,0,0.05);
     --shadow-hover-color: rgba(0,0,0,0.28);
@@ -106,7 +106,7 @@
     --second-background-color: #242529;
     --third-background-color: #292b2f;
     --third-background-color-transparent: rgba(32,33,36,0.6);
-    --primary-color: #a31f34;
+    --primary-color: #a7a7a7;
     --first-text-color: #d2d2d7;
     --second-text-color: #cbcbd1;
     --third-text-color: #9595a2;
@@ -114,7 +114,7 @@
     --default-text-color: #bebec6;
     --invert-text-color: #373d3f;
     --border-color: rgba(255,255,255,0.08);
-    --selection-color: #be243c;
+    --selection-color: #b0b0b0;
     --shadow-color-1: rgba(255,255,255,0.08);
     --shadow-color-2: rgba(255,255,255,0.05);
     --shadow-hover-color: rgba(69,69,69,0.28);
@@ -155,7 +155,7 @@
   --second-background-color: #fafafa;
   --third-background-color: #f7f7f7;
   --third-background-color-transparent: rgba(241,241,241,0.6);
-  --primary-color: #a31f34;
+  --primary-color: #a7a7a7;
   --first-text-color: #323739;
   --second-text-color: #343a3c;
   --third-text-color: #5c6669;
@@ -163,7 +163,7 @@
   --default-text-color: #373d3f;
   --invert-text-color: #bebec6;
   --border-color: rgba(0,0,0,0.08);
-  --selection-color: #be243c;
+  --selection-color: #b0b0b0;
   --shadow-color-1: rgba(0,0,0,0.08);
   --shadow-color-2: rgba(0,0,0,0.05);
   --shadow-hover-color: rgba(0,0,0,0.28);
@@ -203,7 +203,7 @@
   --second-background-color: #242529;
   --third-background-color: #292b2f;
   --third-background-color-transparent: rgba(32,33,36,0.6);
-  --primary-color: #a31f34;
+  --primary-color: #a7a7a7;
   --first-text-color: #d2d2d7;
   --second-text-color: #cbcbd1;
   --third-text-color: #9595a2;
@@ -211,7 +211,7 @@
   --default-text-color: #bebec6;
   --invert-text-color: #373d3f;
   --border-color: rgba(255,255,255,0.08);
-  --selection-color: #be243c;
+  --selection-color: #b0b0b0;
   --shadow-color-1: rgba(255,255,255,0.08);
   --shadow-color-2: rgba(255,255,255,0.05);
   --shadow-hover-color: rgba(69,69,69,0.28);
@@ -414,14 +414,14 @@ body::-webkit-scrollbar {
   width: 14px;
   height: 8px;
 }
-@media (max-width: 780px) {
+@media (max-width: 768px) {
   html,
   body {
     font-size: 15.36px;
     line-height: 1.44;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 640px) {
   html,
   body {
     font-size: 14.4px;
@@ -500,12 +500,12 @@ button {
   transition-duration: 0.2s, 0.2s, 0.2s, 0.2s, 0.2s;
   transition-timing-function: ease, ease, ease, ease, linear;
 }
-@media (max-width: 780px) {
+@media (max-width: 768px) {
   .btn {
     margin-bottom: 0.8rem;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 640px) {
   .btn {
     margin-bottom: 0.6rem;
   }
@@ -513,19 +513,20 @@ button {
 .btn:hover {
   box-shadow: var(--redefine-box-shadow-hover);
 }
-@media (max-width: 780px) {
+@media (max-width: 768px) {
   .btn {
-    padding: 0;
+    padding: -4;
     border-radius: 14.4px;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 640px) {
   .btn {
-    padding: 0;
+    padding: -8;
     border-radius: 10.799999999999999px;
   }
 }
 .btn:hover {
+  transform: scaleX(1.06) scaleY(1.06);
   box-shadow: var(--redefine-box-shadow-hover);
 }
 .btn:hover,
@@ -539,11 +540,6 @@ button {
   transform: scale(0.95);
   transition: transform 0.1s ease;
   background-color: var(--third-background-color) !important;
-}
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .clear {
   clear: both;
