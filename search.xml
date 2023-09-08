@@ -16,9 +16,61 @@
 <h3 id="部署至远程站点"><a href="#部署至远程站点" class="headerlink" title="部署至远程站点"></a>部署至远程站点</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
 
 <p>更多信息: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >部署 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="先部署在本地进行调试"><a href="#先部署在本地进行调试" class="headerlink" title="先部署在本地进行调试"></a>先部署在本地进行调试</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">$ http://localhost:4000/</span><br></pre></td></tr></table></figure></div>
+<h3 id="先部署在本地进行调试"><a href="#先部署在本地进行调试" class="headerlink" title="先部署在本地进行调试"></a>先部署在本地进行调试</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">之后访问页面</span><br><span class="line">$ http://localhost:4000/</span><br></pre></td></tr></table></figure></div>
 
-<h2 id="测试图片"><a href="#测试图片" class="headerlink" title="测试图片"></a>测试图片</h2>]]></content>
+<h2 id="测试图片"><a href="#测试图片" class="headerlink" title="测试图片"></a>测试图片</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Hexo/Hexo.jpg"
+                      alt="Hexo 图片"
+                ></p>
+<h2 id="笔记模块"><a href="#笔记模块" class="headerlink" title="笔记模块"></a>笔记模块</h2><h3 id="大号提示块"><a href="#大号提示块" class="headerlink" title="大号提示块"></a>大号提示块</h3><div class="note-large default"><div class="notel-title"><i class="notel-icon fa-solid fa-info"></i><p>信息</p>
+</div><div class="notel-content"><p>换行测试<br>换行测试<br>换行测试</p>
+</div></div>
+<div class="note-large blue"><div class="notel-title"><p>提示</p>
+</div><div class="notel-content"><p>换行测试<br>换行测试<br>换行测试</p>
+</div></div>
+<div class="note-large red"><div class="notel-title"><p>自定义标题</p>
+</div><div class="notel-content"><p>换行测试<br>换行测试<br>换行测试</p>
+</div></div>
+
+<h3 id="小号提示块"><a href="#小号提示块" class="headerlink" title="小号提示块"></a>小号提示块</h3><div class="note default"><p>默认 提示块标签</p>
+</div>
+<div class="note default"><p>default 提示块标签</p>
+</div>
+<div class="note primary"><p>primary 提示块标签</p>
+</div>
+<div class="note success"><p>success 提示块标签</p>
+</div>
+<div class="note info"><p>info 提示块标签</p>
+</div>
+<div class="note warning"><p>warning 提示块标签</p>
+</div>
+<div class="note danger"><p>danger 提示块标签</p>
+</div>
+<div class="note red icon-padding"><i class="note-icon fa-solid fa-bolt"></i><p>自定义提示块标签</p>
+</div>
+
+
+<h3 id="Buttons-按钮模块"><a href="#Buttons-按钮模块" class="headerlink" title="Buttons 按钮模块"></a>Buttons 按钮模块</h3><p>不设置任何参数的 <a class="button " href='/' title='按钮'>按钮</a> 适合融入段落中。</p>
+<p>regular 按钮适合独立于段落之外：</p>
+<a class="button  regular" href='https://www.ohevan.com' title='示例博客'><i class='fa-solid fa-play-circle'></i> 示例博客</a>
+<a class="button  regular" href='https://www.ohevan.com' title='示例博客'><i class='fa-solid fa-play-circle'></i> 示例博客</a>
+<p>large 按钮更具有强调作用，建议搭配 center 使用：</p>
+<a class="button  center large" href='https://redefine-docs.ohevan.com' title='开始使用'><i class='fa-solid fa-download'></i> 开始使用</a>
+
+<h3 id="Folding-折叠模块"><a href="#Folding-折叠模块" class="headerlink" title="Folding 折叠模块"></a>Folding 折叠模块</h3><details class="blue" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Folding 测试： 点击查看更多 </summary>
+              <div class='content'>
+              <p>啊啊啊啊啊</p><div class="note danger"><p>danger 提示块标签</p></div> <div class="note tip"><p>tip 提示块标签</p></div> 
+              </div>
+            </details>
+
+<h4 id="Folding-折叠模块-颜色列表"><a href="#Folding-折叠模块-颜色列表" class="headerlink" title="Folding 折叠模块-颜色列表"></a>Folding 折叠模块-颜色列表</h4><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ yellow, blue, green, red, orange, pink, cyan, white, black, gray</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Tabs-分栏模块"><a href="#Tabs-分栏模块" class="headerlink" title="Tabs 分栏模块"></a>Tabs 分栏模块</h3><div class="tabs" id="tab-first-unique-name"><ul class="nav-tabs"><li class="tab active"><a class="#first-unique-name-1">First Tab</a></li><li class="tab"><a class="#first-unique-name-2">Second Tab</a></li><li class="tab"><a class="#first-unique-name-3">Third Tab</a></li></ul><div class="tab-content"><div class="tab-pane active" id="first-unique-name-1"><p><strong>This is Tab 1.</strong></p>
+<p>This is Tab 1.</p></div><div class="tab-pane" id="first-unique-name-2"><p><strong>This is Tab 2.</strong></p>
+<p>This is Tab 1.<br>This is Tab 2.</p></div><div class="tab-pane" id="first-unique-name-3"><p><strong>This is Tab 3.</strong></p>
+<p>This is Tab 1.<br>This is Tab 2.<br>This is Tab 3.</p></div></div></div>]]></content>
       <categories>
         <category>Hexo学习内容</category>
       </categories>
