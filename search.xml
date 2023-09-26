@@ -898,4 +898,51 @@
         <tag>漏扫工具</tag>
       </tags>
   </entry>
+  <entry>
+    <title>信息搜集工具</title>
+    <url>/2023/09/26/Search-tool/</url>
+    <content><![CDATA[<h1 id="支持的平台"><a href="#支持的平台" class="headerlink" title="支持的平台"></a>支持的平台</h1><p>基于python pyside2库实现的，支持windows macos，windows至少需要win7以上系统才能运行，支持一键导出</p>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">python Search_Viewer.py</span><br></pre></td></tr></table></figure></div></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../image/ep/Ss-01.png"
+                      alt="Alt text"
+                ></p>
+<h2 id="FOFA"><a href="#FOFA" class="headerlink" title="FOFA"></a>FOFA</h2><p>1.默认展示10000条数据</p>
+<p>2.支持iconhash查询，输出的iconhash复制到输入框点击查询即可</p>
+<p>3.点击查询会覆盖已查询的内容</p>
+<h2 id="鹰图"><a href="#鹰图" class="headerlink" title="鹰图"></a>鹰图</h2><p>1.默认展示20条数据，最高100条</p>
+<p>2.可以自己输入页码，默认第一页</p>
+<p>3.每次查询可以看到消耗积分和剩余积分</p>
+<p>4.当日重复查询的语句，不会累计扣积分</p>
+<p>5.可以自己选择资产类型，默认web资产</p>
+<p>6.点击查询会覆盖已查询的内容</p>
+<p>7.暂不支持查询iconhash，之后版本可能会新增</p>
+<h2 id="shodan"><a href="#shodan" class="headerlink" title="shodan"></a>shodan</h2><p>1.默认展示100条，可翻页</p>
+<p>2.shodan搜索速度可能比其他的空间测绘慢一些，点击查询后没必要再次点击查询，请耐心等待即可</p>
+<p>3.搜索方法：如果需要搜索shodan语句选择HOST方法，如果需要搜索IP选择IP即可，选错可能会影响到搜索结果</p>
+<p>4.点击查询不会覆盖已查询的内容</p>
+<p>5.只能导出已查询出来的内容，可能之后版本会解决</p>
+<h2 id="360-Quake"><a href="#360-Quake" class="headerlink" title="360 Quake"></a>360 Quake</h2><p>1.支持360 Quake语法</p>
+<p>2.默认查询20页，最大查询499条</p>
+<p>3.自动展示去重</p>
+<p>4.可查询本月剩余积分</p>
+<p>5.暂无法查询到域名信息</p>
+<h2 id="Zoomeye-钟馗之眼"><a href="#Zoomeye-钟馗之眼" class="headerlink" title="Zoomeye 钟馗之眼"></a>Zoomeye 钟馗之眼</h2><p>1.提供三个资产类型，分别是主机设备、关联域名、子域名，默认关联域名查询</p>
+<p>2.关联域名、子域名默认查询30条，主机设备默认查询20条，可翻页</p>
+<p>3.导出提供两个按钮分别有“导出主机设备”、“导出关联域名&#x2F;子域名”，注意：选择的资产类型比如是“主机设备”，你导出的时候也必须选择导出“主机设备” 如果选了另一项系统第一次则会自动提示，第二次则不会提示直到退出后重新进入</p>
+<h2 id="Censys"><a href="#Censys" class="headerlink" title="Censys"></a>Censys</h2><p>1.一页最多展示100条数据,可翻页</p>
+<p>2.注意资产搜索类型</p>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p><a class="link"   href="https://github.com/G3et/Search_Viewer" >https://github.com/G3et/Search_Viewer <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="个人推荐指数"><a href="#个人推荐指数" class="headerlink" title="个人推荐指数"></a>个人推荐指数</h3><p>推荐：⭐⭐⭐  比较推荐</p>
+]]></content>
+      <categories>
+        <category>资产测绘工具</category>
+      </categories>
+      <tags>
+        <tag>资产测绘采集</tag>
+      </tags>
+  </entry>
 </search>
