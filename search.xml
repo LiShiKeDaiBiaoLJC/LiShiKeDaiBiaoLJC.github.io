@@ -1,117 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>欢迎使用Hexo</title>
-    <url>/2023/09/08/hello-world/</url>
-    <content><![CDATA[<p>欢迎来到 <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! 这是第一篇文档，如果对此有相关疑问请点击 <a class="link"   href="https://hexo.io/docs/" >文档 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。 如果您在使用Hexo时遇到任何问题，您可以在<a class="link"   href="https://hexo.io/docs/troubleshooting.html" >故障排除 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 中找到答案或者你可以直接来问我 <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
-<h2 id="快速启动"><a href="#快速启动" class="headerlink" title="快速启动"></a>快速启动</h2><h3 id="创建新的帖子"><a href="#创建新的帖子" class="headerlink" title="创建新的帖子"></a>创建新的帖子</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
+    <title>信息搜集工具</title>
+    <url>/2023/09/26/Search-tool/</url>
+    <content><![CDATA[<h1 id="支持的平台"><a href="#支持的平台" class="headerlink" title="支持的平台"></a>支持的平台</h1><p>基于python pyside2库实现的，支持windows macos，windows至少需要win7以上系统才能运行，支持一键导出</p>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">python Search_Viewer.py</span><br></pre></td></tr></table></figure></div></div>
 
-<p>更多信息: <a class="link"   href="https://hexo.io/docs/writing.html" >写作 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="运行服务"><a href="#运行服务" class="headerlink" title="运行服务"></a>运行服务</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
-
-<p>更多信息: <a class="link"   href="https://hexo.io/docs/server.html" >服务器 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
-
-<p>更多信息: <a class="link"   href="https://hexo.io/docs/generating.html" >生成 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="部署至远程站点"><a href="#部署至远程站点" class="headerlink" title="部署至远程站点"></a>部署至远程站点</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
-
-<p>更多信息: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >部署 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="先部署在本地进行调试"><a href="#先部署在本地进行调试" class="headerlink" title="先部署在本地进行调试"></a>先部署在本地进行调试</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">之后访问页面</span><br><span class="line">$ http://localhost:4000/</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="测试图片"><a href="#测试图片" class="headerlink" title="测试图片"></a>测试图片</h2><p><img  
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/image/Hexo/Hexo.jpg"
-                      alt="Hexo 图片"
-                ><br>分辨率为3026*1892</p>
-<h2 id="笔记模块"><a href="#笔记模块" class="headerlink" title="笔记模块"></a>笔记模块</h2><h3 id="大号提示块"><a href="#大号提示块" class="headerlink" title="大号提示块"></a>大号提示块</h3><div class="note-large default"><div class="notel-title"><i class="notel-icon fa-solid fa-info"></i><p>信息</p>
-</div><div class="notel-content"><p>换行测试<br>换行测试<br>换行测试<br>blue red cyan purple orange yellow green</p>
-</div></div>
-<div class="note-large blue"><div class="notel-title"><p>提示</p>
-</div><div class="notel-content"><p>换行测试<br>换行测试<br>换行测试</p>
-</div></div>
-<div class="note-large red"><div class="notel-title"><p>自定义标题</p>
-</div><div class="notel-content"><p>换行测试<br>换行测试<br>换行测试</p>
-</div></div>
-
-<h3 id="小号提示块"><a href="#小号提示块" class="headerlink" title="小号提示块"></a>小号提示块</h3><div class="note default"><p>默认 提示块标签</p>
-</div>
-<div class="note default"><p>default 提示块标签</p>
-</div>
-<div class="note primary"><p>primary 提示块标签</p>
-</div>
-<div class="note success"><p>success 提示块标签</p>
-</div>
-<div class="note info"><p>info 提示块标签</p>
-</div>
-<div class="note warning"><p>warning 提示块标签</p>
-</div>
-<div class="note danger"><p>danger 提示块标签</p>
-</div>
-<div class="note red icon-padding"><i class="note-icon fa-solid fa-bolt"></i><p>自定义提示块标签</p>
-</div>
-
-
-<h3 id="Buttons-按钮模块"><a href="#Buttons-按钮模块" class="headerlink" title="Buttons 按钮模块"></a>Buttons 按钮模块</h3><p>不设置任何参数的 <a class="button " href='/' title='按钮'>按钮</a> 适合融入段落中。</p>
-<p>regular 按钮适合独立于段落之外：</p>
-<a class="button  regular" href='https://www.ohevan.com' title='示例博客'><i class='fa-solid fa-play-circle'></i> 示例博客</a>
-<a class="button  regular" href='https://www.ohevan.com' title='示例博客'><i class='fa-solid fa-play-circle'></i> 示例博客</a>
-<p>large 按钮更具有强调作用，建议搭配 center 使用：</p>
-<a class="button  center large" href='https://redefine-docs.ohevan.com' title='开始使用'><i class='fa-solid fa-download'></i> 开始使用</a>
-
-<h3 id="Folding-折叠模块"><a href="#Folding-折叠模块" class="headerlink" title="Folding 折叠模块"></a>Folding 折叠模块</h3><details class="blue" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Folding 测试： 点击查看更多 </summary>
-              <div class='content'>
-              <p>啊啊啊啊啊</p><div class="note danger"><p>danger 提示块标签</p></div> <div class="note tip"><p>tip 提示块标签</p></div> 
-              </div>
-            </details>
-
-<h4 id="Folding-折叠模块-颜色列表"><a href="#Folding-折叠模块-颜色列表" class="headerlink" title="Folding 折叠模块-颜色列表"></a>Folding 折叠模块-颜色列表</h4><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ yellow, blue, green, red, orange, pink, cyan, white, black, gray</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="Tabs-分栏模块"><a href="#Tabs-分栏模块" class="headerlink" title="Tabs 分栏模块"></a>Tabs 分栏模块</h3><div class="tabs" id="tab-first-unique-name"><ul class="nav-tabs"><li class="tab active"><a class="#first-unique-name-1">First Tab</a></li><li class="tab"><a class="#first-unique-name-2">Second Tab</a></li><li class="tab"><a class="#first-unique-name-3">Third Tab</a></li></ul><div class="tab-content"><div class="tab-pane active" id="first-unique-name-1"><p><strong>This is Tab 1.</strong></p>
-<p>This is Tab 1.</p></div><div class="tab-pane" id="first-unique-name-2"><p><strong>This is Tab 2.</strong></p>
-<p>This is Tab 1.<br>This is Tab 2.</p></div><div class="tab-pane" id="first-unique-name-3"><p><strong>This is Tab 3.</strong></p>
-<p>This is Tab 1.<br>This is Tab 2.<br>This is Tab 3.</p></div></div></div>]]></content>
-      <categories>
-        <category>Hexo学习内容</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>等保工具相关使用</title>
-    <url>/2023/09/26/DB-tool/</url>
-    <content><![CDATA[<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p>主机存活探测、漏洞扫描、子域名扫描、端口扫描、各类服务数据库爆破、poc扫描、xss扫描、webtitle探测、web指纹识别、web敏感信息泄露、web目录浏览、web文件下载、等保安全风险问题风险自查等； 弱口令&#x2F;未授权访问：40余种； WEB组件识别：300余种； 漏洞扫描：XSS、任意文件访问、任意命令执行、敏感信息泄露、默认账户密码…； 资产扫描：扫描存活主机-&gt;判断存活端口-&gt;识别协议&#x2F;组件-&gt;基于组件协议进行弱口令、漏洞扫描-&gt;输出报告</p>
-<h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">CMD 直接使用</span><br></pre></td></tr></table></figure></div></div>
-
-
-<h3 id="常见使用参数"><a href="#常见使用参数" class="headerlink" title="常见使用参数"></a>常见使用参数</h3><p>golin web (通过web方式启动,仅支持等保功能)<br>golin port (自动读取本地网卡IP地址段进行扫描,过滤虚拟网卡地址段)<br>golin port -i 192.168.1.1&#x2F;24 (扫描c段端口并扫描弱口令、xss、poc漏洞)<br>golin port -i 192.168.1.1&#x2F;24 –ipfile ip.txt<br>(扫描指定IP段的同时扫描ip.txt文件中的主机,默认读取ip.txt,目录下如果存在不使用–ipfile也会读取)<br>golin port –fofa ‘app&#x3D;”nps” &amp;&amp; port&#x3D;”8080”‘ (调用fofa数据进行扫描)<br>golin port -i 192.168.1.1:8080 (快速扫描某一主机的特定端口)<br>golin port -i <a class="link"   href="http://www.test.com:18080/" >http://www.test.com:18080 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> (扫描网站首页)<br>golin port -i <a class="link"   href="http://www.test.com:18080/info" >http://www.test.com:18080/info <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> (扫描网站特定页)<br>golin port -i 192.168.1.1&#x2F;24 -c 1000 -t 10(仅扫描c段端口并设置并发数为1000,端口连接超时为10秒)<br>golin port -i 192.168.1.1&#x2F;24 –noping –nocrack –random(扫描c段端口但不探测存活不扫描弱口令,并且打乱主机顺序扫描)<br>golin port -i 192.168.1.1&#x2F;24 –nopoc(扫描c段端口但禁用扫描漏洞)<br>golin dirsearch -u <a class="link"   href="https://test.com/" >https://test.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -f 字典.txt –code 200,404 (扫描状态码为200以及404的web目录)<br>golin [linux、mysql、oracle、sqlserver、redis、windows…] (按照3级等保要求核查各项安全配置生成html形式报告)<br>golin update (检查是否可更新)</p>
-<h3 id="Web功能预览"><a href="#Web功能预览" class="headerlink" title="Web功能预览"></a>Web功能预览</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/DB-web.gif"
-                      alt="DB 图片"
+                     data-src="/../image/ep/Ss-01.png"
+                      alt="Alt text"
                 ></p>
-<h3 id="资产-组件-漏洞扫描功能预览"><a href="#资产-组件-漏洞扫描功能预览" class="headerlink" title="资产&#x2F;组件&#x2F;漏洞扫描功能预览"></a>资产&#x2F;组件&#x2F;漏洞扫描功能预览</h3><p><img  
+<h2 id="相关语法"><a href="#相关语法" class="headerlink" title="相关语法"></a>相关语法</h2><p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/image/ep/DB-ZCSM.png"
-                      alt="DB 图片"
+                     data-src="/../image/ep/Ss-00.png"
+                      alt="Alt text"
                 ></p>
-<h3 id="WEB目录扫描功能预览"><a href="#WEB目录扫描功能预览" class="headerlink" title="WEB目录扫描功能预览"></a>WEB目录扫描功能预览</h3><p><img  
+<h2 id="FOFA"><a href="#FOFA" class="headerlink" title="FOFA"></a>FOFA</h2><p>1.默认展示10000条数据</p>
+<p>2.支持iconhash查询，输出的iconhash复制到输入框点击查询即可</p>
+<p>3.点击查询会覆盖已查询的内容</p>
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/image/ep/DB-Web-dirsearch.png"
-                      alt="DB 图片"
+                     data-src="/../image/ep/Ss-02.png"
+                      alt="Alt text"
                 ></p>
-<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p><a class="link"   href="https://github.com/selinuxG/Golin" >https://github.com/selinuxG/Golin <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="个人推荐指数"><a href="#个人推荐指数" class="headerlink" title="个人推荐指数"></a>个人推荐指数</h3><p>推荐：⭐⭐⭐⭐  较为推荐</p>
+<h2 id="鹰图"><a href="#鹰图" class="headerlink" title="鹰图"></a>鹰图</h2><p>1.默认展示20条数据，最高100条</p>
+<p>2.可以自己输入页码，默认第一页</p>
+<p>3.每次查询可以看到消耗积分和剩余积分</p>
+<p>4.当日重复查询的语句，不会累计扣积分</p>
+<p>5.可以自己选择资产类型，默认web资产</p>
+<p>6.点击查询会覆盖已查询的内容</p>
+<p>7.暂不支持查询iconhash，之后版本可能会新增</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../image/ep/Ss-04.png"
+                      alt="Alt text"
+                ></p>
+<h2 id="shodan"><a href="#shodan" class="headerlink" title="shodan"></a>shodan</h2><p>1.默认展示100条，可翻页</p>
+<p>2.shodan搜索速度可能比其他的空间测绘慢一些，点击查询后没必要再次点击查询，请耐心等待即可</p>
+<p>3.搜索方法：如果需要搜索shodan语句选择HOST方法，如果需要搜索IP选择IP即可，选错可能会影响到搜索结果</p>
+<p>4.点击查询不会覆盖已查询的内容</p>
+<p>5.只能导出已查询出来的内容，可能之后版本会解决</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../image/ep/Ss-03.png"
+                      alt="Alt text"
+                ></p>
+<h2 id="360-Quake"><a href="#360-Quake" class="headerlink" title="360 Quake"></a>360 Quake</h2><p>1.支持360 Quake语法</p>
+<p>2.默认查询20页，最大查询499条</p>
+<p>3.自动展示去重</p>
+<p>4.可查询本月剩余积分</p>
+<p>5.暂无法查询到域名信息</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../image/ep/Ss-05.png"
+                      alt="Alt text"
+                ></p>
+<h2 id="Zoomeye-钟馗之眼"><a href="#Zoomeye-钟馗之眼" class="headerlink" title="Zoomeye 钟馗之眼"></a>Zoomeye 钟馗之眼</h2><p>1.提供三个资产类型，分别是主机设备、关联域名、子域名，默认关联域名查询</p>
+<p>2.关联域名、子域名默认查询30条，主机设备默认查询20条，可翻页</p>
+<p>3.导出提供两个按钮分别有“导出主机设备”、“导出关联域名&#x2F;子域名”，注意：选择的资产类型比如是“主机设备”，你导出的时候也必须选择导出“主机设备” 如果选了另一项系统第一次则会自动提示，第二次则不会提示直到退出后重新进入</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../image/ep/Ss-06.png"
+                      alt="Alt text"
+                ></p>
+<h2 id="Censys"><a href="#Censys" class="headerlink" title="Censys"></a>Censys</h2><p>1.一页最多展示100条数据,可翻页</p>
+<p>2.注意资产搜索类型</p>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p><a class="link"   href="https://github.com/G3et/Search_Viewer" >https://github.com/G3et/Search_Viewer <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="个人推荐指数"><a href="#个人推荐指数" class="headerlink" title="个人推荐指数"></a>个人推荐指数</h3><p>推荐：⭐⭐⭐  比较推荐</p>
 ]]></content>
       <categories>
-        <category>等保工具</category>
+        <category>资产测绘工具</category>
       </categories>
       <tags>
-        <tag>等保</tag>
+        <tag>资产测绘采集</tag>
       </tags>
   </entry>
   <entry>
@@ -899,50 +868,204 @@
       </tags>
   </entry>
   <entry>
-    <title>信息搜集工具</title>
-    <url>/2023/09/26/Search-tool/</url>
-    <content><![CDATA[<h1 id="支持的平台"><a href="#支持的平台" class="headerlink" title="支持的平台"></a>支持的平台</h1><p>基于python pyside2库实现的，支持windows macos，windows至少需要win7以上系统才能运行，支持一键导出</p>
-<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">python Search_Viewer.py</span><br></pre></td></tr></table></figure></div></div>
+    <title>等保工具相关使用</title>
+    <url>/2023/09/26/DB-tool/</url>
+    <content><![CDATA[<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p>主机存活探测、漏洞扫描、子域名扫描、端口扫描、各类服务数据库爆破、poc扫描、xss扫描、webtitle探测、web指纹识别、web敏感信息泄露、web目录浏览、web文件下载、等保安全风险问题风险自查等； 弱口令&#x2F;未授权访问：40余种； WEB组件识别：300余种； 漏洞扫描：XSS、任意文件访问、任意命令执行、敏感信息泄露、默认账户密码…； 资产扫描：扫描存活主机-&gt;判断存活端口-&gt;识别协议&#x2F;组件-&gt;基于组件协议进行弱口令、漏洞扫描-&gt;输出报告</p>
+<h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">CMD 直接使用</span><br></pre></td></tr></table></figure></div></div>
 
+
+<h3 id="常见使用参数"><a href="#常见使用参数" class="headerlink" title="常见使用参数"></a>常见使用参数</h3><p>golin web (通过web方式启动,仅支持等保功能)<br>golin port (自动读取本地网卡IP地址段进行扫描,过滤虚拟网卡地址段)<br>golin port -i 192.168.1.1&#x2F;24 (扫描c段端口并扫描弱口令、xss、poc漏洞)<br>golin port -i 192.168.1.1&#x2F;24 –ipfile ip.txt<br>(扫描指定IP段的同时扫描ip.txt文件中的主机,默认读取ip.txt,目录下如果存在不使用–ipfile也会读取)<br>golin port –fofa ‘app&#x3D;”nps” &amp;&amp; port&#x3D;”8080”‘ (调用fofa数据进行扫描)<br>golin port -i 192.168.1.1:8080 (快速扫描某一主机的特定端口)<br>golin port -i <a class="link"   href="http://www.test.com:18080/" >http://www.test.com:18080 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> (扫描网站首页)<br>golin port -i <a class="link"   href="http://www.test.com:18080/info" >http://www.test.com:18080/info <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> (扫描网站特定页)<br>golin port -i 192.168.1.1&#x2F;24 -c 1000 -t 10(仅扫描c段端口并设置并发数为1000,端口连接超时为10秒)<br>golin port -i 192.168.1.1&#x2F;24 –noping –nocrack –random(扫描c段端口但不探测存活不扫描弱口令,并且打乱主机顺序扫描)<br>golin port -i 192.168.1.1&#x2F;24 –nopoc(扫描c段端口但禁用扫描漏洞)<br>golin dirsearch -u <a class="link"   href="https://test.com/" >https://test.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -f 字典.txt –code 200,404 (扫描状态码为200以及404的web目录)<br>golin [linux、mysql、oracle、sqlserver、redis、windows…] (按照3级等保要求核查各项安全配置生成html形式报告)<br>golin update (检查是否可更新)</p>
+<h3 id="Web功能预览"><a href="#Web功能预览" class="headerlink" title="Web功能预览"></a>Web功能预览</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/DB-web.gif"
+                      alt="DB 图片"
+                ></p>
+<h3 id="资产-组件-漏洞扫描功能预览"><a href="#资产-组件-漏洞扫描功能预览" class="headerlink" title="资产&#x2F;组件&#x2F;漏洞扫描功能预览"></a>资产&#x2F;组件&#x2F;漏洞扫描功能预览</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/DB-ZCSM.png"
+                      alt="DB 图片"
+                ></p>
+<h3 id="WEB目录扫描功能预览"><a href="#WEB目录扫描功能预览" class="headerlink" title="WEB目录扫描功能预览"></a>WEB目录扫描功能预览</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/DB-Web-dirsearch.png"
+                      alt="DB 图片"
+                ></p>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p><a class="link"   href="https://github.com/selinuxG/Golin" >https://github.com/selinuxG/Golin <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="个人推荐指数"><a href="#个人推荐指数" class="headerlink" title="个人推荐指数"></a>个人推荐指数</h3><p>推荐：⭐⭐⭐⭐  较为推荐</p>
+]]></content>
+      <categories>
+        <category>等保工具</category>
+      </categories>
+      <tags>
+        <tag>等保</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在电脑上操作手机</title>
+    <url>/2023/10/16/TP-tool/</url>
+    <content><![CDATA[<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p>此应用程序镜像Android设备（视频和音频）连接通过 USB或TCP&#x2F;IP，并允许控制与计算机的键盘和鼠标的设备。它不需要任何root访问，它适用于Linux、Windows和macOS。</p>
+<h2 id="最后效果"><a href="#最后效果" class="headerlink" title="最后效果"></a>最后效果</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-Over.jpg"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h2><p>Android设备至少需要API 21（Android 5.0）。</p>
+<p>API &#x3D; 30（Android 11+）支持音频转发。</p>
+<p>请确保在设备上启用了USB调试。</p>
+<p>在某些设备上，您还需要启用附加选项USB debugging (Security Settings)（该选项与USB debugging不同）用键盘和鼠标来控制它。<br>重新启动设备是必要的一次 此选项被设置。</p>
+<p>注意，在OTG中运行scrcpy不需要USB调试模式。</p>
+<h3 id="1、手机要开启开发者模式"><a href="#1、手机要开启开发者模式" class="headerlink" title="1、手机要开启开发者模式"></a>1、手机要开启开发者模式</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-6.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h3 id="2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB-debugging功能"><a href="#2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB-debugging功能" class="headerlink" title="2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB debugging功能"></a>2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB debugging功能</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-8.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h3 id="3、需要在手机上允许电脑进行操作"><a href="#3、需要在手机上允许电脑进行操作" class="headerlink" title="3、需要在手机上允许电脑进行操作"></a>3、需要在手机上允许电脑进行操作</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-7.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="官方WiKi"><a href="#官方WiKi" class="headerlink" title="官方WiKi"></a>官方WiKi</h2><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">https://github.com/Genymobile/scrcpy/wiki</span><br></pre></td></tr></table></figure></div></div>
+
+<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">https://github.com/Genymobile/scrcpy/blob/master/doc/windows.md</span><br></pre></td></tr></table></figure></div></div>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/../image/ep/Ss-01.png"
-                      alt="Alt text"
+                     data-src="/image/ep/TP-scrcpy-win-down.png"
+                      alt="Scrcpy 图片"
                 ></p>
-<h2 id="FOFA"><a href="#FOFA" class="headerlink" title="FOFA"></a>FOFA</h2><p>1.默认展示10000条数据</p>
-<p>2.支持iconhash查询，输出的iconhash复制到输入框点击查询即可</p>
-<p>3.点击查询会覆盖已查询的内容</p>
-<h2 id="鹰图"><a href="#鹰图" class="headerlink" title="鹰图"></a>鹰图</h2><p>1.默认展示20条数据，最高100条</p>
-<p>2.可以自己输入页码，默认第一页</p>
-<p>3.每次查询可以看到消耗积分和剩余积分</p>
-<p>4.当日重复查询的语句，不会累计扣积分</p>
-<p>5.可以自己选择资产类型，默认web资产</p>
-<p>6.点击查询会覆盖已查询的内容</p>
-<p>7.暂不支持查询iconhash，之后版本可能会新增</p>
-<h2 id="shodan"><a href="#shodan" class="headerlink" title="shodan"></a>shodan</h2><p>1.默认展示100条，可翻页</p>
-<p>2.shodan搜索速度可能比其他的空间测绘慢一些，点击查询后没必要再次点击查询，请耐心等待即可</p>
-<p>3.搜索方法：如果需要搜索shodan语句选择HOST方法，如果需要搜索IP选择IP即可，选错可能会影响到搜索结果</p>
-<p>4.点击查询不会覆盖已查询的内容</p>
-<p>5.只能导出已查询出来的内容，可能之后版本会解决</p>
-<h2 id="360-Quake"><a href="#360-Quake" class="headerlink" title="360 Quake"></a>360 Quake</h2><p>1.支持360 Quake语法</p>
-<p>2.默认查询20页，最大查询499条</p>
-<p>3.自动展示去重</p>
-<p>4.可查询本月剩余积分</p>
-<p>5.暂无法查询到域名信息</p>
-<h2 id="Zoomeye-钟馗之眼"><a href="#Zoomeye-钟馗之眼" class="headerlink" title="Zoomeye 钟馗之眼"></a>Zoomeye 钟馗之眼</h2><p>1.提供三个资产类型，分别是主机设备、关联域名、子域名，默认关联域名查询</p>
-<p>2.关联域名、子域名默认查询30条，主机设备默认查询20条，可翻页</p>
-<p>3.导出提供两个按钮分别有“导出主机设备”、“导出关联域名&#x2F;子域名”，注意：选择的资产类型比如是“主机设备”，你导出的时候也必须选择导出“主机设备” 如果选了另一项系统第一次则会自动提示，第二次则不会提示直到退出后重新进入</p>
-<h2 id="Censys"><a href="#Censys" class="headerlink" title="Censys"></a>Censys</h2><p>1.一页最多展示100条数据,可翻页</p>
-<p>2.注意资产搜索类型</p>
-<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p><a class="link"   href="https://github.com/G3et/Search_Viewer" >https://github.com/G3et/Search_Viewer <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="个人推荐指数"><a href="#个人推荐指数" class="headerlink" title="个人推荐指数"></a>个人推荐指数</h3><p>推荐：⭐⭐⭐  比较推荐</p>
+<h2 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-1.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="文件中具体内容"><a href="#文件中具体内容" class="headerlink" title="文件中具体内容"></a>文件中具体内容</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-2.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="如何操作内容-1"><a href="#如何操作内容-1" class="headerlink" title="如何操作内容(1)"></a>如何操作内容(1)</h2><p>通过CMD命令进入到命令行界面输入adb usb 查看是否连通相关内容<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-3.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="如何操作内容-2"><a href="#如何操作内容-2" class="headerlink" title="如何操作内容(2)"></a>如何操作内容(2)</h2><p>对内容进行链接操作<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-4.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="如何操作内容-3"><a href="#如何操作内容-3" class="headerlink" title="如何操作内容(3)"></a>如何操作内容(3)</h2><p>发现无法连接，经过排查发现是存在多个连接设备，需要使用命令 -s 明确机器识别码才能成功<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-5.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="个人最终效果"><a href="#个人最终效果" class="headerlink" title="个人最终效果"></a>个人最终效果</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-9.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h3 id="个人推荐指数"><a href="#个人推荐指数" class="headerlink" title="个人推荐指数"></a>个人推荐指数</h3><p>推荐：⭐⭐⭐⭐  较为推荐</p>
 ]]></content>
       <categories>
-        <category>资产测绘工具</category>
+        <category>摸鱼工具</category>
       </categories>
       <tags>
-        <tag>资产测绘采集</tag>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>欢迎使用Hexo</title>
+    <url>/2023/09/08/hello-world/</url>
+    <content><![CDATA[<p>欢迎来到 <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! 这是第一篇文档，如果对此有相关疑问请点击 <a class="link"   href="https://hexo.io/docs/" >文档 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。 如果您在使用Hexo时遇到任何问题，您可以在<a class="link"   href="https://hexo.io/docs/troubleshooting.html" >故障排除 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 中找到答案或者你可以直接来问我 <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
+<h2 id="快速启动"><a href="#快速启动" class="headerlink" title="快速启动"></a>快速启动</h2><h3 id="创建新的帖子"><a href="#创建新的帖子" class="headerlink" title="创建新的帖子"></a>创建新的帖子</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<p>更多信息: <a class="link"   href="https://hexo.io/docs/writing.html" >写作 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="运行服务"><a href="#运行服务" class="headerlink" title="运行服务"></a>运行服务</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
+
+<p>更多信息: <a class="link"   href="https://hexo.io/docs/server.html" >服务器 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
+
+<p>更多信息: <a class="link"   href="https://hexo.io/docs/generating.html" >生成 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="部署至远程站点"><a href="#部署至远程站点" class="headerlink" title="部署至远程站点"></a>部署至远程站点</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
+
+<p>更多信息: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >部署 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="先部署在本地进行调试"><a href="#先部署在本地进行调试" class="headerlink" title="先部署在本地进行调试"></a>先部署在本地进行调试</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">之后访问页面</span><br><span class="line">$ http://localhost:4000/</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="测试图片"><a href="#测试图片" class="headerlink" title="测试图片"></a>测试图片</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Hexo/Hexo.jpg"
+                      alt="Hexo 图片"
+                ><br>分辨率为3026*1892</p>
+<h2 id="笔记模块"><a href="#笔记模块" class="headerlink" title="笔记模块"></a>笔记模块</h2><h3 id="大号提示块"><a href="#大号提示块" class="headerlink" title="大号提示块"></a>大号提示块</h3><div class="note-large default"><div class="notel-title"><i class="notel-icon fa-solid fa-info"></i><p>信息</p>
+</div><div class="notel-content"><p>换行测试<br>换行测试<br>换行测试<br>blue red cyan purple orange yellow green</p>
+</div></div>
+<div class="note-large blue"><div class="notel-title"><p>提示</p>
+</div><div class="notel-content"><p>换行测试<br>换行测试<br>换行测试</p>
+</div></div>
+<div class="note-large red"><div class="notel-title"><p>自定义标题</p>
+</div><div class="notel-content"><p>换行测试<br>换行测试<br>换行测试</p>
+</div></div>
+
+<h3 id="小号提示块"><a href="#小号提示块" class="headerlink" title="小号提示块"></a>小号提示块</h3><div class="note default"><p>默认 提示块标签</p>
+</div>
+<div class="note default"><p>default 提示块标签</p>
+</div>
+<div class="note primary"><p>primary 提示块标签</p>
+</div>
+<div class="note success"><p>success 提示块标签</p>
+</div>
+<div class="note info"><p>info 提示块标签</p>
+</div>
+<div class="note warning"><p>warning 提示块标签</p>
+</div>
+<div class="note danger"><p>danger 提示块标签</p>
+</div>
+<div class="note red icon-padding"><i class="note-icon fa-solid fa-bolt"></i><p>自定义提示块标签</p>
+</div>
+
+
+<h3 id="Buttons-按钮模块"><a href="#Buttons-按钮模块" class="headerlink" title="Buttons 按钮模块"></a>Buttons 按钮模块</h3><p>不设置任何参数的 <a class="button " href='/' title='按钮'>按钮</a> 适合融入段落中。</p>
+<p>regular 按钮适合独立于段落之外：</p>
+<a class="button  regular" href='https://www.ohevan.com' title='示例博客'><i class='fa-solid fa-play-circle'></i> 示例博客</a>
+<a class="button  regular" href='https://www.ohevan.com' title='示例博客'><i class='fa-solid fa-play-circle'></i> 示例博客</a>
+<p>large 按钮更具有强调作用，建议搭配 center 使用：</p>
+<a class="button  center large" href='https://redefine-docs.ohevan.com' title='开始使用'><i class='fa-solid fa-download'></i> 开始使用</a>
+
+<h3 id="Folding-折叠模块"><a href="#Folding-折叠模块" class="headerlink" title="Folding 折叠模块"></a>Folding 折叠模块</h3><details class="blue" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Folding 测试： 点击查看更多 </summary>
+              <div class='content'>
+              <p>啊啊啊啊啊</p><div class="note danger"><p>danger 提示块标签</p></div> <div class="note tip"><p>tip 提示块标签</p></div> 
+              </div>
+            </details>
+
+<h4 id="Folding-折叠模块-颜色列表"><a href="#Folding-折叠模块-颜色列表" class="headerlink" title="Folding 折叠模块-颜色列表"></a>Folding 折叠模块-颜色列表</h4><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ yellow, blue, green, red, orange, pink, cyan, white, black, gray</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Tabs-分栏模块"><a href="#Tabs-分栏模块" class="headerlink" title="Tabs 分栏模块"></a>Tabs 分栏模块</h3><div class="tabs" id="tab-first-unique-name"><ul class="nav-tabs"><li class="tab active"><a class="#first-unique-name-1">First Tab</a></li><li class="tab"><a class="#first-unique-name-2">Second Tab</a></li><li class="tab"><a class="#first-unique-name-3">Third Tab</a></li></ul><div class="tab-content"><div class="tab-pane active" id="first-unique-name-1"><p><strong>This is Tab 1.</strong></p>
+<p>This is Tab 1.</p></div><div class="tab-pane" id="first-unique-name-2"><p><strong>This is Tab 2.</strong></p>
+<p>This is Tab 1.<br>This is Tab 2.</p></div><div class="tab-pane" id="first-unique-name-3"><p><strong>This is Tab 3.</strong></p>
+<p>This is Tab 1.<br>This is Tab 2.<br>This is Tab 3.</p></div></div></div>]]></content>
+      <categories>
+        <category>Hexo学习内容</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
 </search>
