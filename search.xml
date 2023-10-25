@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>等保工具相关使用</title>
+    <url>/2023/09/26/DB-tool/</url>
+    <content><![CDATA[<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p>主机存活探测、漏洞扫描、子域名扫描、端口扫描、各类服务数据库爆破、poc扫描、xss扫描、webtitle探测、web指纹识别、web敏感信息泄露、web目录浏览、web文件下载、等保安全风险问题风险自查等； 弱口令&#x2F;未授权访问：40余种； WEB组件识别：300余种； 漏洞扫描：XSS、任意文件访问、任意命令执行、敏感信息泄露、默认账户密码…； 资产扫描：扫描存活主机-&gt;判断存活端口-&gt;识别协议&#x2F;组件-&gt;基于组件协议进行弱口令、漏洞扫描-&gt;输出报告</p>
+<h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">CMD 直接使用</span><br></pre></td></tr></table></figure></div></div>
+
+
+<h3 id="常见使用参数"><a href="#常见使用参数" class="headerlink" title="常见使用参数"></a>常见使用参数</h3><p>golin web (通过web方式启动,仅支持等保功能)<br>golin port (自动读取本地网卡IP地址段进行扫描,过滤虚拟网卡地址段)<br>golin port -i 192.168.1.1&#x2F;24 (扫描c段端口并扫描弱口令、xss、poc漏洞)<br>golin port -i 192.168.1.1&#x2F;24 –ipfile ip.txt<br>(扫描指定IP段的同时扫描ip.txt文件中的主机,默认读取ip.txt,目录下如果存在不使用–ipfile也会读取)<br>golin port –fofa ‘app&#x3D;”nps” &amp;&amp; port&#x3D;”8080”‘ (调用fofa数据进行扫描)<br>golin port -i 192.168.1.1:8080 (快速扫描某一主机的特定端口)<br>golin port -i <a class="link"   href="http://www.test.com:18080/" >http://www.test.com:18080 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> (扫描网站首页)<br>golin port -i <a class="link"   href="http://www.test.com:18080/info" >http://www.test.com:18080/info <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> (扫描网站特定页)<br>golin port -i 192.168.1.1&#x2F;24 -c 1000 -t 10(仅扫描c段端口并设置并发数为1000,端口连接超时为10秒)<br>golin port -i 192.168.1.1&#x2F;24 –noping –nocrack –random(扫描c段端口但不探测存活不扫描弱口令,并且打乱主机顺序扫描)<br>golin port -i 192.168.1.1&#x2F;24 –nopoc(扫描c段端口但禁用扫描漏洞)<br>golin dirsearch -u <a class="link"   href="https://test.com/" >https://test.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -f 字典.txt –code 200,404 (扫描状态码为200以及404的web目录)<br>golin [linux、mysql、oracle、sqlserver、redis、windows…] (按照3级等保要求核查各项安全配置生成html形式报告)<br>golin update (检查是否可更新)</p>
+<h3 id="Web功能预览"><a href="#Web功能预览" class="headerlink" title="Web功能预览"></a>Web功能预览</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/DB-web.gif"
+                      alt="DB 图片"
+                ></p>
+<h3 id="资产-组件-漏洞扫描功能预览"><a href="#资产-组件-漏洞扫描功能预览" class="headerlink" title="资产&#x2F;组件&#x2F;漏洞扫描功能预览"></a>资产&#x2F;组件&#x2F;漏洞扫描功能预览</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/DB-ZCSM.png"
+                      alt="DB 图片"
+                ></p>
+<h3 id="WEB目录扫描功能预览"><a href="#WEB目录扫描功能预览" class="headerlink" title="WEB目录扫描功能预览"></a>WEB目录扫描功能预览</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/DB-Web-dirsearch.png"
+                      alt="DB 图片"
+                ></p>
+<h3 id="下载地址-1"><a href="#下载地址-1" class="headerlink" title="下载地址-1"></a>下载地址-1</h3><p><a class="link"   href="https://github.com/selinuxG/Golin" >https://github.com/selinuxG/Golin <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="下载地址-2"><a href="#下载地址-2" class="headerlink" title="下载地址-2"></a>下载地址-2</h3><p><a class="link"   href="https://github.com/selinuxG/Golin/releases" >https://github.com/selinuxG/Golin/releases <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="个人推荐指数"><a href="#个人推荐指数" class="headerlink" title="个人推荐指数"></a>个人推荐指数</h3><p>推荐：⭐⭐⭐⭐  较为推荐</p>
+]]></content>
+      <categories>
+        <category>等保工具</category>
+      </categories>
+      <tags>
+        <tag>等保</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>信息搜集工具</title>
     <url>/2023/09/26/Search-tool/</url>
     <content><![CDATA[<h1 id="支持的平台"><a href="#支持的平台" class="headerlink" title="支持的平台"></a>支持的平台</h1><p>基于python pyside2库实现的，支持windows macos，windows至少需要win7以上系统才能运行，支持一键导出</p>
@@ -81,6 +118,93 @@
       </categories>
       <tags>
         <tag>资产测绘采集</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在电脑上操作手机</title>
+    <url>/2023/10/16/TP-tool/</url>
+    <content><![CDATA[<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p>此应用程序镜像Android设备（视频和音频）连接通过 USB或TCP&#x2F;IP，并允许控制与计算机的键盘和鼠标的设备。它不需要任何root访问，它适用于Linux、Windows和macOS。</p>
+<h2 id="最后效果"><a href="#最后效果" class="headerlink" title="最后效果"></a>最后效果</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-Over.jpg"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h2><p>Android设备至少需要API 21（Android 5.0）。</p>
+<p>API &#x3D; 30（Android 11+）支持音频转发。</p>
+<p>请确保在设备上启用了USB调试。</p>
+<p>在某些设备上，您还需要启用附加选项USB debugging (Security Settings)（该选项与USB debugging不同）用键盘和鼠标来控制它。<br>重新启动设备是必要的一次 此选项被设置。</p>
+<p>注意，在OTG中运行scrcpy不需要USB调试模式。</p>
+<h3 id="1、手机要开启开发者模式"><a href="#1、手机要开启开发者模式" class="headerlink" title="1、手机要开启开发者模式"></a>1、手机要开启开发者模式</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-6.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h3 id="2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB-debugging功能"><a href="#2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB-debugging功能" class="headerlink" title="2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB debugging功能"></a>2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB debugging功能</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-8.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h3 id="3、需要在手机上允许电脑进行操作"><a href="#3、需要在手机上允许电脑进行操作" class="headerlink" title="3、需要在手机上允许电脑进行操作"></a>3、需要在手机上允许电脑进行操作</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-7.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="官方WiKi"><a href="#官方WiKi" class="headerlink" title="官方WiKi"></a>官方WiKi</h2><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">https://github.com/Genymobile/scrcpy/wiki</span><br></pre></td></tr></table></figure></div></div>
+
+<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">https://github.com/Genymobile/scrcpy/blob/master/doc/windows.md</span><br></pre></td></tr></table></figure></div></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-1.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="文件中具体内容"><a href="#文件中具体内容" class="headerlink" title="文件中具体内容"></a>文件中具体内容</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-2.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="如何操作内容-1"><a href="#如何操作内容-1" class="headerlink" title="如何操作内容(1)"></a>如何操作内容(1)</h2><p>通过CMD命令进入到命令行界面输入adb usb 查看是否连通相关内容<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-3.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="如何操作内容-2"><a href="#如何操作内容-2" class="headerlink" title="如何操作内容(2)"></a>如何操作内容(2)</h2><p>对内容进行链接操作<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-4.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="如何操作内容-3"><a href="#如何操作内容-3" class="headerlink" title="如何操作内容(3)"></a>如何操作内容(3)</h2><p>发现无法连接，经过排查发现是存在多个连接设备，需要使用命令 -s 明确机器识别码才能成功<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-5.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="个人最终效果"><a href="#个人最终效果" class="headerlink" title="个人最终效果"></a>个人最终效果</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-9.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h3 id="个人推荐指数"><a href="#个人推荐指数" class="headerlink" title="个人推荐指数"></a>个人推荐指数</h3><p>推荐：⭐⭐⭐⭐  较为推荐</p>
+]]></content>
+      <categories>
+        <category>摸鱼工具</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -865,129 +989,6 @@
       </categories>
       <tags>
         <tag>漏扫工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>等保工具相关使用</title>
-    <url>/2023/09/26/DB-tool/</url>
-    <content><![CDATA[<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p>主机存活探测、漏洞扫描、子域名扫描、端口扫描、各类服务数据库爆破、poc扫描、xss扫描、webtitle探测、web指纹识别、web敏感信息泄露、web目录浏览、web文件下载、等保安全风险问题风险自查等； 弱口令&#x2F;未授权访问：40余种； WEB组件识别：300余种； 漏洞扫描：XSS、任意文件访问、任意命令执行、敏感信息泄露、默认账户密码…； 资产扫描：扫描存活主机-&gt;判断存活端口-&gt;识别协议&#x2F;组件-&gt;基于组件协议进行弱口令、漏洞扫描-&gt;输出报告</p>
-<h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">CMD 直接使用</span><br></pre></td></tr></table></figure></div></div>
-
-
-<h3 id="常见使用参数"><a href="#常见使用参数" class="headerlink" title="常见使用参数"></a>常见使用参数</h3><p>golin web (通过web方式启动,仅支持等保功能)<br>golin port (自动读取本地网卡IP地址段进行扫描,过滤虚拟网卡地址段)<br>golin port -i 192.168.1.1&#x2F;24 (扫描c段端口并扫描弱口令、xss、poc漏洞)<br>golin port -i 192.168.1.1&#x2F;24 –ipfile ip.txt<br>(扫描指定IP段的同时扫描ip.txt文件中的主机,默认读取ip.txt,目录下如果存在不使用–ipfile也会读取)<br>golin port –fofa ‘app&#x3D;”nps” &amp;&amp; port&#x3D;”8080”‘ (调用fofa数据进行扫描)<br>golin port -i 192.168.1.1:8080 (快速扫描某一主机的特定端口)<br>golin port -i <a class="link"   href="http://www.test.com:18080/" >http://www.test.com:18080 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> (扫描网站首页)<br>golin port -i <a class="link"   href="http://www.test.com:18080/info" >http://www.test.com:18080/info <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> (扫描网站特定页)<br>golin port -i 192.168.1.1&#x2F;24 -c 1000 -t 10(仅扫描c段端口并设置并发数为1000,端口连接超时为10秒)<br>golin port -i 192.168.1.1&#x2F;24 –noping –nocrack –random(扫描c段端口但不探测存活不扫描弱口令,并且打乱主机顺序扫描)<br>golin port -i 192.168.1.1&#x2F;24 –nopoc(扫描c段端口但禁用扫描漏洞)<br>golin dirsearch -u <a class="link"   href="https://test.com/" >https://test.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> -f 字典.txt –code 200,404 (扫描状态码为200以及404的web目录)<br>golin [linux、mysql、oracle、sqlserver、redis、windows…] (按照3级等保要求核查各项安全配置生成html形式报告)<br>golin update (检查是否可更新)</p>
-<h3 id="Web功能预览"><a href="#Web功能预览" class="headerlink" title="Web功能预览"></a>Web功能预览</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/DB-web.gif"
-                      alt="DB 图片"
-                ></p>
-<h3 id="资产-组件-漏洞扫描功能预览"><a href="#资产-组件-漏洞扫描功能预览" class="headerlink" title="资产&#x2F;组件&#x2F;漏洞扫描功能预览"></a>资产&#x2F;组件&#x2F;漏洞扫描功能预览</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/DB-ZCSM.png"
-                      alt="DB 图片"
-                ></p>
-<h3 id="WEB目录扫描功能预览"><a href="#WEB目录扫描功能预览" class="headerlink" title="WEB目录扫描功能预览"></a>WEB目录扫描功能预览</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/DB-Web-dirsearch.png"
-                      alt="DB 图片"
-                ></p>
-<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p><a class="link"   href="https://github.com/selinuxG/Golin" >https://github.com/selinuxG/Golin <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="个人推荐指数"><a href="#个人推荐指数" class="headerlink" title="个人推荐指数"></a>个人推荐指数</h3><p>推荐：⭐⭐⭐⭐  较为推荐</p>
-]]></content>
-      <categories>
-        <category>等保工具</category>
-      </categories>
-      <tags>
-        <tag>等保</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何在电脑上操作手机</title>
-    <url>/2023/10/16/TP-tool/</url>
-    <content><![CDATA[<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p>此应用程序镜像Android设备（视频和音频）连接通过 USB或TCP&#x2F;IP，并允许控制与计算机的键盘和鼠标的设备。它不需要任何root访问，它适用于Linux、Windows和macOS。</p>
-<h2 id="最后效果"><a href="#最后效果" class="headerlink" title="最后效果"></a>最后效果</h2><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-Over.jpg"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h2><p>Android设备至少需要API 21（Android 5.0）。</p>
-<p>API &#x3D; 30（Android 11+）支持音频转发。</p>
-<p>请确保在设备上启用了USB调试。</p>
-<p>在某些设备上，您还需要启用附加选项USB debugging (Security Settings)（该选项与USB debugging不同）用键盘和鼠标来控制它。<br>重新启动设备是必要的一次 此选项被设置。</p>
-<p>注意，在OTG中运行scrcpy不需要USB调试模式。</p>
-<h3 id="1、手机要开启开发者模式"><a href="#1、手机要开启开发者模式" class="headerlink" title="1、手机要开启开发者模式"></a>1、手机要开启开发者模式</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-6.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h3 id="2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB-debugging功能"><a href="#2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB-debugging功能" class="headerlink" title="2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB debugging功能"></a>2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB debugging功能</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-8.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h3 id="3、需要在手机上允许电脑进行操作"><a href="#3、需要在手机上允许电脑进行操作" class="headerlink" title="3、需要在手机上允许电脑进行操作"></a>3、需要在手机上允许电脑进行操作</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-7.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="官方WiKi"><a href="#官方WiKi" class="headerlink" title="官方WiKi"></a>官方WiKi</h2><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">https://github.com/Genymobile/scrcpy/wiki</span><br></pre></td></tr></table></figure></div></div>
-
-<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">https://github.com/Genymobile/scrcpy/blob/master/doc/windows.md</span><br></pre></td></tr></table></figure></div></div>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h2><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-1.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="文件中具体内容"><a href="#文件中具体内容" class="headerlink" title="文件中具体内容"></a>文件中具体内容</h2><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-2.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="如何操作内容-1"><a href="#如何操作内容-1" class="headerlink" title="如何操作内容(1)"></a>如何操作内容(1)</h2><p>通过CMD命令进入到命令行界面输入adb usb 查看是否连通相关内容<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-3.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="如何操作内容-2"><a href="#如何操作内容-2" class="headerlink" title="如何操作内容(2)"></a>如何操作内容(2)</h2><p>对内容进行链接操作<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-4.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="如何操作内容-3"><a href="#如何操作内容-3" class="headerlink" title="如何操作内容(3)"></a>如何操作内容(3)</h2><p>发现无法连接，经过排查发现是存在多个连接设备，需要使用命令 -s 明确机器识别码才能成功<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-5.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="个人最终效果"><a href="#个人最终效果" class="headerlink" title="个人最终效果"></a>个人最终效果</h2><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-9.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h3 id="个人推荐指数"><a href="#个人推荐指数" class="headerlink" title="个人推荐指数"></a>个人推荐指数</h3><p>推荐：⭐⭐⭐⭐  较为推荐</p>
-]]></content>
-      <categories>
-        <category>摸鱼工具</category>
-      </categories>
-      <tags>
-        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
