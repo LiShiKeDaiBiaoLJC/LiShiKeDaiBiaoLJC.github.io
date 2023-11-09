@@ -1069,4 +1069,151 @@
         <tag>Hexo</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Wireshark的使用方式以及常用的筛选规则</title>
+    <url>/2023/11/06/WireShark-tool/</url>
+    <content><![CDATA[<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p>WireShark是非常流行的网络封包分析工具，可以截取各种网络数据包，并显示数据包详细信息。常用于开发测试过程中各种问题定位。</p>
+<h3 id="WireShark-抓包示例"><a href="#WireShark-抓包示例" class="headerlink" title="WireShark 抓包示例"></a>WireShark 抓包示例</h3><p>1、打开Wireshark工具内容</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Wireshark/Wireshark-00.jpg"
+                      alt="Ws 图片"
+                ></p>
+<p>2、主要是看捕获，其中选择对应的网卡，右键选择Start Capture*(开始捕获)，点击即可进行捕获该网络信息，开始网络抓包</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Wireshark/Wireshark-01.jpg"
+                      alt="Ws 图片"
+                ></p>
+<p>3、操作完成后执行抓包的操作，如：ping <a class="link"   href="http://www.baidu.com/" >www.baidu.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Wireshark/Wireshark-cmd-02.jpg"
+                      alt="Ws 图片"
+                ></p>
+<p>4、操作完成后相关数据包就抓取成功了，其他包就是通过过滤栏设置过滤条件对其数据包进行过滤<br>例如：ip.addr &#x3D;&#x3D; 192.168.1.2 and icmp<br>表示只能显示ICMP协议且源主机或者目的主机IP为192.168.1.2的数据包</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Wireshark/Wireshark-03.jpg"
+                      alt="Ws 图片"
+                ></p>
+<p>5、Wireshark抓包完成</p>
+<h3 id="WireShark抓包界面"><a href="#WireShark抓包界面" class="headerlink" title="WireShark抓包界面"></a>WireShark抓包界面</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Wireshark/Wireshark-04.jpg"
+                      alt="Ws 图片"
+                ><br>说明：数据包列表区中不同的协议使用了不同的颜色区分。</p>
+<h3 id="WireShark过滤器设置"><a href="#WireShark过滤器设置" class="headerlink" title="WireShark过滤器设置"></a>WireShark过滤器设置</h3><p>1、Display Filter(显示过滤器)，用于设置过滤条件进行数据包列表过滤</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Wireshark/Wireshark-05.jpg"
+                      alt="Ws 图片"
+                ></p>
+<p>2、Packet List Pane(数据包列表)，显示捕获到的数据报，<br>每个数据报包含编号，时间戳，源地址，目标地址，协议，长度，以及数据包信息</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Wireshark/Wireshark-06.jpg"
+                      alt="Ws 图片"
+                ></p>
+<p>3、Packet Details Pane(数据包详细信息), 在数据包列表中选择指定数据包，在数据包详细信息中会显示数据包的所有详细信息内容。<br>数据包详细信息面板是最重要的，用来查看协议中的每一个字段。</p>
+<p>3.1、Frame：物理层的数据帧状况</p>
+<p>3.2、Ethernet II：数据链路层以太网帧头部信息</p>
+<p>3.3、Internet Protocol Version 4：互联网层IP包头部信息</p>
+<p>3.4、Transmission Control Protocol：传输层T的数据段头部信息，此处是TCP</p>
+<p>3.5、Hypertext Transfer Protocol：应用层的信息，此处是HTTP协议</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Wireshark/Wireshark-07.jpg"
+                      alt="Ws 图片"
+                ></p>
+<p>4、TCP包的具体内容<br>从下图可以看到Wireshark捕获到的TCP包中的每个字段</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Wireshark/Wireshark-08.jpg"
+                      alt="Ws 图片"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Wireshark/Wireshark-09.jpg"
+                      alt="Ws 图片"
+                ></p>
+<h3 id="WireShark过滤器表达式的规则"><a href="#WireShark过滤器表达式的规则" class="headerlink" title="WireShark过滤器表达式的规则"></a>WireShark过滤器表达式的规则</h3><p>1、抓包过滤器</p>
+<p>用于在抓取数据包前设置</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Wireshark/Wireshark-10.jpg"
+                      alt="Ws 图片"
+                ></p>
+<p>2、ip host 192.168.1.2 and icmp表示只捕获主机IP为192.168.1.2的ICMP数据包。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Wireshark/Wireshark-11.jpg"
+                      alt="Ws 图片"
+                ></p>
+<p>3、尝试ping 百度得到相关结果</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Wireshark/Wireshark-13.jpg"
+                      alt="Ws 图片"
+                ></p>
+<p>4、抓包过滤器语法和实例</p>
+<p>抓包过滤器类型Type（host、net、port）、方向Dir（src、dst）、协议Proto（ether、ip、tcp、udp、http、icmp、ftp等）、逻辑运算符（&amp;&amp; 与、|| 或、！非）</p>
+<p>4.1、协议过滤</p>
+<p>比较简单，直接在抓包过滤框中直接输入协议名即可。</p>
+<p>TCP，只显示TCP协议的数据包列表</p>
+<p>HTTP，只查看HTTP协议的数据包列表</p>
+<p>ICMP，只显示ICMP协议的数据包列表</p>
+<p>4.2、IP过滤</p>
+<p>host 192.168.1.104</p>
+<p>src host 192.168.1.104</p>
+<p>dst host 192.168.1.104</p>
+<p>4.3、端口过滤</p>
+<p>port 80</p>
+<p>src port 80</p>
+<p>dst port 80</p>
+<p>4.4、逻辑运算符&amp;&amp; 与、|| 或、！非</p>
+<p>src host 192.168.1.104 &amp;&amp; dst port 80 抓取主机地址为192.168.1.80、目的端口为80的数据包</p>
+<p>host 192.168.1.104 || host 192.168.1.102 抓取主机为192.168.1.104或者192.168.1.102的数据包</p>
+<p>5、显示过滤器语法和实例</p>
+<p>5.1、比较操作符</p>
+<p>比较操作符有&#x3D;&#x3D; 等于、！&#x3D; 不等于、&gt; 大于、&lt; 小于、&gt;&#x3D; 大于等于、&lt;&#x3D;小于等于。</p>
+<p>5.2、协议过滤</p>
+<p>比较简单，直接在Filter框中直接输入协议名即可。注意：协议名称需要输入小写。</p>
+<p>tcp，只显示TCP协议的数据包列表</p>
+<p>http，只查看HTTP协议的数据包列表</p>
+<p>icmp，只显示ICMP协议的数据包列表</p>
+<p>5.3、ip过滤<br>ip.src &#x3D;&#x3D;192.168.1.104 显示源地址为192.168.1.104的数据包列表</p>
+<p>ip.dst&#x3D;&#x3D;192.168.1.104, 显示目标地址为192.168.1.104的数据包列表</p>
+<p>ip.addr &#x3D;&#x3D; 192.168.1.104 显示源IP地址或目标IP地址为192.168.1.104的数据包列表</p>
+<p>5.4、端口过滤</p>
+<p>tcp.port &#x3D;&#x3D;80, 显示源主机或者目的主机端口为80的数据包列表。</p>
+<p>tcp.srcport &#x3D;&#x3D; 80, 只显示TCP协议的源主机端口为80的数据包列表。</p>
+<p>tcp.dstport &#x3D;&#x3D; 80，只显示TCP协议的目的主机端口为80的数据包列表。</p>
+<p>5.5、Http模式过滤</p>
+<p>http.request.method&#x3D;&#x3D;“GET”, 只显示HTTP GET方法的。</p>
+<p>5.6、逻辑运算符为 and&#x2F;or&#x2F;not</p>
+<p>过滤多个条件组合时，使用and&#x2F;or。比如获取IP地址为192.168.1.104的ICMP数据包表达式为ip.addr &#x3D;&#x3D; 192.168.1.104 and icmp</p>
+<h3 id="下载地址-1"><a href="#下载地址-1" class="headerlink" title="下载地址-1"></a>下载地址-1</h3><p><a class="link"   href="https://www.wireshark.org/" >https://www.wireshark.org/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="个人推荐指数"><a href="#个人推荐指数" class="headerlink" title="个人推荐指数"></a>个人推荐指数</h3><p>推荐：⭐⭐⭐⭐  较为推荐</p>
+]]></content>
+      <categories>
+        <category>抓包工具</category>
+      </categories>
+      <tags>
+        <tag>Wireshark</tag>
+      </tags>
+  </entry>
 </search>
