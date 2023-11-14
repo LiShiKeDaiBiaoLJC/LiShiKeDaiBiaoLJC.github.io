@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="变化无常">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/11/13/0-kl-tool/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Kali">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kali-Linux-Tools-安装以及基础操作">
+<meta property="og:url" content="http://example.com/2023/11/13/0-Kl-tool/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Kali">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/Choose-your-Kali.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/installer-kali.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-down.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-0.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-1.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-2.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-3.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-4.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-5.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-6.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-7.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-8.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-9.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-10.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-11.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-12.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-13.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-14.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-0.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-1.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-2.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-3.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-4.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-5.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-6.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-7.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-8.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-9.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-10.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-11.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-12.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-13.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-14.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-15.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-16.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-17.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-18.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-19.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-20.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-21.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-22.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-VM-ST-ART-23.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-c-root-0.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-c-wk-0.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-c-wk-1.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-c-wk-2.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-c-0.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-c-y-0.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-c-y-1.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-c-c-0.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-c-c-1.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-c-c-2.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-c-c-3.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-c-ssh-0.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-c-ssh-1.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-c-ssh-2.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/00-ST/kali-c-gn-0.jpg">
+<meta property="article:published_time" content="2023-11-13T03:35:07.000Z">
+<meta property="article:modified_time" content="2023-11-14T08:03:14.852Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Kali">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/Kali-Linux/00-ST/Choose-your-Kali.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/skull.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/skull.svg">
+    <meta name="theme-color" content="#a7a7a7">
+    <link rel="shortcut icon" href="/images/skull.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Kali-Linux-Tools-安装以及基础操作 -
+        
+        移商换羽
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Farsan&display=swap" rel="stylesheet">
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":true,"list":["JunChen"]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#a7a7a7","secondary":null},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Sans SC","url":"https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap"},"english":{"enable":true,"family":"Farsan","url":"https://fonts.googleapis.com/css2?family=Farsan&display=swap"}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":false,"site_pv":false,"site_uv":false,"post_pv":false},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Everfamous","subtitle":{"text":["莫回首，管它黄鹤去何楼......"],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"逍遥游","artist":"吴佳明","url":"/song/xiaoyaoyou.mp3","cover":"/image/Music/XiaoYaoYou.jpg"},{"name":"李伯伯要去当红军","artist":"张玮玮和郭龙","url":"/song/libaibai.mp3","cover":"/image/Music/libaibai.jpg"},{"name":"Life Will Change","artist":"Lyn","url":"/song/LifeWillChange.mp3","cover":"/image/Music/P5.jpg"},{"name":"蓝色多瑙河","artist":"小约翰·施特劳斯","url":"/song/op314.mp3","cover":"/image/Music/JS.jpg"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.4.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"icon":"fa-solid fa-tags","path":"/tags/"},"Categories":{"icon":"fa-solid fa-folder","path":"/categories/"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/LiShiKeDaiBiaoLJC/LiShiKeDaiBiaoLJC.github.io"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":"浅眠一梦，不曾醉酒","links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}}},"article_date_format":"YYYY-MM-DD","categories":{"enable":true,"limit":4},"tags":{"enable":true,"limit":4}},"footerStart":"2023/9/6 12:12:12"};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    Global.data_config = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+                <a class="logo-image" href="http://example.com/">
+                    <img src="/images/c.svg">
+                </a>
+            
+            <a class="logo-title" href="http://example.com/">
+                
+                移商换羽
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-tags"></i>
+                                        
+                                        标签
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-folder"></i>
+                                        
+                                        分类
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        关于&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/about">ME
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://github.com/LiShiKeDaiBiaoLJC/LiShiKeDaiBiaoLJC.github.io">GITHUB
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/tags/"  >
+                             
+                                
+                                    <i class="fa-solid fa-tags"></i>
+                                
+                                标签
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/categories/"  >
+                             
+                                
+                                    <i class="fa-solid fa-folder"></i>
+                                
+                                分类
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                关于&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/about">ME</a>
+                            </li>
+                        
+                            <li class="text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://github.com/LiShiKeDaiBiaoLJC/LiShiKeDaiBiaoLJC.github.io">GITHUB</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            
+                
+                
+                <img src="/image/Hexo/Kali-Linux-0.jpg" alt="Kali-Linux-Tools-安装以及基础操作" class="max-w-none"/>
+                
+                <h1 class="article-title-cover">Kali-Linux-Tools-安装以及基础操作</h1>
+            
+            </div>
+            
+                    
+        
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/d.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">变化无常</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-11-13 11:35:07</span>
+        <span class="mobile">2023-11-13 11:35:07</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-11-14 16:03:14</span>
+            <span class="mobile">2023-11-14 16:03:14</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Kali-linux/">Kali-linux</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Kali/">Kali</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body">
+            <h2 id="Kali-基本介绍"><a href="#Kali-基本介绍" class="headerlink" title="Kali-基本介绍"></a>Kali-基本介绍</h2><p>Kali Linux（简称Kali）是一种基于Debian的Linux发行版，主要用于网络安全和渗透测试。它为安全研究人员、渗透测试人员和安全爱好者提供了一个强大的平台，用于评估和验证计算机系统的安全性。Kali Linux预装了大量用于信息收集、漏洞扫描、渗透测试和取证分析的工具，使用户能够执行各种安全测试和攻击。它是一个广泛使用的安全专业工具集，支持各种操作系统，并为用户提供了很多资源和支持来深入学习和理解网络安全的概念和技术。</p>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="选择安装镜相并下载"><a href="#选择安装镜相并下载" class="headerlink" title="选择安装镜相并下载"></a>选择安装镜相并下载</h3><h4 id="首先选择要安装的kali的相关版本"><a href="#首先选择要安装的kali的相关版本" class="headerlink" title="首先选择要安装的kali的相关版本"></a>首先选择要安装的kali的相关版本</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/Choose-your-Kali.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>Installer Images：就是ISO镜像版本</p>
+<p>Virtual Machines：就是支持VM虚拟机版本和VB虚拟机版本</p>
+<p>ARM：ARM架构的kali镜像<br>PS：什么是ARM:<a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/527430872" >https://zhuanlan.zhihu.com/p/527430872 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>Mobile：Kali NetHunter项目是第一个针对Android设备的开源Android渗透测试平台，允许从各种支持的Android设备访问Kali工具集。功能性较低。</p>
+<p>Cloud：Kali云镜像可以快速部署在多个不同的云提供商的基础设施中。这允许在拥有强大硬件资源的现代环境中轻松访问Kali安装。</p>
+<p>Containers：使用Docker和LXC&#x2F;LXD等Container技术，我们的Kali容器允许您访问主机操作系统上的Kali工具集，而无需运行额外的完整操作系统。</p>
+<p>Live Boot：CD&#x2F;DVD&#x2F;USB&#x2F;PXE上的Kali Linux Live映像可以让您访问完整的裸机Kali安装，而无需更改已安装的操作系统。这允许快速方便地访问Kali工具集，并具有裸金属安装的所有优点。存在一些缺点，因为磁盘操作可能由于使用的存储介质而变慢。 </p>
+<p>WSL：Windows Subsystem for Linux（WSL）是现代Windows安装上的一个软件包，允许您在优化的容器中与Windows系统一起运行Linux。Kali WSL软件包允许轻松访问Kali工具集。这与标准虚拟机的缺点相同，但可以减少开销，并与Windows系统进行更紧密的集成。</p>
+<h4 id="下载Installer-Images中的版本选择"><a href="#下载Installer-Images中的版本选择" class="headerlink" title="下载Installer Images中的版本选择"></a>下载Installer Images中的版本选择</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/installer-kali.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>Installer：这是推荐用于安装Kali Linux的镜像。它包含了列出的（元）软件包的本地副本（top10包，默认包和大包），所以它可以用于完全离线安装，而不需要网络连接。</p>
+<p>Weekly：Weevely是一个专门为web渗透攻击设计的web shell,由于是用python语言编写的工具，因此支持跨平台可以任何有python环境的系统上使用。<br>PS：使用手册：<a class="link"   target="_blank" rel="noopener" href="https://blog.bbskali.cn/2613.html" >https://blog.bbskali.cn/2613.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> </p>
+<p>Netlnstaller：如果你想在每次安装Kali Linux时得到最新的软件包，或者标准的安装程序镜像太大，无法下载，可以使用这个镜像。这个镜像非常小，因为它不包含要安装的（元）软件包的本地副本。它们都将在安装过程中被下载，因此，这需要一个网络连接，这将减慢安装时间。</p>
+<p>Everything：这个镜像是为离线场景准备的，当你想在一个没有网络连接的地方使用Kali Linux。这个镜像非常大(11G)，因为它几乎包含了所有Kali的工具。它只适用于64位架构，而且只能通过BitTorrent下载。</p>
+<h3 id="VM虚拟机的设置"><a href="#VM虚拟机的设置" class="headerlink" title="VM虚拟机的设置"></a>VM虚拟机的设置</h3><h4 id="VM虚拟机前提设置"><a href="#VM虚拟机前提设置" class="headerlink" title="VM虚拟机前提设置"></a>VM虚拟机前提设置</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-down.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>1、新建虚拟机：VM16<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-0.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>2、选择虚拟机硬件兼容性<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-1.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>3、稍后女装操作系统<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-2.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>4、选择操作系统(kali是基于Debian的所以选择Debin 10.x)进行预先设置<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-3.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>5、设置kali名称以及虚拟机存放位置<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-4.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>6、设置处理器数量以及内核数量<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-5.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>7、设置虚拟机内存<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-6.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>8、设置虚拟机网络<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-7.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>9、设置虚拟机I&#x2F;O控制器类型<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-8.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>10、设置虚拟机磁盘类型<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-9.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>11、设置虚拟机磁盘向导<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-10.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>12、设置虚拟机磁盘向导<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-11.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>13、设置磁盘文件<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-12.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>14、设置后内容<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-13.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>15、将ISO映像导入虚拟机中<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-14.jpg"
+                      alt="KL 图片"
+                ></p>
+<h3 id="安装系统后的设置"><a href="#安装系统后的设置" class="headerlink" title="安装系统后的设置"></a>安装系统后的设置</h3><h4 id="VM虚拟机安装后kali系统的设置"><a href="#VM虚拟机安装后kali系统的设置" class="headerlink" title="VM虚拟机安装后kali系统的设置"></a>VM虚拟机安装后kali系统的设置</h4><p>1、进入安装界面选择图形化安装<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-0.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>2、选择中文界面安装<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-1.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>3、选择所在位置<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-2.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>4、选择键盘配置<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-3.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>5、加载安装程序组件<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-4.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>6、配置网络(默认DHCP)<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-5.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>7、可以选择跳过，之后系统具体设置<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-6.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>8、配置网络截图<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-7.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>9、设置系统主机名<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-8.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>10、设置新用户全名以及账户密码<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-9.jpg"
+                      alt="KL 图片"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-10.jpg"
+                      alt="KL 图片"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-11.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>11、设置磁盘的分区<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-12.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>12、选择分区的磁盘<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-13.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>13、选择分区的方案<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-14.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>14、对磁盘进行分区<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-15.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>15、改动写入磁盘<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-16.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>16、安装基本系统<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-17.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>17、对于安装什么软件进行选择<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-18.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>18、下载并安装软件<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-19.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>19、安装Grub启动引导器<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-20.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>20、将GRUB启动引导器导入磁盘中<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-21.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>21、安装Grub并结束安装进程<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-22.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>22、安装完成<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-VM-ST-ART-23.jpg"
+                      alt="KL 图片"
+                ></p>
+<h2 id="虚拟机安装后常见设置"><a href="#虚拟机安装后常见设置" class="headerlink" title="虚拟机安装后常见设置"></a>虚拟机安装后常见设置</h2><h3 id="如何获取root权限"><a href="#如何获取root权限" class="headerlink" title="如何获取root权限"></a>如何获取root权限</h3><p>在安装的kali linux中并未提及root账户的相关密码未告知用户，于是乎使用命令修改root账户密码并使用root账户登录</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-c-root-0.jpg"
+                      alt="KL 图片"
+                ><br>1、使用sudo 命令修改root账户权限密码<br>2、先输入普通用户oail的密码<br>3、然后输入新密码，新密码同时也是root的密码<br>4、再次输入新密码<br>5、新密码更新成功<br>6、然后使用su命令提升当前用户权限</p>
+<h3 id="kali网卡设置"><a href="#kali网卡设置" class="headerlink" title="kali网卡设置"></a>kali网卡设置</h3><p>有了root权限就可以更改网卡信息了</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-c-wk-0.jpg"
+                      alt="KL 图片"
+                ><br>其中Work 工作用ip为192.168.4.90&#x2F;24 192.168.4.1<br>其中Home 家用ip为192.168.1.3&#x2F;24 192.168.1.1</p>
+<p>之后进入目录cd &#x2F;etc&#x2F;network 目录下进行操作<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-c-wk-1.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>之后编辑查看interfaces文件<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-c-wk-2.jpg"
+                      alt="KL 图片"
+                ><br>将eth0 化为home网卡<br>将eth1化为work网卡<br>保存退出后重启网卡服务</p>
+<p>使用命令-重启网卡服务</p>
+<div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl networking restart</span><br></pre></td></tr></table></figure></div></div>
+
+<p>使用命令-查看当前网卡状态</p>
+<div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status networking</span><br></pre></td></tr></table></figure></div></div>
+
+<p>PS：关于家中网络以及公司网络进行变化的设置</p>
+<p>由于公司用wifi，家里用有线，于是需要更改虚拟网络编辑器</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-c-0.jpg"
+                      alt="KL 图片"
+                ></p>
+<h3 id="更新kali源"><a href="#更新kali源" class="headerlink" title="更新kali源"></a>更新kali源</h3><p>编辑源配置文件，命令：vim &#x2F;etc&#x2F;apt&#x2F;sources.list</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-c-y-0.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>国内源<br>#中科大<br>deb <a class="link"   target="_blank" rel="noopener" href="http://mirrors.ustc.edu.cn/kali" >http://mirrors.ustc.edu.cn/kali <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> kali-rolling main non-free contrib<br>deb-src <a class="link"   target="_blank" rel="noopener" href="http://mirrors.ustc.edu.cn/kali" >http://mirrors.ustc.edu.cn/kali <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> kali-rolling main non-free contrib<br>#阿里云<br>deb <a class="link"   target="_blank" rel="noopener" href="http://mirrors.aliyun.com/kali" >http://mirrors.aliyun.com/kali <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> kali-rolling main non-free contrib<br>deb-src <a class="link"   target="_blank" rel="noopener" href="http://mirrors.aliyun.com/kali" >http://mirrors.aliyun.com/kali <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> kali-rolling main non-free contrib<br>#清华大学<br>deb <a class="link"   target="_blank" rel="noopener" href="http://mirrors.tuna.tsinghua.edu.cn/kali" >http://mirrors.tuna.tsinghua.edu.cn/kali <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> kali-rolling main contrib non-free<br>deb-src <a class="link"   target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/kali" >https://mirrors.tuna.tsinghua.edu.cn/kali <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> kali-rolling main contrib non-free<br>#浙大<br>deb <a class="link"   target="_blank" rel="noopener" href="http://mirrors.zju.edu.cn/kali" >http://mirrors.zju.edu.cn/kali <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> kali-rolling main contrib non-free<br>deb-src <a class="link"   target="_blank" rel="noopener" href="http://mirrors.zju.edu.cn/kali" >http://mirrors.zju.edu.cn/kali <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> kali-rolling main contrib non-free<br>#东软大学<br>deb <a class="link"   target="_blank" rel="noopener" href="http://mirrors.neusoft.edu.cn/kali" >http://mirrors.neusoft.edu.cn/kali <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> kali-rolling&#x2F;main non-free contrib<br>deb-src <a class="link"   target="_blank" rel="noopener" href="http://mirrors.neusoft.edu.cn/kali" >http://mirrors.neusoft.edu.cn/kali <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> kali-rolling&#x2F;main non-free contrib<br>#重庆大学<br>deb <a class="link"   target="_blank" rel="noopener" href="http://http.kali.org/kali" >http://http.kali.org/kali <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> kali-rolling main non-free contrib<br>deb-src <a class="link"   target="_blank" rel="noopener" href="http://http.kali.org/kali" >http://http.kali.org/kali <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> kali-rolling main non-free contrib</p>
+<p>之后保存退出<br>apt-get update 更新索引<br>apt-get upgrade 更新软件<br>apt-get dist-upgrade 升级<br>apt-get clean 删除缓存包<br>apt-get autoclean 删除未安装的deb包</p>
+<p>列如</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-c-y-1.jpg"
+                      alt="KL 图片"
+                ></p>
+<h3 id="将英文修改为中文"><a href="#将英文修改为中文" class="headerlink" title="将英文修改为中文"></a>将英文修改为中文</h3><p>1.打开终端(Terminal)。<br>2.输入命令“dpkg-reconfigure locales，回车。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-c-c-0.jpg"
+                      alt="KL 图片"
+                ><br>3.选择zh CN.UTF-8”，按”Tab”键切换到“OK”，再按“Enter”键。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-c-c-1.jpg"
+                      alt="KL 图片"
+                ><br>4.选择zh_CN.UTF-8,之后确认<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-c-c-2.jpg"
+                      alt="KL 图片"
+                ><br>5.重启你的系统<br>6.Done， Kali Linux 界面已经更改成中文<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-c-c-3.jpg"
+                      alt="KL 图片"
+                ></p>
+<h3 id="kali开启SSH"><a href="#kali开启SSH" class="headerlink" title="kali开启SSH"></a>kali开启SSH</h3><p>1、打开配置文件，命令：vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config ；<br>2、执行命令后，使用快捷键：shift + 冒号，然后输入命令：set nu，出现行号，方便查找；<br>3、找到31——39行，然后输入 i（编辑） 下方会出现插入两字，就可以开始编辑内容了。<br>4、修改成下图的样子就行了。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-c-ssh-0.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>5、查看服务<br>service ssh start   启动ssh<br>service ssh status  查看ssh服务是否正常运行</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-c-ssh-1.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>6、开机自动启动ssh服务<br>方法一：<br>sysv-rc-conf<br>sysv-rc-conf –list | grep ssh<br>sysv-rc-conf ssh on  &#x2F;&#x2F;系统自动启动SSH服务<br>sysv-rc-conf ssh off  &#x2F;&#x2F; 关闭系统自动启动SSH服务<br>方法二：<br>update-rc.d ssh enable  &#x2F;&#x2F;系统自动启动SSH服务<br>update-rc.d ssh disabled &#x2F;&#x2F; 关闭系统自动启动SSH服务</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-c-ssh-2.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>7、看到running表示正常运行着，然后就可以使用xshell去远程连接kali了。</p>
+<h3 id="使用USB网卡连接外网"><a href="#使用USB网卡连接外网" class="headerlink" title="使用USB网卡连接外网"></a>使用USB网卡连接外网</h3><p>安装详细网址：<a class="link"   target="_blank" rel="noopener" href="https://github.com/morrownr/8821cu-20210916" >https://github.com/morrownr/8821cu-20210916 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>PS：前情提要<br>兼容内核<br>内核：4.19 - 5.11（Realtek）<br>内核：5.12 - 6.6（社区支持） </p>
+<p>经过测试的编辑器<br>gcc 10、11、12、13</p>
+<p>测试过了的linux发行版<br>kali linux 内核6.3</p>
+<p>0、在安装前要更新系统以及系统软件包</p>
+<div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt upgrade</span><br></pre></td></tr></table></figure></div></div>
+
+<p>1、安装所需的软件包</p>
+<div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install -y linux-headers-$(<span class="built_in">uname</span> -r) build-essential bc dkms git libelf-dev rfkill iw</span><br></pre></td></tr></table></figure></div></div>
+
+<p>2、创建一个目录来保存下载驱动程序并移动到创建的目录下</p>
+<div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p ~/src</span><br><span class="line"><span class="built_in">cd</span> ~/src</span><br></pre></td></tr></table></figure></div></div>
+
+<p>2、下载驱动程序</p>
+<div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/morrownr/8821cu-20210916.git</span><br></pre></td></tr></table></figure></div></div>
+
+<p>3、移动到新创建的驱动程序目录</p>
+<div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/src/8821cu-20210916</span><br></pre></td></tr></table></figure></div></div>
+
+<p>4、运行安装脚本(install-driver.sh)</p>
+<div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo ./install-driver.sh</span><br><span class="line">或</span><br><span class="line">sh install-driver.sh</span><br></pre></td></tr></table></figure></div></div>
+
+
+
+
+<h3 id="kali常用命令"><a href="#kali常用命令" class="headerlink" title="kali常用命令"></a>kali常用命令</h3><p>启动服务</p>
+<div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service [服务名称] start</span><br></pre></td></tr></table></figure></div></div>
+
+<p>停止服务</p>
+<div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service [服务名称] stop</span><br></pre></td></tr></table></figure></div></div>
+
+<p>重启服务</p>
+<div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service [服务名称] restart</span><br></pre></td></tr></table></figure></div></div>
+
+
+<p>查看系统内核</p>
+<div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">uname</span> -a</span><br></pre></td></tr></table></figure></div></div>
+
+<p>查看系统内核和gcc编译版本</p>
+<div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /proc/version</span><br></pre></td></tr></table></figure></div></div>
+
+<h2 id="相关功能预览"><a href="#相关功能预览" class="headerlink" title="相关功能预览"></a>相关功能预览</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/00-ST/kali-c-gn-0.jpg"
+                      alt="KL 图片"
+                ></p>
+<h3 id="镜像下载地址"><a href="#镜像下载地址" class="headerlink" title="镜像下载地址"></a>镜像下载地址</h3><p><a class="link"   target="_blank" rel="noopener" href="https://www.kali.org/get-kali/#kali-platforms" >https://www.kali.org/get-kali/#kali-platforms <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="个人推荐指数"><a href="#个人推荐指数" class="headerlink" title="个人推荐指数"></a>个人推荐指数</h2><p>推荐：⭐⭐⭐⭐⭐  非常推荐</p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Kali/">#Kali</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/11/06/WireShark-tool/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Wireshark的使用方式以及常用的筛选规则</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">Kali-Linux-Tools-安装以及基础操作</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kali-%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%BB%8D"><span class="nav-text">Kali-基本介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="nav-text">安装步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%AE%89%E8%A3%85%E9%95%9C%E7%9B%B8%E5%B9%B6%E4%B8%8B%E8%BD%BD"><span class="nav-text">选择安装镜相并下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VM%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="nav-text">VM虚拟机的设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E5%90%8E%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="nav-text">安装系统后的设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E5%90%8E%E5%B8%B8%E8%A7%81%E8%AE%BE%E7%BD%AE"><span class="nav-text">虚拟机安装后常见设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90"><span class="nav-text">如何获取root权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kali%E7%BD%91%E5%8D%A1%E8%AE%BE%E7%BD%AE"><span class="nav-text">kali网卡设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0kali%E6%BA%90"><span class="nav-text">更新kali源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86%E8%8B%B1%E6%96%87%E4%BF%AE%E6%94%B9%E4%B8%BA%E4%B8%AD%E6%96%87"><span class="nav-text">将英文修改为中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kali%E5%BC%80%E5%90%AFSSH"><span class="nav-text">kali开启SSH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8USB%E7%BD%91%E5%8D%A1%E8%BF%9E%E6%8E%A5%E5%A4%96%E7%BD%91"><span class="nav-text">使用USB网卡连接外网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kali%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">kali常用命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%8A%9F%E8%83%BD%E9%A2%84%E8%A7%88"><span class="nav-text">相关功能预览</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="nav-text">镜像下载地址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E6%8E%A8%E8%8D%90%E6%8C%87%E6%95%B0"><span class="nav-text">个人推荐指数</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+            <div class="customize-info my-1">Farewell good hunter, May you find your worth in the waking world.</div>
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">变化无常</a>
+        </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.4.4</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex justify-center items-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+        ],
+        containers: ["#swup"],
+    });
+
+    swup.hooks.on("page:view", () => {
+        Global.refresh();
+    });
+
+    // if (document.readyState === "complete") {
+    //
+    // } else {
+    //     document.addEventListener("DOMContentLoaded", () => init());
+    // }
+</script>
+
+
+
+
+
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>
